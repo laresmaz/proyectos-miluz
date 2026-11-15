@@ -1,8 +1,9 @@
-// Root component: the teaser page shown while the full site is built.
+// Root component: shows the teaser page while the full site is built.
+import Teaser from "./pages/Teaser";
 
-// Renders the full-height deep-blue page the teaser content will sit in.
+// Renders the current page; the router comes with the full site.
 function App() {
-  return <div className="min-h-screen bg-brand-deep font-sans text-white" />
+  return <Teaser />;
 }
 
-export default App
+export default App;
