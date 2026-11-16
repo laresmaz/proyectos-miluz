@@ -13,7 +13,8 @@
     "build-storybook": "storybook build",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "lighthouse": "lhci autorun"
   },
   "dependencies": {
     "@fontsource/barlow-condensed": "^5.3.0",
@@ -25,6 +26,7 @@
     "react-i18next": "^18.0.1"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.16.0",
     "@storybook/react-vite": "^10.6.6",
     "@tailwindcss/vite": "^4.3.5",
     "@testing-library/react": "^16.3.3",

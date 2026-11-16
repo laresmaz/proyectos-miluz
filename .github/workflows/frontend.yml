@@ -30,4 +30,5 @@ jobs:
       - run: pnpm test
       # Includes the type-check (tsc -b).
       - run: pnpm build
+      - run: pnpm lighthouse
       - run: pnpm build-storybook
