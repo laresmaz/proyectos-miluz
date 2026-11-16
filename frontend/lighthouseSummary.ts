@@ -21,8 +21,8 @@ type LighthouseResult = {
   audits: Record<string, { numericValue: number }>;
 };
 
-const assertions = createRequire(import.meta.url)("./lighthouserc.cjs").ci
-  .assert.assertions;
+const config = createRequire(import.meta.url)("./lighthouserc.cjs");
+const assertions = config.ci.assert.assertions;
 const ROWS: {
   label: string;
   show: (s: Summary) => string;
@@ -35,14 +35,14 @@ const ROWS: {
     key: "performance",
     show: (s) => `${s.performance}`,
     delta: signed,
-    budget: `≥ ${assertions["categories:performance"][1].minScore * 100}`,
+    budget: `≥ ${round(assertions["categories:performance"][1].minScore * 100, 0)}`,
   },
   {
     label: "Accessibility",
     key: "accessibility",
     show: (s) => `${s.accessibility}`,
     delta: signed,
-    budget: `≥ ${assertions["categories:accessibility"][1].minScore * 100}`,
+    budget: `≥ ${round(assertions["categories:accessibility"][1].minScore * 100, 0)}`,
   },
   {
     label: "Main content (LCP)",
@@ -95,6 +95,7 @@ function main() {
 
 // Median of each metric across the runs, rounded the way the table shows it.
 export function summarize(results: LighthouseResult[]): Summary {
+  // Middle value of the sorted runs (the upper middle one when the count is even).
   const median = (pick: (r: LighthouseResult) => number) => {
     const values = results.map(pick).sort((a, b) => a - b);
     return values[Math.floor(values.length / 2)];
@@ -123,14 +124,16 @@ export function summarize(results: LighthouseResult[]): Summary {
 // Markdown table for the GitHub run summary, with the change against main when main has saved numbers.
 export function summaryTable(current: Summary, main: Summary | null): string {
   const rows = ROWS.map((row) => {
-    const change = main ? row.delta(current[row.key] - main[row.key]) : "—";
+    const before = main?.[row.key];
+    const change =
+      typeof before === "number" ? row.delta(current[row.key] - before) : "—";
     return `| ${row.label} | ${row.show(current)} | ${row.budget} | ${change} |`;
   });
   const note = main
     ? ""
     : "\nNo numbers from main yet; the change column fills in after the next run on main.\n";
   return [
-    "### Lighthouse (median of 3 runs, throttled phone)",
+    `### Lighthouse (median of ${config.ci.collect.numberOfRuns} runs, throttled phone)`,
     "",
     "| Metric | This run | Budget | vs main |",
     "|---|---|---|---|",

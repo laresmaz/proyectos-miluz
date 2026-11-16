@@ -84,4 +84,22 @@ describe("Lighthouse summary", () => {
       "::notice title=Lighthouse::perf 83 · a11y 100 · LCP 2.2 s · CLS 0 · 192 KiB",
     );
   });
+
+  it("shows no change for a metric that main's saved numbers don't have yet", () => {
+    // Arrange
+    const current = summarize(runs);
+    const olderMain = {
+      performance: 85,
+      accessibility: 100,
+      lcpMs: 2000,
+      kib: 190.5,
+    };
+
+    // Act
+    const table = summaryTable(current, olderMain as never);
+
+    // Assert
+    expect(table).toContain("| Layout shift (CLS) | 0 | ≤ 0.1 | — |");
+    expect(table).not.toContain("NaN");
+  });
 });

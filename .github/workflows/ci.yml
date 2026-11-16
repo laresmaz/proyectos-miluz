@@ -20,7 +20,7 @@ jobs:
         with:
           # Full history, so the branch can be compared with main.
           fetch-depth: 0
-      # Check PR contains the latest main (to mitigate semantic merge conflict and because is only 1 dev)
+      # Only one developer, so require the latest main to catch semantic merge conflicts.
       - name: Branch includes the latest main
         if: github.event_name == 'pull_request'
         env:
@@ -34,6 +34,7 @@ jobs:
       - name: Changed parts
         id: areas
         run: |
+          # Prints true if the PR touches the given folder or the workflows (always true outside PRs).
           changed() {
             if [ "$GITHUB_EVENT_NAME" != "pull_request" ]; then echo true; return; fi
             git diff --name-only origin/main...HEAD | grep -qE "^($1/|\.github/)" && echo true || echo false

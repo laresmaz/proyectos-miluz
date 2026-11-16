@@ -31,6 +31,8 @@ jobs:
       - run: pnpm test
       # Includes the type-check (tsc -b).
       - run: pnpm build
+      # Before Lighthouse, so a failed budget can't hide a broken Storybook.
+      - run: pnpm build-storybook
       - run: pnpm lighthouse
       - name: Fetch main's Lighthouse numbers
         if: github.event_name == 'pull_request' && (success() || failure())
@@ -49,4 +51,3 @@ jobs:
           name: lighthouse-summary
           path: frontend/lighthouse-summary.json
           retention-days: 90
-      - run: pnpm build-storybook
