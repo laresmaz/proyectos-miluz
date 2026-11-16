@@ -17,7 +17,10 @@ export const OnTeaser: Story = {
     <div className="flex h-screen flex-col">
       <section className="relative isolate flex flex-auto flex-col justify-end overflow-hidden bg-brand-deep">
         <CraneBackdrop />
-        <AvilaDivider topBg="var(--color-brand-deep)" fill="var(--color-brand)" />
+        <AvilaDivider
+          topBg="var(--color-brand-deep)"
+          fill="var(--color-brand)"
+        />
       </section>
       <div className="h-16 bg-brand" />
     </div>

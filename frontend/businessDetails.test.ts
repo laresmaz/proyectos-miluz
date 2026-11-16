@@ -2,18 +2,25 @@
 import { describe, expect, it } from "vitest";
 import { buildManifest, fillBusinessDetails } from "./businessDetails.ts";
 
-const business = { name: "Pérez & Hijos", city: "Valencia, Venezuela", whatsapp: "584141234567" };
+const business = {
+  name: "Pérez & Hijos",
+  city: "Valencia, Venezuela",
+  whatsapp: "584141234567",
+};
 
 describe("business details in the page shell", () => {
   it("puts the name and city wherever index.html has their markers", () => {
     // Arrange
-    const html = "<title>%BUSINESS_NAME% · %BUSINESS_CITY%</title><meta content='%BUSINESS_NAME%'>";
+    const html =
+      "<title>%BUSINESS_NAME% · %BUSINESS_CITY%</title><meta content='%BUSINESS_NAME%'>";
 
     // Act
     const filled = fillBusinessDetails(html, business);
 
     // Assert
-    expect(filled).toBe("<title>Pérez &amp; Hijos · Valencia, Venezuela</title><meta content='Pérez &amp; Hijos'>");
+    expect(filled).toBe(
+      "<title>Pérez &amp; Hijos · Valencia, Venezuela</title><meta content='Pérez &amp; Hijos'>",
+    );
   });
 
   it("escapes characters that would break the HTML", () => {
@@ -21,7 +28,10 @@ describe("business details in the page shell", () => {
     const html = '<meta content="%BUSINESS_NAME%">';
 
     // Act
-    const filled = fillBusinessDetails(html, { ...business, name: `"Bad" <name>` });
+    const filled = fillBusinessDetails(html, {
+      ...business,
+      name: `"Bad" <name>`,
+    });
 
     // Assert
     expect(filled).toBe('<meta content="&quot;Bad&quot; &lt;name&gt;">');
@@ -37,6 +47,8 @@ describe("business details in the page shell", () => {
     // Assert
     expect(manifest.name).toBe(business.name);
     expect(manifest.short_name).toBe(business.name);
-    expect(manifest.icons.map((icon: { purpose: string }) => icon.purpose)).toEqual(["any", "maskable"]);
+    expect(
+      manifest.icons.map((icon: { purpose: string }) => icon.purpose),
+    ).toEqual(["any", "maskable"]);
   });
 });

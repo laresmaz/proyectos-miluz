@@ -23,8 +23,12 @@
 
 /* Drifting cranes: cross their section left to right, behind the content (DISENO.md section 4). */
 @keyframes crane-drift {
-  from { left: -400px; }
-  to { left: 100%; }
+  from {
+    left: -400px;
+  }
+  to {
+    left: 100%;
+  }
 }
 .crane {
   position: absolute;
@@ -33,5 +37,7 @@
   animation: crane-drift linear infinite;
 }
 @media (prefers-reduced-motion: reduce) {
-  .crane { animation: none; }
+  .crane {
+    animation: none;
+  }
 }

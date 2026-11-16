@@ -1,0 +1,4 @@
+# Files Prettier leaves alone: build output and the lockfile pnpm writes itself.
+dist
+storybook-static
+pnpm-lock.yaml

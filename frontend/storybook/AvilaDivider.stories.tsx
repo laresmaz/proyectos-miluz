@@ -8,7 +8,13 @@ const meta = {
   parameters: { layout: "fullscreen" },
   argTypes: { topBg: { control: "color" }, fill: { control: "color" } },
   // The divider's sky is transparent, so paint the upper section behind it as a page would.
-  decorators: [(Story, { args }) => <div style={{ background: args.topBg }}><Story /></div>],
+  decorators: [
+    (Story, { args }) => (
+      <div style={{ background: args.topBg }}>
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof AvilaDivider>;
 
 export default meta;
