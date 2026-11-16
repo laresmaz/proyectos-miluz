@@ -1,0 +1,26 @@
+{
+  "languageSwitch": {
+    "label": "Change language"
+  },
+  "teaser": {
+    "eyebrow": "{{name}} · Civil engineering",
+    "headline": "Something good",
+    "headlineAccent": "it's under construction",
+    "intro": "We are preparing our new website. In the meantime, tell us about your project: more than 50 years of experience stand behind us.",
+    "whatsapp": "Message us on WhatsApp",
+    "servicesLabel": "Services",
+    "services": [
+      "Civil works",
+      "Plumbing",
+      "Electrical",
+      "Masonry",
+      "Drywall",
+      "Reinforced concrete",
+      "Walls and water tanks"
+    ],
+    "footer": "© {{year}} {{name}} · {{city}}",
+    "footerWhatsapp": "WhatsApp: {{number}}",
+    "metaTitle": "{{name}} · Civil engineer, renovations and structures in {{city}}",
+    "metaDescription": "Renovations, plumbing, electrical, masonry, drywall and reinforced concrete structures, backed by an engineer. Message us on WhatsApp."
+  }
+}

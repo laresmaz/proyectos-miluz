@@ -1,0 +1,37 @@
+/* Global styles: Tailwind, self-hosted fonts and the brand tokens from DISENO.md. */
+/* Fonts are bundled, not loaded from Google, so the page stays fast on slow mobile data. */
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/barlow-condensed/600.css";
+@import "@fontsource/barlow-condensed/700.css";
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #00007e;
+  --color-brand-deep: #05054a;
+  --color-brand-mist: #eef0fa;
+  --color-brand-medium: #3d4bd9;
+  --color-ink: #1a1c2e;
+  /* Amarillo grúa: only the main button and details on dark backgrounds, never text on white. */
+  --color-crane: #ffc20e;
+  --color-whatsapp: #25d366;
+
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-display: "Barlow Condensed", sans-serif;
+}
+
+/* Drifting cranes: cross their section left to right, behind the content (DISENO.md section 4). */
+@keyframes crane-drift {
+  from { left: -400px; }
+  to { left: 100%; }
+}
+.crane {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  animation: crane-drift linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .crane { animation: none; }
+}
