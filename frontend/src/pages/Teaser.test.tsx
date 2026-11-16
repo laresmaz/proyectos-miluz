@@ -29,18 +29,25 @@ describe("teaser page", () => {
   it.each([
     { browser: "es-VE", texts: es },
     { browser: "en-US", texts: en },
-  ])("shows the headline and all services in $browser", ({ browser, texts }) => {
-    // Arrange
-    const services = texts.teaser.services;
+  ])(
+    "shows the headline and all services in $browser",
+    ({ browser, texts }) => {
+      // Arrange
+      const services = texts.teaser.services;
 
-    // Act
-    renderTeaser(browser);
+      // Act
+      renderTeaser(browser);
 
-    // Assert
-    expect(screen.getByRole("heading", { level: 1 }).textContent).toContain(texts.teaser.headlineAccent);
-    const shown = screen.getAllByRole("listitem").map((item) => item.textContent);
-    expect(shown).toEqual(services);
-  });
+      // Assert
+      expect(screen.getByRole("heading", { level: 1 }).textContent).toContain(
+        texts.teaser.headlineAccent,
+      );
+      const shown = screen
+        .getAllByRole("listitem")
+        .map((item) => item.textContent);
+      expect(shown).toEqual(services);
+    },
+  );
 
   it("sends the visitor to the business WhatsApp chat", () => {
     // Arrange
@@ -50,7 +57,9 @@ describe("teaser page", () => {
     const button = screen.getByRole("link", { name: es.teaser.whatsapp });
 
     // Assert
-    expect(button.getAttribute("href")).toBe(`https://wa.me/${BUSINESS.whatsapp}`);
+    expect(button.getAttribute("href")).toBe(
+      `https://wa.me/${BUSINESS.whatsapp}`,
+    );
   });
 
   it("names the business in the logo for screen readers", () => {
@@ -66,14 +75,30 @@ describe("teaser page", () => {
 
   it("switches the page to English from the language button", async () => {
     // Arrange
+    document.head.innerHTML =
+      '<title>Spanish title from index.html</title><meta name="description" content="">';
     renderTeaser("es-VE");
-    const languageButton = screen.getByRole("button", { name: /Cambiar idioma/ });
+    const languageButton = screen.getByRole("button", {
+      name: /Cambiar idioma/,
+    });
 
     // Act
     await userEvent.click(languageButton);
 
     // Assert
     expect(screen.getByRole("link", { name: en.teaser.whatsapp })).toBeTruthy();
-    expect(screen.getByRole("button", { name: /Change language/ }).textContent).toContain("Español");
+    expect(
+      screen.getByRole("button", { name: /Change language/ }).textContent,
+    ).toContain("Español");
+    expect(document.title).toBe(
+      en.teaser.metaTitle
+        .replace("{{name}}", BUSINESS.name)
+        .replace("{{city}}", BUSINESS.city),
+    );
+    expect(
+      document
+        .querySelector('meta[name="description"]')
+        ?.getAttribute("content"),
+    ).toBe(en.teaser.metaDescription);
   });
 });

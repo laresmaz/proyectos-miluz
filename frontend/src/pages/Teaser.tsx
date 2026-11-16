@@ -1,4 +1,5 @@
 // Teaser page: one screen with the logo, the "under construction" headline and the WhatsApp contact.
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import logo from "../assets/logo.svg";
 import AvilaDivider from "../components/AvilaDivider";
@@ -13,6 +14,17 @@ const YEAR = new Date().getFullYear();
 // Renders the full teaser; values follow the design mockup in .claude/local.
 export default function Teaser() {
   const { t } = useTranslation();
+
+  // Page title change usinng the languageSwitch
+  useEffect(() => {
+    document.title = t("teaser.metaTitle", {
+      name: BUSINESS.name,
+      city: BUSINESS.city,
+    });
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute("content", t("teaser.metaDescription"));
+  }, [t]);
   const services = t("teaser.services", { returnObjects: true }) as string[];
 
   return (
@@ -71,7 +83,10 @@ export default function Teaser() {
             </ul>
           </div>
         </main>
-        <AvilaDivider topBg="var(--color-brand-deep)" fill="var(--color-brand)" />
+        <AvilaDivider
+          topBg="var(--color-brand-deep)"
+          fill="var(--color-brand)"
+        />
       </div>
       <footer className="bg-brand px-6 pt-5 pb-7">
         <div className="mx-auto flex max-w-300 flex-wrap items-center justify-between gap-3">

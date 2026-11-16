@@ -19,6 +19,8 @@
       "Walls and water tanks"
     ],
     "footer": "© {{year}} {{name}} · {{city}}",
-    "footerWhatsapp": "WhatsApp: {{number}}"
+    "footerWhatsapp": "WhatsApp: {{number}}",
+    "metaTitle": "{{name}} · Civil engineer, renovations and structures in {{city}}",
+    "metaDescription": "Renovations, plumbing, electrical, masonry, drywall and reinforced concrete structures, backed by an engineer. Message us on WhatsApp."
   }
 }

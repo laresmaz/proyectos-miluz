@@ -19,6 +19,8 @@
       "Muros y tanques"
     ],
     "footer": "© {{year}} {{name}} · {{city}}",
-    "footerWhatsapp": "WhatsApp: {{number}}"
+    "footerWhatsapp": "WhatsApp: {{number}}",
+    "metaTitle": "{{name}} · Ingeniero civil, reformas y estructuras en {{city}}",
+    "metaDescription": "Reformas, plomería, electricidad, albañilería, drywall y estructuras de concreto armado con respaldo de ingeniero. Escríbanos por WhatsApp."
   }
 }

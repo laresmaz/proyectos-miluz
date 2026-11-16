@@ -1,8 +1,8 @@
-// Business details shown on the site, kept in one place and identical in every language.
-// Placeholders until the engineer confirms them (DISENO.md section 12).
+// Business details shown on the site identical in every language.
+// businessDetails.ts also fills the name and city into index.html and the web manifest at build time.
 export const BUSINESS = {
-  name: "[Nombre comercial]",
-  city: "[Ciudad, Venezuela]",
-  // International format, digits only (e.g. 584141234567), as wa.me requires.
-  whatsapp: "[número]",
+  name: "[Nombre comercial]", //TODO
+  city: "[Ciudad, Venezuela]", // TODO
+  // International format, digits only (e.g. 584141234567)
+  whatsapp: "[número]", //TODO
 };
