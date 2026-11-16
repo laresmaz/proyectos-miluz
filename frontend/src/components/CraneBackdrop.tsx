@@ -48,6 +48,9 @@ export default function CraneBackdrop() {
           key={`${width}-${left}`}
           src={crane}
           alt=""
+          // Matches crane.svg's 352 × 312 box, so the browser reserves the height before the image decodes.
+          width={width}
+          height={Math.round((width * 312) / 352)}
           className="crane block h-auto"
           aria-hidden="true"
           style={{
