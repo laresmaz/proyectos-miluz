@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   checks:
@@ -31,4 +32,21 @@ jobs:
       # Includes the type-check (tsc -b).
       - run: pnpm build
       - run: pnpm lighthouse
+      - name: Fetch main's Lighthouse numbers
+        if: github.event_name == 'pull_request' && (success() || failure())
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          run_id=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow ci.yml --branch main --event push --status success --limit 1 --json databaseId --jq '.[0].databaseId' || true)
+          [ -n "$run_id" ] && gh run download "$run_id" --repo "$GITHUB_REPOSITORY" --name lighthouse-summary --dir baseline || echo "No numbers from main yet."
+      - name: Lighthouse summary
+        if: success() || failure()
+        run: node lighthouseSummary.ts
+      - name: Save the numbers for later PRs
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: lighthouse-summary
+          path: frontend/lighthouse-summary.json
+          retention-days: 90
       - run: pnpm build-storybook

@@ -3,3 +3,5 @@ dist
 storybook-static
 pnpm-lock.yaml
 .lighthouseci
+lighthouse-summary.json
+baseline
