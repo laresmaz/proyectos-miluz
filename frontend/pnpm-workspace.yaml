@@ -1,6 +1,5 @@
 # pnpm settings for the frontend.
-# Supply-chain guard: only install versions published at least 7 days ago (value in minutes), so a hijacked release is usually caught and pulled first.
-minimumReleaseAge: 10080
-# Install scripts stay blocked; esbuild gets its binary from an optional package, so it runs without its script.
+minimumReleaseAge: 10080 # Supply-chain guard: only version published at least 7 days ago in min.
 allowBuilds:
   esbuild: false
+  simple-git-hooks: false
