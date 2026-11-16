@@ -20,3 +20,18 @@
   --font-sans: Inter, system-ui, sans-serif;
   --font-display: "Barlow Condensed", sans-serif;
 }
+
+/* Drifting cranes: cross their section left to right, behind the content (DISENO.md section 4). */
+@keyframes crane-drift {
+  from { left: -400px; }
+  to { left: 100%; }
+}
+.crane {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  animation: crane-drift linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .crane { animation: none; }
+}
