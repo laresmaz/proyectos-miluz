@@ -46,9 +46,30 @@ jobs:
     needs: changes
     if: needs.changes.outputs.frontend == 'true'
     uses: ./.github/workflows/frontend.yml
+    secrets:
+      CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
+  # "UI Tests" is required (adding chromatic skip for PRs that don't touch the frontend)
+  ui-tests-skip:
+    needs: changes
+    if: needs.changes.outputs.frontend != 'true'
+    runs-on: ubuntu-latest
+    env:
+      CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - run: |
+          if [ -z "$CHROMATIC_PROJECT_TOKEN" ]; then
+            echo "::warning::CHROMATIC_PROJECT_TOKEN is missing (or this is a fork PR), so \"UI Tests\" won't report and the PR can't merge."
+            exit 0
+          fi
+          npx --yes chromatic@18.14.3 --skip
 
   ci-ok:
-    needs: [changes, frontend]
+    needs: [changes, frontend, ui-tests-skip]
     if: always()
     runs-on: ubuntu-latest
     steps:

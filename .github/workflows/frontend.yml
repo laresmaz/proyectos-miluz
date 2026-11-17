@@ -3,6 +3,9 @@ name: Frontend
 
 on:
   workflow_call:
+    secrets:
+      CHROMATIC_PROJECT_TOKEN:
+        required: false
 
 permissions:
   contents: read
@@ -14,8 +17,13 @@ jobs:
     defaults:
       run:
         working-directory: frontend
+    env:
+      CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
     steps:
       - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.sha }}
+          fetch-depth: 0
       - uses: pnpm/action-setup@v6.1.1
         with:
           version: 11.20.0
@@ -24,15 +32,22 @@ jobs:
           node-version: 24
           cache: pnpm
           cache-dependency-path: frontend/pnpm-lock.yaml
-      # Frozen: installs exactly the reviewed lockfile, so the 7-day package rule still holds here.
       - run: pnpm install --frozen-lockfile
       - run: pnpm format:check
       - run: pnpm lint
       - run: pnpm test
-      # Includes the type-check (tsc -b).
       - run: pnpm build
       # Before Lighthouse, so a failed budget can't hide a broken Storybook.
       - run: pnpm build-storybook
+      # Changes don't fail this job: Chromatic's own "UI Tests" check blocks the merge until they're approved.
+      - name: Chromatic regression board
+        continue-on-error: true
+        run: |
+          if [ -z "$CHROMATIC_PROJECT_TOKEN" ]; then
+            echo "::warning::CHROMATIC_PROJECT_TOKEN is missing (or this is a fork PR), so \"UI Tests\" won't report and the PR can't merge."
+            exit 0
+          fi
+          pnpm exec chromatic --storybook-build-dir storybook-static --exit-zero-on-changes --auto-accept-changes main
       - run: pnpm lighthouse
       - name: Fetch main's Lighthouse numbers
         if: github.event_name == 'pull_request' && (success() || failure())

@@ -1,5 +1,6 @@
-// Crane backdrop: yellow triangle cranes drifting slowly behind a section's content (DISENO.md section 1).
+// Crane backdrop: yellow triangle cranes drifting slowly behind a section's content
 // The parent needs `relative isolate overflow-hidden` so the cranes stay behind and inside it.
+import isChromatic from "chromatic/isChromatic";
 import crane from "../assets/crane.svg";
 
 // Size, start, opacity and speed per crane, from the mockup; small ones first so big ones paint on top.
@@ -41,6 +42,8 @@ const CRANES = [
 
 // Renders every crane; the drift animation lives in index.css and stops with reduced motion.
 export default function CraneBackdrop() {
+  // Frozen in Chromatic, so every screenshot catches the cranes in the same place.
+  const still = isChromatic();
   return (
     <>
       {CRANES.map(({ width, left, opacity, duration, delay, bottom }) => (
@@ -58,6 +61,7 @@ export default function CraneBackdrop() {
             left,
             bottom,
             opacity,
+            animationName: still ? "none" : undefined,
             animationDuration: `${duration}s`,
             animationDelay: `${delay}s`,
           }}
