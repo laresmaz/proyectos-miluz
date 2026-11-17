@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       frontend: ${{ steps.areas.outputs.frontend }}
+      infra: ${{ steps.areas.outputs.infra }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -40,6 +41,7 @@ jobs:
             git diff --name-only origin/main...HEAD | grep -qE "^($1/|\.github/)" && echo true || echo false
           }
           echo "frontend=$(changed frontend)" >> "$GITHUB_OUTPUT"
+          echo "infra=$(changed infra)" >> "$GITHUB_OUTPUT"
           cat "$GITHUB_OUTPUT"
 
   frontend:
@@ -68,8 +70,25 @@ jobs:
           fi
           npx --yes chromatic@18.14.3 --skip
 
+  infra:
+    needs: changes
+    if: needs.changes.outputs.infra == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: infra
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: hashicorp/setup-terraform@v4.0.1
+        with:
+          terraform_version: 1.15.3
+      - run: terraform fmt -check -recursive
+      # No state needed to check the files, so no Google login yet.
+      - run: terraform init -backend=false -input=false
+      - run: terraform validate
+
   ci-ok:
-    needs: [changes, frontend, ui-tests-skip]
+    needs: [changes, frontend, ui-tests-skip, infra]
     if: always()
     runs-on: ubuntu-latest
     steps:
