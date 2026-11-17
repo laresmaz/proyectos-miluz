@@ -43,11 +43,13 @@ Terraform can't create the things it needs to run, so these steps are done by ha
    gcloud storage buckets update gs://proyectos-miluz-tfstate --versioning
    ```
 
-6. **First run:** from this folder:
+6. **Firebase:** Google refuses to add Firebase through the API until the Firebase terms are accepted in the console. In [console.firebase.google.com](https://console.firebase.google.com), create a project, pick the existing `<project-id>` from the list, accept the terms and turn Google Analytics off.
+7. **First run:** from this folder. The import hands the Firebase from step 6 to Terraform.
 
    ```sh
    terraform init
-   terraform plan
+   terraform import google_firebase_project.this projects/<project-id>
+   terraform apply
    ```
 
 ## Day to day
