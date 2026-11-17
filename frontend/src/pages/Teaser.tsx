@@ -36,7 +36,6 @@ export default function Teaser() {
           <LanguageSwitch className="absolute top-4 right-4" />
           <div className="flex max-w-205 flex-col items-center gap-7 text-center">
             <img src={logo} alt={BUSINESS.name} width={112} height={112} />
-            <h2 className="text-red">HELO!!</h2>
             <Text variant="eyebrow" className="text-crane">
               {t("teaser.eyebrow", { name: BUSINESS.name })}
             </Text>
