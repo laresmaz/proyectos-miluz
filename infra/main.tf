@@ -10,7 +10,7 @@ terraform {
     }
   }
 
-  # Created by hand in the bootstrap, since Terraform can't store its state in a bucket it hasn't made yet.
+  # Created by hand since Terraform can't store its state in a bucket it hasn't made yet.
   backend "gcs" {
     bucket = "proyectos-miluz-tfstate"
     prefix = "terraform/state"
@@ -20,4 +20,6 @@ terraform {
 provider "google" {
   project = var.project_id
   region  = var.region
+  user_project_override = true
+  billing_project       = var.project_id
 }
