@@ -30,8 +30,3 @@ frontend/baseline
 *.njsproj
 *.sln
 *.sw?
-
-# Terraform: provider downloads and any local state
-.terraform/
-*.tfstate
-*.tfstate.*
