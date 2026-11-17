@@ -32,3 +32,13 @@ variable "domain" {
   description = "Domain bought at Porkbun; the site lives at www. and the bare domain redirects there."
   type        = string
 }
+
+variable "github_repo" {
+  description = "GitHub repository allowed to log in to Google, as owner/name."
+  type        = string
+}
+
+variable "github_repo_id" {
+  description = "Numeric ID of that repository; unlike the name, it can't be reused by a new repo."
+  type        = string
+}
