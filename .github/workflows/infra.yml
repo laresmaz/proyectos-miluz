@@ -3,9 +3,13 @@ name: Infra
 
 on:
   workflow_call:
+    secrets:
+      TF_BILLING_ACCOUNT:
+        required: false
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
   checks:
@@ -18,7 +22,33 @@ jobs:
       - uses: hashicorp/setup-terraform@v4.0.1
         with:
           terraform_version: 1.15.3
+          # Plain output, so the plan can be saved to a file.
+          terraform_wrapper: false
       - run: terraform fmt -check -recursive
       # No state needed to check the files, so no Google login yet.
       - run: terraform init -backend=false -input=false
       - run: terraform validate
+      # Fork PRs can't log in to Google, so only PRs from this repo get a plan.
+      - name: Log in to Google as tf-plan
+        id: login
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        uses: google-github-actions/auth@v3.0.0
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_TF_PLAN_ACCOUNT }}
+      - name: Plan
+        if: steps.login.outcome == 'success'
+        env:
+          TF_VAR_billing_account: ${{ secrets.TF_BILLING_ACCOUNT }}
+        run: |
+          terraform init -reconfigure -input=false
+          status=0
+          terraform plan -lock=false -input=false -no-color > plan.txt 2>&1 || status=$?
+          # The summary isn't masked like the log, so hide the billing account that shows in resource IDs.
+          {
+            echo "### Terraform plan"
+            echo '```'
+            grep -v "Refreshing state" plan.txt | sed "s/${TF_VAR_billing_account:-billing-account-unset}/***/g"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit $status

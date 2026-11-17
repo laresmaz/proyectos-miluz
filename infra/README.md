@@ -52,6 +52,14 @@ Terraform can't create the things it needs to run, so these steps are done by ha
    terraform apply
    ```
 
+8. **GitHub:** after the first apply, `terraform output github_variables` prints four values.
+   - Settings → Secrets and variables → Actions → **Variables**: add each one as a repository variable.
+   - Same page, **Secrets**: add `TF_BILLING_ACCOUNT` with the billing account ID.
+   - Settings → Environments: create `infrastructure`, with deployment branches limited to `main`.
+   - Settings → Actions → General: allow `hashicorp/setup-terraform` and `google-github-actions/auth`.
+
 ## Day to day
 
-Edit the `.tf` files on a branch and open a PR. Run `terraform fmt` before committing; CI fails on unformatted files.
+Edit the `.tf` files on a branch and open a PR. CI checks the formatting and puts the plan in the run summary; after the merge, CD applies it. Run `terraform fmt` before committing.
+
+The billing-account roles in `github.tf` can only be changed by the billing account's admin, so changes to them are applied locally with `terraform apply`.

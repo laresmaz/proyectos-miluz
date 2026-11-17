@@ -74,6 +74,12 @@ jobs:
     needs: changes
     if: needs.changes.outputs.infra == 'true'
     uses: ./.github/workflows/infra.yml
+    # id-token lets the plan log in to Google with GitHub's token instead of a stored key.
+    permissions:
+      contents: read
+      id-token: write
+    secrets:
+      TF_BILLING_ACCOUNT: ${{ secrets.TF_BILLING_ACCOUNT }}
 
   ci-ok:
     needs: [changes, frontend, ui-tests-skip, infra]
