@@ -8,8 +8,7 @@ module.exports = {
     },
     assert: {
       assertions: {
-        // TODO: improve the performance score (mostly JavaScript blocking time) and raise this floor.
-        "categories:performance": ["error", { minScore: 0.7 }],
+        "categories:performance": ["error", { minScore: 0.95 }],
         "cumulative-layout-shift": ["error", { maxNumericValue: 0.1 }],
         "categories:accessibility": ["error", { minScore: 1 }],
         "largest-contentful-paint": ["error", { maxNumericValue: 2500 }],

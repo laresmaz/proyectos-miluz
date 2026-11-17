@@ -53,7 +53,7 @@ describe("Lighthouse summary", () => {
     const table = summaryTable(current, main);
 
     // Assert
-    expect(table).toContain("| Performance | 83 | ≥ 70 | -2 |");
+    expect(table).toContain("| Performance | 83 | ≥ 95 | -2 |");
     expect(table).toContain(
       "| Main content (LCP) | 2.2 s | ≤ 2.5 s | +0.2 s |",
     );
@@ -68,7 +68,7 @@ describe("Lighthouse summary", () => {
     const table = summaryTable(current, null);
 
     // Assert
-    expect(table).toContain("| Performance | 83 | ≥ 70 | — |");
+    expect(table).toContain("| Performance | 83 | ≥ 95 | — |");
     expect(table).toContain("No numbers from main yet");
   });
 
