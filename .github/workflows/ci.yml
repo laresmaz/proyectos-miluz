@@ -59,7 +59,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
       - run: |
           if [ -z "$CHROMATIC_PROJECT_TOKEN" ]; then
