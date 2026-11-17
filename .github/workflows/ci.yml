@@ -1,0 +1,60 @@
+# CI entry point
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      frontend: ${{ steps.areas.outputs.frontend }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          # Full history, so the branch can be compared with main.
+          fetch-depth: 0
+      # Only one developer, so require the latest main to catch semantic merge conflicts.
+      - name: Branch includes the latest main
+        if: github.event_name == 'pull_request'
+        env:
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          git merge-base --is-ancestor origin/main "$HEAD_SHA" || {
+            echo "::error::This branch is behind main. Run 'git pull origin main' (or rebase on main), then push again."
+            exit 1
+          }
+      # On a PR, a part runs if its folder or the workflows changed
+      - name: Changed parts
+        id: areas
+        run: |
+          # Prints true if the PR touches the given folder or the workflows (always true outside PRs).
+          changed() {
+            if [ "$GITHUB_EVENT_NAME" != "pull_request" ]; then echo true; return; fi
+            git diff --name-only origin/main...HEAD | grep -qE "^($1/|\.github/)" && echo true || echo false
+          }
+          echo "frontend=$(changed frontend)" >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
+
+  frontend:
+    needs: changes
+    if: needs.changes.outputs.frontend == 'true'
+    uses: ./.github/workflows/frontend.yml
+
+  ci-ok:
+    needs: [changes, frontend]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Every part passed or was skipped
+        env:
+          RESULTS: ${{ join(needs.*.result, ' ') }}
+        run: |
+          echo "Results: $RESULTS"
+          ! grep -qE "failure|cancelled" <<<"$RESULTS"

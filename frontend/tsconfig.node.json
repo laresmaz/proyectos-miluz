@@ -19,5 +19,13 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["vite.config.ts", "businessDetails.ts", "businessDetails.test.ts"]
+  "include": [
+    "vite.config.ts",
+    "businessDetails.ts",
+    "businessDetails.test.ts",
+    "preloadFonts.ts",
+    "preloadFonts.test.ts",
+    "lighthouseSummary.ts",
+    "lighthouseSummary.test.ts"
+  ]
 }

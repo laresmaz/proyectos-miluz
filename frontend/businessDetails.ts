@@ -18,14 +18,20 @@ export default function businessDetails(): Plugin {
       });
     },
     generateBundle() {
-      this.emitFile({ type: "asset", fileName: "site.webmanifest", source: manifest });
+      this.emitFile({
+        type: "asset",
+        fileName: "site.webmanifest",
+        source: manifest,
+      });
     },
   };
 }
 
 // Replaces %BUSINESS_NAME% and %BUSINESS_CITY% in the page shell, escaped so any name is safe inside HTML.
 export function fillBusinessDetails(html: string, business: Business): string {
-  return html.replaceAll("%BUSINESS_NAME%", escapeHtml(business.name)).replaceAll("%BUSINESS_CITY%", escapeHtml(business.city));
+  return html
+    .replaceAll("%BUSINESS_NAME%", escapeHtml(business.name))
+    .replaceAll("%BUSINESS_CITY%", escapeHtml(business.city));
 }
 
 // Builds the web manifest Android reads for the home-screen name and icon.
@@ -46,5 +52,9 @@ export function buildManifest(business: Business): string {
 
 // Escapes the characters that could end an HTML attribute or open a tag.
 function escapeHtml(text: string): string {
-  return text.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+  return text
+    .replaceAll("&", "&amp;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
 }

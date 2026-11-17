@@ -36,4 +36,20 @@ describe("crane backdrop", () => {
     expect(widths.slice(0, firstBig).every((width) => width <= 150)).toBe(true);
     expect(widths.slice(firstBig).every((width) => width >= 300)).toBe(true);
   });
+
+  it("reserves each crane's height before the image decodes, so the page doesn't jump", () => {
+    // Arrange
+    const { container } = render(<CraneBackdrop />);
+
+    // Act
+    const cranes = [...container.querySelectorAll("img.crane")];
+
+    // Assert: width and height attributes in crane.svg's 352 × 312 proportions.
+    for (const crane of cranes) {
+      const width = Number(crane.getAttribute("width"));
+      const height = Number(crane.getAttribute("height"));
+      expect(width).toBeGreaterThan(0);
+      expect(height).toBe(Math.round((width * 312) / 352));
+    }
+  });
 });

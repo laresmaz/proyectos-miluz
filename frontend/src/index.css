@@ -1,10 +1,4 @@
-/* Global styles: Tailwind, self-hosted fonts and the brand tokens from DISENO.md. */
-/* Fonts are bundled, not loaded from Google, so the page stays fast on slow mobile data. */
-@import "@fontsource/inter/400.css";
-@import "@fontsource/inter/600.css";
-@import "@fontsource/inter/700.css";
-@import "@fontsource/barlow-condensed/600.css";
-@import "@fontsource/barlow-condensed/700.css";
+/* Global styles (the fonts themselves load from src/fonts.ts). */
 @import "tailwindcss";
 
 @theme {
@@ -17,14 +11,18 @@
   --color-crane: #ffc20e;
   --color-whatsapp: #25d366;
 
-  --font-sans: Inter, system-ui, sans-serif;
-  --font-display: "Barlow Condensed", sans-serif;
+  --font-sans: Inter, "Inter fallback", system-ui, sans-serif;
+  --font-display: "Barlow Condensed", "Barlow Condensed fallback", sans-serif;
 }
 
 /* Drifting cranes: cross their section left to right, behind the content (DISENO.md section 4). */
 @keyframes crane-drift {
-  from { left: -400px; }
-  to { left: 100%; }
+  from {
+    left: -400px;
+  }
+  to {
+    left: 100%;
+  }
 }
 .crane {
   position: absolute;
@@ -33,5 +31,7 @@
   animation: crane-drift linear infinite;
 }
 @media (prefers-reduced-motion: reduce) {
-  .crane { animation: none; }
+  .crane {
+    animation: none;
+  }
 }

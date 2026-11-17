@@ -6,11 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "oxlint",
+    "lint": "oxlint --deny-warnings",
     "preview": "vite preview",
     "test": "vitest run",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "simple-git-hooks",
+    "lighthouse": "lhci autorun"
   },
   "dependencies": {
     "@fontsource/barlow-condensed": "^5.3.0",
@@ -22,6 +26,7 @@
     "react-i18next": "^18.0.1"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.16.0",
     "@storybook/react-vite": "^10.6.6",
     "@tailwindcss/vite": "^4.3.5",
     "@testing-library/react": "^16.3.3",
@@ -30,12 +35,18 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
+    "fontaine": "^1.0.3",
     "jsdom": "^31.0.0",
     "oxlint": "^1.90.0",
+    "prettier": "^3.9.10",
+    "simple-git-hooks": "^2.14.0",
     "storybook": "^10.6.6",
     "tailwindcss": "^4.3.5",
     "typescript": "~7.0.2",
     "vite": "^8.3.6",
     "vitest": "^5.1.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "cd frontend && pnpm format:check && pnpm lint && pnpm exec tsc -b && pnpm test"
   }
 }

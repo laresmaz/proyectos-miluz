@@ -16,7 +16,9 @@ describe("Ávila divider", () => {
     const { container } = render(<AvilaDivider {...props} />);
 
     // Assert
-    expect(container.firstElementChild?.getAttribute("aria-hidden")).toBe("true");
+    expect(container.firstElementChild?.getAttribute("aria-hidden")).toBe(
+      "true",
+    );
   });
 
   it("leaves the sky open so whatever sits behind it, like the cranes, shows between the peaks", () => {
@@ -27,7 +29,9 @@ describe("Ávila divider", () => {
     const { container } = render(<AvilaDivider {...props} />);
 
     // Assert
-    expect((container.firstElementChild as HTMLElement).style.background).toBe("");
+    expect((container.firstElementChild as HTMLElement).style.background).toBe(
+      "",
+    );
   });
 
   it("draws every mountain solid, so nothing behind shows through them", () => {
@@ -50,7 +54,16 @@ describe("Ávila divider", () => {
     const { container } = render(<AvilaDivider {...props} />);
 
     // Assert
-    const fills = new Set([...container.querySelectorAll("polygon, rect")].map((shape) => shape.getAttribute("fill")));
-    expect(fills).toEqual(new Set([colors.fill, `color-mix(in srgb, ${colors.fill} 45%, ${colors.topBg})`]));
+    const fills = new Set(
+      [...container.querySelectorAll("polygon, rect")].map((shape) =>
+        shape.getAttribute("fill"),
+      ),
+    );
+    expect(fills).toEqual(
+      new Set([
+        colors.fill,
+        `color-mix(in srgb, ${colors.fill} 45%, ${colors.topBg})`,
+      ]),
+    );
   });
 });
