@@ -1,0 +1,24 @@
+# Infrastructure checks
+name: Infra
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: infra
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: hashicorp/setup-terraform@v4.0.1
+        with:
+          terraform_version: 1.15.3
+      - run: terraform fmt -check -recursive
+      # No state needed to check the files, so no Google login yet.
+      - run: terraform init -backend=false -input=false
+      - run: terraform validate
