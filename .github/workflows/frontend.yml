@@ -3,6 +3,9 @@ name: Frontend
 
 on:
   workflow_call:
+    secrets:
+      CHROMATIC_PROJECT_TOKEN:
+        required: false
 
 permissions:
   contents: read
@@ -19,6 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
       - uses: pnpm/action-setup@v6.1.1
         with:
@@ -37,8 +41,13 @@ jobs:
       - run: pnpm build-storybook
       # Changes don't fail this job: Chromatic's own "UI Tests" check blocks the merge until they're approved.
       - name: Chromatic regression board
-        if: env.CHROMATIC_PROJECT_TOKEN != ''
-        run: pnpm exec chromatic --storybook-build-dir storybook-static --exit-zero-on-changes --auto-accept-changes main
+        continue-on-error: true
+        run: |
+          if [ -z "$CHROMATIC_PROJECT_TOKEN" ]; then
+            echo "::warning::CHROMATIC_PROJECT_TOKEN is missing (or this is a fork PR), so \"UI Tests\" won't report and the PR can't merge."
+            exit 0
+          fi
+          pnpm exec chromatic --storybook-build-dir storybook-static --exit-zero-on-changes --auto-accept-changes main
       - run: pnpm lighthouse
       - name: Fetch main's Lighthouse numbers
         if: github.event_name == 'pull_request' && (success() || failure())
