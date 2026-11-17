@@ -1,9 +1,12 @@
 // Tests for the drifting cranes: decorative only, small ones painted first so big ones sit on top.
 import { cleanup, render } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import CraneBackdrop from "./CraneBackdrop";
 
-afterEach(cleanup);
+afterEach(() => {
+  cleanup();
+  vi.restoreAllMocks();
+});
 
 // Reads a crane's rendered width in pixels.
 const widthOf = (crane: Element) =>
@@ -35,6 +38,23 @@ describe("crane backdrop", () => {
     const firstBig = widths.findIndex((width) => width >= 300);
     expect(widths.slice(0, firstBig).every((width) => width <= 150)).toBe(true);
     expect(widths.slice(firstBig).every((width) => width >= 300)).toBe(true);
+  });
+
+  it.each([
+    { browser: "a visitor's browser", userAgent: "Mozilla/5.0", still: false },
+    { browser: "Chromatic", userAgent: "Mozilla/5.0 Chromatic", still: true },
+  ])("holds the cranes still only in $browser", ({ userAgent, still }) => {
+    // Arrange
+    vi.spyOn(navigator, "userAgent", "get").mockReturnValue(userAgent);
+
+    // Act
+    const { container } = render(<CraneBackdrop />);
+
+    // Assert
+    const names = [...container.querySelectorAll<HTMLElement>(".crane")].map(
+      (crane) => crane.style.animationName,
+    );
+    expect(names.every((name) => (name === "none") === still)).toBe(true);
   });
 
   it("reserves each crane's height before the image decodes, so the page doesn't jump", () => {
