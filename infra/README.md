@@ -28,6 +28,12 @@ Terraform can't create the things it needs to run, so these steps are done by ha
    gcloud billing projects link <project-id> --billing-account=<ACCOUNT_ID>
    ```
 
+   Terraform needs Cloud Resource Manager to look up the project before it can enable any other API, so this one is turned on by hand:
+
+   ```sh
+   gcloud services enable cloudresourcemanager.googleapis.com --project=<project-id>
+   ```
+
 5. **State bucket:** private, and versioned so an old state can be restored after a bad apply.
 
    ```sh

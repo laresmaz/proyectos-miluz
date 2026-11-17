@@ -1,1 +1,5 @@
 # proyectos-miluz
+
+## TODO
+
+- Look into a hard billing cap: Google budgets only send emails, so spending past the 1 € budget isn't stopped. A Pub/Sub topic on the budget plus a function that disables billing would cap it.
