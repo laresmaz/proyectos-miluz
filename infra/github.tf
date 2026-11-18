@@ -32,7 +32,8 @@ resource "google_iam_workload_identity_pool_provider" "github" {
 
 # PR runs plan, the "infrastructure" environment applies, the "production" environment deploys the site.
 locals {
-  github_principal = "principal://iam.googleapis.com/${google_iam_workload_identity_pool.github.name}/subject/repo:${var.github_repo}"
+  # GitHub's immutable subjects add the owner and repo IDs, so a renamed or recreated repo can't match.
+  github_principal = "principal://iam.googleapis.com/${google_iam_workload_identity_pool.github.name}/subject/${var.github_sub_prefix}"
 
   deployers = {
     tf-plan = {

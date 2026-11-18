@@ -33,8 +33,8 @@ variable "domain" {
   type        = string
 }
 
-variable "github_repo" {
-  description = "GitHub repository allowed to log in to Google, as owner/name."
+variable "github_sub_prefix" {
+  description = "Start of the subject GitHub signs into this repo's tokens; read it from GET /repos/OWNER/REPO/actions/oidc/customization/sub (sub_claim_prefix)."
   type        = string
 }
 
