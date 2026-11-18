@@ -10,11 +10,17 @@ permissions:
   contents: read
   actions: read
 
+# One run per branch at a time, so main's runs finish in merge order and CD never applies an older commit last.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   changes:
     runs-on: ubuntu-latest
     outputs:
       frontend: ${{ steps.areas.outputs.frontend }}
+      infra: ${{ steps.areas.outputs.infra }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -40,6 +46,7 @@ jobs:
             git diff --name-only origin/main...HEAD | grep -qE "^($1/|\.github/)" && echo true || echo false
           }
           echo "frontend=$(changed frontend)" >> "$GITHUB_OUTPUT"
+          echo "infra=$(changed infra)" >> "$GITHUB_OUTPUT"
           cat "$GITHUB_OUTPUT"
 
   frontend:
@@ -68,8 +75,19 @@ jobs:
           fi
           npx --yes chromatic@18.14.3 --skip
 
+  infra:
+    needs: changes
+    if: needs.changes.outputs.infra == 'true'
+    uses: ./.github/workflows/infra.yml
+    # id-token lets the plan log in to Google with GitHub's token instead of a stored key.
+    permissions:
+      contents: read
+      id-token: write
+    secrets:
+      TF_BILLING_ACCOUNT: ${{ secrets.TF_BILLING_ACCOUNT }}
+
   ci-ok:
-    needs: [changes, frontend, ui-tests-skip]
+    needs: [changes, frontend, ui-tests-skip, infra]
     if: always()
     runs-on: ubuntu-latest
     steps:
