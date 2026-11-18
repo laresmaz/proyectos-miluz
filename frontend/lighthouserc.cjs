@@ -3,7 +3,10 @@
 module.exports = {
   ci: {
     collect: {
-      staticDistDir: "./dist",
+      // CD sets LIGHTHOUSE_URL to audit the live site; otherwise CI serves the local build.
+      ...(process.env.LIGHTHOUSE_URL
+        ? { url: [process.env.LIGHTHOUSE_URL] }
+        : { staticDistDir: "./dist" }),
       numberOfRuns: 3,
     },
     assert: {

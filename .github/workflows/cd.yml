@@ -76,3 +76,8 @@ jobs:
       - run: pnpm exec firebase deploy --only hosting --project proyectos-miluz --non-interactive --message "$(git rev-parse HEAD)"
       - name: Smoke test the live site
         run: bash smokeTest.sh
+      # After the smoke test, so it audits the release just deployed, through the real CDN.
+      - name: Lighthouse on the live site
+        env:
+          LIGHTHOUSE_URL: https://www.proyectosmiluz.com/
+        run: pnpm lighthouse
