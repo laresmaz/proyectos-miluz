@@ -37,7 +37,7 @@ locals {
   deployers = {
     tf-plan = {
       subject = "pull_request"
-      roles = ["roles/viewer", "roles/storage.objectViewer", "roles/serviceusage.serviceUsageConsumer"]
+      roles   = ["roles/viewer", "roles/storage.objectViewer", "roles/serviceusage.serviceUsageConsumer"]
     }
     tf-apply = {
       subject = "environment:infrastructure"
