@@ -1,0 +1,48 @@
+# Frontend deployment: deploys to Firebase Hosting and checks the live site, called from cd.yml
+name: Frontend deployment
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    concurrency:
+      group: frontend-deploy
+      cancel-in-progress: false
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          # The commit CI tested, not whatever main is by now.
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - uses: pnpm/action-setup@v6.1.1
+        with:
+          version: 11.20.0
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - uses: google-github-actions/auth@v3.0.0
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_HOSTING_DEPLOY_ACCOUNT }}
+      # The commit SHA as the release message, so Hosting's release history maps back to commits.
+      - run: pnpm exec firebase deploy --only hosting --project proyectos-miluz --non-interactive --message "$(git rev-parse HEAD)"
+      - name: Smoke test the live site
+        run: bash smokeTest.sh
+      # After the smoke test, so it audits the release just deployed, through the real CDN.
+      - name: Lighthouse on the live site
+        env:
+          LIGHTHOUSE_URL: https://www.proyectosmiluz.com/
+        run: pnpm lighthouse

@@ -52,7 +52,7 @@ jobs:
   frontend:
     needs: changes
     if: needs.changes.outputs.frontend == 'true'
-    uses: ./.github/workflows/frontend.yml
+    uses: ./.github/workflows/frontend-integration.yml
     secrets:
       CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
@@ -81,7 +81,7 @@ jobs:
   infra:
     needs: changes
     if: needs.changes.outputs.infra == 'true'
-    uses: ./.github/workflows/infra.yml
+    uses: ./.github/workflows/infra-integration.yml
     # id-token lets the plan log in to Google with GitHub's token instead of a stored key.
     permissions:
       contents: read

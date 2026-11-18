@@ -1,0 +1,41 @@
+# Infra deployment: applies the Terraform in infra/, called from cd.yml
+name: Infra deployment
+
+on:
+  workflow_call:
+    secrets:
+      TF_BILLING_ACCOUNT:
+        required: true
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    environment: infrastructure
+    concurrency:
+      group: infra-apply
+      cancel-in-progress: false
+    defaults:
+      run:
+        working-directory: infra
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          # The commit CI tested, not whatever main is by now.
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - uses: hashicorp/setup-terraform@v4.0.1
+        with:
+          terraform_version: 1.15.3
+          terraform_wrapper: false
+      - uses: google-github-actions/auth@v3.0.0
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_TF_APPLY_ACCOUNT }}
+      - run: terraform init -input=false
+      - name: Apply
+        env:
+          TF_VAR_billing_account: ${{ secrets.TF_BILLING_ACCOUNT }}
+        run: terraform apply -auto-approve -input=false -no-color
