@@ -58,7 +58,7 @@ Terraform can't create the things it needs to run, so these steps are done by ha
 8. **GitHub:** after the first apply, `terraform output github_variables` prints four values.
    - Settings → Secrets and variables → Actions → **Variables**: add each one as a repository variable.
    - Same page, **Secrets**: add `TF_BILLING_ACCOUNT` with the billing account ID.
-   - Settings → Environments: create `infrastructure`, with deployment branches limited to `main`.
+   - Settings → Environments: create `infrastructure` and `production`, both with deployment branches limited to `main`.
    - Settings → Actions → General: allow `hashicorp/setup-terraform` and `google-github-actions/auth`.
 
 ## Day to day
