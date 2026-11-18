@@ -44,9 +44,12 @@ Terraform can't create the things it needs to run, so these steps are done by ha
    ```
 
 6. **Firebase:** Google refuses to add Firebase through the API until the Firebase terms are accepted in the console. In [console.firebase.google.com](https://console.firebase.google.com), create a project, pick the existing `<project-id>` from the list, accept the terms and turn Google Analytics off.
-7. **First run:** from this folder. The import hands the Firebase from step 6 to Terraform.
+7. **First run:** from this folder. direnv loads the billing account ID from `../.env` on `cd`, so Terraform doesn't prompt for it (home-manager: `programs.direnv.enable = true;`). `direnv allow` approves the repo's `.envrc`, and is needed again whenever `.envrc` changes. The import hands the Firebase from step 6 to Terraform.
 
    ```sh
+   cp ../.env.example ../.env
+   $EDITOR ../.env
+   direnv allow ..
    terraform init
    terraform import google_firebase_project.this projects/<project-id>
    terraform apply
