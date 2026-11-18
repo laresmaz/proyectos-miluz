@@ -74,8 +74,9 @@ jobs:
             echo "::warning::CHROMATIC_PROJECT_TOKEN is missing (or this is a fork PR), so \"UI Tests\" won't report and the PR can't merge."
             exit 0
           fi
-          # The locked version, so this can't drift from the frontend's Chromatic and skips a slow install.
-          npx --yes "chromatic@$(grep -oPm1 '^  chromatic@\K[0-9.]+(?=:)' pnpm-lock.yaml)" --skip
+          # The locked version, so this can't drift from the frontend's Chromatic, without a pnpm install.
+          version=$(grep -oPm1 '^  chromatic@\K[^:(]+' pnpm-lock.yaml) || { echo "::error::No chromatic version found in pnpm-lock.yaml."; exit 1; }
+          npx --yes "chromatic@$version" --skip
 
   infra:
     needs: changes

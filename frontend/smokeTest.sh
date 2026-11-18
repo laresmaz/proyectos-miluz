@@ -14,20 +14,20 @@ main() {
   echo "Smoke test passed for $SITE"
 }
 
+# The served index.html must be byte for byte the one just built; retried because CDN edges can lag a release by seconds.
+check_live_is_this_build() {
+  local try
+  for try in 1 2 3 4 5 6; do
+    curl -sSf "$SITE/" | cmp -s - "$DIST/index.html" && return
+    [ "$try" = 6 ] || sleep 10
+  done
+  fail "$SITE/ doesn't serve $DIST/index.html after a minute, so the new release isn't live."
+}
+
 # Prints the error and stops; the ::error:: prefix shows up as an annotation in GitHub Actions.
 fail() {
   echo "::error::Smoke test: $1" >&2
   exit 1
-}
-
-# Prints one response header's value, or nothing when it's missing.
-header() {
-  curl -sSfI "$1" | tr -d '\r' | awk -v name="$2:" 'tolower($1) == name { sub(/^[^:]*: */, ""); print }'
-}
-
-# The served index.html must be byte for byte the one just built, so a stale CDN or failed release shows up.
-check_live_is_this_build() {
-  curl -sSf "$SITE/" | cmp -s - "$DIST/index.html" || fail "$SITE/ doesn't serve $DIST/index.html, so the new release isn't live."
 }
 
 # The bare domain must send visitors to www with a permanent redirect.
@@ -46,6 +46,12 @@ check_cache_headers() {
   asset_cache=$(header "$SITE$asset" cache-control)
   [[ "$index_cache" == *no-cache* ]] || fail "$SITE/ has Cache-Control '$index_cache', expected no-cache."
   [[ "$asset_cache" == *immutable* ]] || fail "$SITE$asset has Cache-Control '$asset_cache', expected immutable."
+}
+
+# Prints one response header's value, or nothing when it's missing; fails when the URL doesn't answer 2xx.
+header() {
+  curl -sSfI "$1" | tr -d '\r' | awk -v name="$2:" 'tolower($1) == name { sub(/^[^:]*: */, ""); print }' ||
+    fail "$1 didn't answer with a 2xx status."
 }
 
 main
