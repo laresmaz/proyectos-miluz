@@ -29,7 +29,7 @@ function Photo({ src, alt, eager = false, square = false }: BrandPhotoProps) {
   return (
     <div
       aria-busy={loading}
-      className={`relative overflow-hidden bg-brand-mist ${square ? "" : "rounded-lg"} ${loading ? "motion-safe:animate-pulse" : ""}`}
+      className={`relative overflow-hidden bg-brand-mist ${square ? "" : "rounded-[10px]"} ${loading ? "motion-safe:animate-pulse" : ""}`}
     >
       <img
         src={shown}
@@ -44,7 +44,7 @@ function Photo({ src, alt, eager = false, square = false }: BrandPhotoProps) {
       />
       <div className="absolute inset-0 bg-brand/20 mix-blend-multiply" />
       <div
-        className={`absolute right-0 bottom-0 bg-brand [clip-path:polygon(100%_0,100%_100%,0_100%)] ${square ? "size-8" : "size-12"}`}
+        className={`absolute right-0 bottom-0 bg-brand [clip-path:polygon(100%_0,100%_100%,0_100%)] ${square ? "size-8" : "size-14"}`}
       />
     </div>
   );

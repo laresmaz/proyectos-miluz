@@ -119,5 +119,12 @@
     "all": "Todos",
     "before": "Antes",
     "after": "Después"
+  },
+  "about": {
+    "eyebrow": "Sobre el ingeniero",
+    "title": "Me involucro en cada obra",
+    "bio": "Soy <strong>[Nombre]</strong>, ingeniero civil [colegiado en el CIV con el N.º X], con <strong>más de 50 años</strong> de experiencia en reformas, cálculo estructural y construcción. He participado en [tipo de obras: viviendas, edificios, locales…] en [zonas].",
+    "presence": "Desde la evaluación inicial hasta la entrega, estoy presente para que su obra quede bien hecha.",
+    "photoAlt": "El ingeniero en obra"
   }
 }

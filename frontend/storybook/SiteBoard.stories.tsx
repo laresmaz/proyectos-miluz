@@ -39,3 +39,6 @@ export const ServicePage: Story = { args: { path: "/servicios/plomeria" } };
 
 // The portfolio with the three example projects.
 export const Portfolio: Story = { args: { path: "/proyectos" } };
+
+// The engineer's introduction with his photo on the fallback.
+export const About: Story = { args: { path: "/sobre-mi" } };

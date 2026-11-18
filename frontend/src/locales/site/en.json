@@ -119,5 +119,12 @@
     "all": "All",
     "before": "Before",
     "after": "After"
+  },
+  "about": {
+    "eyebrow": "About the engineer",
+    "title": "I'm involved in every project",
+    "bio": "I'm <strong>[Name]</strong>, a civil engineer [registered with the CIV, no. X], with <strong>more than 50 years</strong> of experience in renovations, structural design and construction. I've worked on [types of work: homes, buildings, shops…] in [areas].",
+    "presence": "From the first assessment to the handover, I'm there so your project is done right.",
+    "photoAlt": "The engineer on site"
   }
 }

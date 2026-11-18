@@ -1,12 +1,7 @@
-// About page: the engineer's photo and career (DISENO.md section 5, "Sobre el ingeniero").
-import { useTranslation } from "react-i18next";
+// About page: the engineer's introduction from the mockup's "Sobre el ingeniero" section.
+import AboutSection from "../components/AboutSection";
 
-// Renders the about page; only its heading until the bio is in.
+// Renders the section as the page, with its heading as the h1.
 export default function About() {
-  const { t } = useTranslation("site");
-  return (
-    <h1 className="mx-auto max-w-300 px-6 py-16 font-display text-5xl font-bold text-brand uppercase">
-      {t("nav.about")}
-    </h1>
-  );
+  return <AboutSection heading="h1" />;
 }

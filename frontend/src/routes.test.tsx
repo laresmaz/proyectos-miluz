@@ -29,7 +29,7 @@ describe("site shell", () => {
     { path: "/", heading: BUSINESS.name },
     { path: "/servicios", heading: es.nav.services },
     { path: "/proyectos", heading: es.nav.projects },
-    { path: "/sobre-mi", heading: es.nav.about },
+    { path: "/sobre-mi", heading: es.about.title },
     { path: "/no-existe", heading: es.notFound.title },
   ])("opens $path on its own page", ({ path, heading }) => {
     // Arrange
