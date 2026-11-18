@@ -5,4 +5,6 @@ export const BUSINESS = {
   city: "Caracas, Venezuela",
   // International format, digits only (e.g. 584141234567)
   whatsapp: "[número]", //TODO
+  // Off until the real number is in, so the teaser never links to a placeholder.
+  whatsappEnabled: false,
 };
