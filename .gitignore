@@ -35,3 +35,6 @@ frontend/baseline
 .terraform/
 *.tfstate
 *.tfstate.*
+
+# Firebase CLI deploy cache
+.firebase/

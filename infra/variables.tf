@@ -21,7 +21,7 @@ variable "billing_account" {
   type        = string
   sensitive   = true
 
-  # Safegard and empty value delete the billing account
+  # An empty value made plan want to replace the budget, so reject anything that isn't an ID.
   validation {
     condition     = can(regex("^[0-9A-F]{6}-[0-9A-F]{6}-[0-9A-F]{6}$", var.billing_account))
     error_message = "Set TF_VAR_billing_account to the billing account ID, like 01ABCD-23EFGH-45IJKL (see gcloud billing accounts list)."
