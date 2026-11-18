@@ -74,3 +74,5 @@ jobs:
           service_account: ${{ vars.GCP_HOSTING_DEPLOY_ACCOUNT }}
       # The commit SHA as the release message, so Hosting's release history maps back to commits.
       - run: pnpm exec firebase deploy --only hosting --project proyectos-miluz --non-interactive --message "$(git rev-parse HEAD)"
+      - name: Smoke test the live site
+        run: bash smokeTest.sh
