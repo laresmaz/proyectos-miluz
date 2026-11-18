@@ -1,37 +1,55 @@
+// Tests for the root component: visitors get the teaser, ?preview opens the new site before launch.
 import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import App from "./App";
 import { BUSINESS } from "./config";
 import { createI18n } from "./i18n";
+import es from "./locales/es.json";
+
+// Renders the app at a URL, as a Spanish-speaking visitor would open it.
+function openApp(path: string) {
+  window.history.replaceState({}, "", path);
+  vi.spyOn(navigator, "languages", "get").mockReturnValue(["es-VE"]);
+  createI18n();
+  render(<App />);
+}
 
 afterEach(() => {
   cleanup();
+  vi.restoreAllMocks();
+  sessionStorage.clear();
   window.history.replaceState({}, "", "/");
 });
 
 describe("app", () => {
-  it("shows the deep-blue holding page with only the logo to visitors", () => {
+  it.each(["/", "/?preview=false"])(
+    "shows the teaser to visitors at %s",
+    (path) => {
+      // Arrange
+      const url = path;
+
+      // Act
+      openApp(url);
+
+      // Assert
+      expect(screen.getByRole("heading", { level: 1 }).textContent).toContain(
+        es.teaser.headlineAccent,
+      );
+      expect(screen.queryByRole("navigation")).toBeNull();
+    },
+  );
+
+  it("shows the new site with ?preview, so it can be reviewed before launch", async () => {
     // Arrange
-    window.history.replaceState({}, "", "/");
+    const url = "/?preview";
 
     // Act
-    render(<App />);
+    openApp(url);
 
     // Assert
-    expect(screen.getByRole("main").className).toContain("bg-brand-deep");
-    expect(screen.getByRole("img", { name: BUSINESS.name })).toBeTruthy();
-    expect(screen.queryByRole("heading")).toBeNull();
-  });
-
-  it("shows the teaser with ?preview, so it can be reviewed before launch", () => {
-    // Arrange
-    window.history.replaceState({}, "", "/?preview");
-    createI18n();
-
-    // Act
-    render(<App />);
-
-    // Assert
-    expect(screen.getByRole("heading", { level: 1 })).toBeTruthy();
+    expect(await screen.findByRole("navigation")).toBeTruthy();
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
+      BUSINESS.name,
+    );
   });
 });
