@@ -1,5 +1,5 @@
-# Frontend checks
-name: Frontend
+# Frontend integration: format, lint, tests, builds, Chromatic and Lighthouse, called from ci.yml
+name: Frontend integration
 
 on:
   workflow_call:

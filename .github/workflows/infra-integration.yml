@@ -1,5 +1,5 @@
-# Infrastructure checks
-name: Infra
+# Infra integration: Terraform format and validate, plus the plan on PRs, called from ci.yml
+name: Infra integration
 
 on:
   workflow_call:
