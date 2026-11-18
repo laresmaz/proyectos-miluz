@@ -1,4 +1,4 @@
-// Tests for the teaser page: content in both languages, the WhatsApp link and the language switch.
+// Tests for the teaser page: content in both languages, the WhatsApp link behind its flag and the language switch.
 import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { I18nextProvider } from "react-i18next";
@@ -19,10 +19,13 @@ function renderTeaser(browserLanguage: string) {
   );
 }
 
+const whatsappEnabledInConfig = BUSINESS.whatsappEnabled;
+
 afterEach(() => {
   cleanup();
   vi.restoreAllMocks();
   localStorage.clear();
+  BUSINESS.whatsappEnabled = whatsappEnabledInConfig;
 });
 
 describe("teaser page", () => {
@@ -49,17 +52,31 @@ describe("teaser page", () => {
     },
   );
 
-  it("sends the visitor to the business WhatsApp chat", () => {
+  it("sends the visitor to the business WhatsApp chat when WhatsApp is on", () => {
     // Arrange
-    renderTeaser("es-VE");
+    BUSINESS.whatsappEnabled = true;
 
     // Act
-    const button = screen.getByRole("link", { name: es.teaser.whatsapp });
+    renderTeaser("es-VE");
 
     // Assert
+    const button = screen.getByRole("link", { name: es.teaser.whatsapp });
     expect(button.getAttribute("href")).toBe(
       `https://wa.me/${BUSINESS.whatsapp}`,
     );
+    expect(screen.getByText(`WhatsApp: ${BUSINESS.whatsapp}`)).toBeTruthy();
+  });
+
+  it("hides the WhatsApp button and number while WhatsApp is off", () => {
+    // Arrange
+    BUSINESS.whatsappEnabled = false;
+
+    // Act
+    renderTeaser("es-VE");
+
+    // Assert
+    expect(screen.queryByRole("link", { name: es.teaser.whatsapp })).toBeNull();
+    expect(screen.queryByText(BUSINESS.whatsapp, { exact: false })).toBeNull();
   });
 
   it("names the business in the logo for screen readers", () => {
@@ -86,7 +103,9 @@ describe("teaser page", () => {
     await userEvent.click(languageButton);
 
     // Assert
-    expect(screen.getByRole("link", { name: en.teaser.whatsapp })).toBeTruthy();
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toContain(
+      en.teaser.headlineAccent,
+    );
     expect(
       screen.getByRole("button", { name: /Change language/ }).textContent,
     ).toContain("Español");

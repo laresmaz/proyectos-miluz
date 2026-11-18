@@ -6,6 +6,7 @@ const business = {
   name: "Pérez & Hijos",
   city: "Valencia, Venezuela",
   whatsapp: "584141234567",
+  whatsappEnabled: true,
 };
 
 describe("business details in the page shell", () => {

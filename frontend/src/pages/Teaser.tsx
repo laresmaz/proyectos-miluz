@@ -47,25 +47,27 @@ export default function Teaser() {
             <Text variant="lead" className="max-w-140 text-[#C9CDE8]">
               {t("teaser.intro")}
             </Text>
-            <a
-              href={`https://wa.me/${BUSINESS.whatsapp}`}
-              className="inline-flex min-h-13 items-center gap-2.5 rounded-lg bg-crane px-7 text-[17px] font-bold text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
+            {BUSINESS.whatsappEnabled && (
+              <a
+                href={`https://wa.me/${BUSINESS.whatsapp}`}
+                className="inline-flex min-h-13 items-center gap-2.5 rounded-lg bg-crane px-7 text-[17px] font-bold text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
-                <path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.5A8.4 8.4 0 1 1 21 11.5z" />
-              </svg>
-              {t("teaser.whatsapp")}
-            </a>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.5A8.4 8.4 0 1 1 21 11.5z" />
+                </svg>
+                {t("teaser.whatsapp")}
+              </a>
+            )}
             <ul
               aria-label={t("teaser.servicesLabel")}
               className="mt-2 flex flex-wrap justify-center gap-2.5"
@@ -97,9 +99,11 @@ export default function Teaser() {
               city: BUSINESS.city,
             })}
           </Text>
-          <Text variant="small">
-            {t("teaser.footerWhatsapp", { number: BUSINESS.whatsapp })}
-          </Text>
+          {BUSINESS.whatsappEnabled && (
+            <Text variant="small">
+              {t("teaser.footerWhatsapp", { number: BUSINESS.whatsapp })}
+            </Text>
+          )}
         </div>
       </footer>
     </div>
