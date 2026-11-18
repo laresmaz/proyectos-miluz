@@ -1,4 +1,4 @@
-// Home page: hero, trust strip, services, how we work, featured projects and about (DISENO.md section 3).
+// Home page: hero, trust strip, services, how we work, featured projects
 import { BUSINESS } from "../config";
 
 // Renders the home page; only its heading until the sections are built.

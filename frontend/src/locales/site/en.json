@@ -1,0 +1,116 @@
+{
+  "nav": {
+    "label": "Main",
+    "menu": "Menu",
+    "services": "Services",
+    "projects": "Projects",
+    "about": "About"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "back": "Back to home"
+  },
+  "footer": {
+    "copyright": "© {{year}} {{name}} · {{city}}"
+  },
+  "services": {
+    "label": "{{number}} · Service",
+    "seeMore": "See more",
+    "includes": "What it includes",
+    "whatsapp": "Ask on WhatsApp",
+    "all": "All services",
+    "items": {
+      "obras-civiles": {
+        "title": "Civil works",
+        "summary": "Building and extending homes, shops and buildings, with an engineer planning and supervising from day one.",
+        "text": "We take your project from start to finish: assessing the land or the existing building, planning, building and handover. We coordinate every trade (structure, masonry, plumbing and electrical) so you have a single person responsible and a project built to technical standards.",
+        "includes": [
+          "New homes and extensions (new floors, rooms, shops)",
+          "Earthworks, foundations and site preparation",
+          "Full remodels",
+          "Technical supervision and crew coordination"
+        ],
+        "whatsapp": "Hello, I'd like information about a civil works project (building/extension).",
+        "alt": "Building under construction with a concrete frame and scaffolding"
+      },
+      "plomeria": {
+        "title": "Plumbing",
+        "summary": "Installing and repairing drinking water and wastewater pipes, with lasting solutions for your home or business.",
+        "text": "From a single leak to plumbing a whole house, we use the right materials and pressure tests so the system works without leaks. We also diagnose pressure, damp and drainage problems before they turn into bigger damage.",
+        "includes": [
+          "New drinking water and wastewater installations",
+          "Finding and fixing leaks",
+          "Pumps, pressure tanks and connections to water tanks",
+          "Bathrooms and kitchens: fixtures, taps and drains"
+        ],
+        "whatsapp": "Hello, I need a plumbing service.",
+        "alt": "Water pipes being installed under a washbasin"
+      },
+      "electricidad": {
+        "title": "Electrical",
+        "summary": "Safe, tidy home and business electrical installations, built to grow.",
+        "text": "A well-done electrical installation protects your investment and your family. We design and build new installations, update old ones and fix faults, with a properly sized panel and labelled circuits. We also prepare your installation for a generator or a backup system.",
+        "includes": [
+          "New electrical installations and rewiring",
+          "Panels, breakers and dedicated circuits",
+          "Outlets, lighting and air conditioning points",
+          "Preparation for a generator or backup system"
+        ],
+        "whatsapp": "Hello, I'd like information about an electrical installation.",
+        "alt": "Technician working on an electrical panel"
+      },
+      "albanileria": {
+        "title": "Masonry",
+        "summary": "Walls, rendering, floors and finishes done with skill and level, so your space is solid and well finished.",
+        "text": "Masonry is the base of any renovation. We build block walls, render, lay ceramic and porcelain tiles, and repair cracks and damp by finding their cause, not just covering them. We look after levels, right angles and a clean site.",
+        "includes": [
+          "Clay or concrete block walls",
+          "Rendering, skimming and preparation for paint",
+          "Ceramic and porcelain floors and wall tiles",
+          "Crack repair and damp treatment"
+        ],
+        "whatsapp": "Hello, I need masonry work.",
+        "alt": "Mason building a block wall with mortar"
+      },
+      "drywall": {
+        "title": "Drywall",
+        "summary": "Drywall partitions, ceilings and furniture: quick to install, clean and professionally finished.",
+        "text": "Drywall lets you rearrange a space without heavy building work: new rooms, offices, ceilings or built-in furniture, with less rubble and in less time. We use galvanised framing and moisture-resistant boards in wet areas, with well-finished joints for a smooth surface.",
+        "includes": [
+          "Partition walls",
+          "Ceilings and decorative ceilings with lighting",
+          "Built-in furniture and niches",
+          "Moisture-resistant boards for bathrooms and kitchens"
+        ],
+        "whatsapp": "Hello, I'd like information about drywall work.",
+        "alt": "Drywall boards being fixed to metal framing"
+      },
+      "concreto-armado": {
+        "title": "Reinforced concrete structures",
+        "summary": "Designing, building and strengthening reinforced concrete structures, with a structural engineer's experience.",
+        "text": "The structure is what you don't see, but it holds everything up. As a structural engineer, I design and build foundations, columns, beams and slabs, and assess existing structures that show cracks or are going to be extended. Every pour is done with well-placed rebar, proper formwork and correct curing.",
+        "includes": [
+          "Structural calculation and design",
+          "Foundations, columns, beams and slabs (including flat roofs)",
+          "Crack assessment and strengthening of existing structures",
+          "Vertical extensions: new floors on existing buildings"
+        ],
+        "whatsapp": "Hello, I need advice about a concrete structure.",
+        "alt": "Rebar laid out for a concrete slab before the pour"
+      },
+      "muros-y-tanques": {
+        "title": "Walls and water tanks",
+        "summary": "Well-waterproofed reinforced concrete water tanks and walls, to store water safely and hold back the ground.",
+        "text": "A good tank gives you peace of mind when the water supply fails. We build underground and elevated reinforced concrete tanks, repair leaks and waterproof them inside. We also build retaining and boundary walls designed for the ground loads, with proper drainage.",
+        "includes": [
+          "Underground and elevated reinforced concrete tanks",
+          "Waterproofing and leak repair in existing tanks",
+          "Retaining walls with structural calculation and drainage",
+          "Boundary and enclosure walls"
+        ],
+        "whatsapp": "Hello, I'd like information about a water tank or a wall.",
+        "alt": "Reinforced concrete water tank under construction"
+      }
+    }
+  }
+}

@@ -2,20 +2,6 @@
   "languageSwitch": {
     "label": "Change language"
   },
-  "nav": {
-    "label": "Main",
-    "menu": "Menu",
-    "services": "Services",
-    "projects": "Projects",
-    "about": "About"
-  },
-  "notFound": {
-    "title": "Page not found",
-    "back": "Back to home"
-  },
-  "footer": {
-    "copyright": "© {{year}} {{name}} · {{city}}"
-  },
   "teaser": {
     "eyebrow": "{{name}} · Civil engineering",
     "headline": "Something good",

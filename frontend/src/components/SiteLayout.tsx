@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { Link, NavLink, Outlet, ScrollRestoration } from "react-router";
 import logo from "../assets/logo.svg";
 import { BUSINESS } from "../config";
+import siteEn from "../locales/site/en.json";
+import siteEs from "../locales/site/es.json";
 import AvilaDivider from "./AvilaDivider";
 import LanguageSwitch from "./LanguageSwitch";
 import Text from "./Text";
@@ -20,6 +22,7 @@ const NAV_LINKS = [
 
 // Renders the nav, the page for the current URL and the footer.
 export default function SiteLayout() {
+  useSiteTexts();
   return (
     <div className="flex min-h-screen flex-col bg-white font-sans text-ink">
       <SiteNav />
@@ -32,9 +35,18 @@ export default function SiteLayout() {
   );
 }
 
+// Adds the site's texts before any page renders
+function useSiteTexts() {
+  const { i18n } = useTranslation();
+  if (!i18n.hasResourceBundle("es", "site")) {
+    i18n.addResourceBundle("es", "site", siteEs);
+    i18n.addResourceBundle("en", "site", siteEn);
+  }
+}
+
 // Logo home link and page links; below lg the links fold into a menu button.
 function SiteNav() {
-  const { t } = useTranslation();
+  const { t } = useTranslation("site");
   const [open, setOpen] = useState(false);
 
   return (
@@ -98,7 +110,7 @@ function SiteNav() {
 
 // Ávila divider into the brand-blue footer with the copyright line.
 function SiteFooter() {
-  const { t } = useTranslation();
+  const { t } = useTranslation("site");
 
   return (
     <footer>

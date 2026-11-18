@@ -5,6 +5,7 @@ import About from "./pages/About";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Projects from "./pages/Projects";
+import ServiceDetail from "./pages/ServiceDetail";
 import Services from "./pages/Services";
 
 // Every page shares the nav and footer from SiteLayout.
@@ -14,6 +15,7 @@ export const routes: RouteObject[] = [
     children: [
       { path: "/", element: <Home /> },
       { path: "/servicios", element: <Services /> },
+      { path: "/servicios/:slug", element: <ServiceDetail /> },
       { path: "/proyectos", element: <Projects /> },
       { path: "/sobre-mi", element: <About /> },
       { path: "*", element: <NotFound /> },

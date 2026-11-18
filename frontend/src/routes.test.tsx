@@ -5,7 +5,7 @@ import { createMemoryRouter, RouterProvider } from "react-router";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { BUSINESS } from "./config";
 import { createI18n } from "./i18n";
-import es from "./locales/es.json";
+import es from "./locales/site/es.json";
 import { routes } from "./routes";
 
 // Renders the site at a URL, as a Spanish-speaking visitor would open it.

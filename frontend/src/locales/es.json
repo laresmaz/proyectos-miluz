@@ -2,20 +2,6 @@
   "languageSwitch": {
     "label": "Cambiar idioma"
   },
-  "nav": {
-    "label": "Principal",
-    "menu": "Menú",
-    "services": "Servicios",
-    "projects": "Proyectos",
-    "about": "Sobre mí"
-  },
-  "notFound": {
-    "title": "Página no encontrada",
-    "back": "Volver al inicio"
-  },
-  "footer": {
-    "copyright": "© {{year}} {{name}} · {{city}}"
-  },
   "teaser": {
     "eyebrow": "{{name}} · Ingeniería civil",
     "headline": "Algo bueno",
