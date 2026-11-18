@@ -7,7 +7,7 @@ import { BUSINESS } from "./config";
 function App() {
   return (
     <main className="grid min-h-dvh place-items-center bg-brand-deep">
-      <img src={logo} alt={BUSINESS.name} width={112} height={112} />
+      <img src={logo} alt={BUSINESS.name} width={224} height={224} />
     </main>
   );
 }

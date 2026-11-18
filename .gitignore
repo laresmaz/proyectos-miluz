@@ -38,3 +38,8 @@ frontend/baseline
 
 # Firebase CLI deploy cache
 .firebase/
+
+# Local secrets; .env.example lists what goes in them
+.env
+.env.*
+!.env.example
