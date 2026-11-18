@@ -112,5 +112,12 @@
         "alt": "Reinforced concrete water tank under construction"
       }
     }
+  },
+  "projects": {
+    "empty": "Photos of our work, with the before and after, are coming here soon.",
+    "filter": "Filter by service",
+    "all": "All",
+    "before": "Before",
+    "after": "After"
   }
 }

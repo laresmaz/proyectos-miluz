@@ -36,3 +36,6 @@ export const Services: Story = { args: { path: "/servicios" } };
 
 // One full service page.
 export const ServicePage: Story = { args: { path: "/servicios/plomeria" } };
+
+// The portfolio with the three example projects.
+export const Portfolio: Story = { args: { path: "/proyectos" } };

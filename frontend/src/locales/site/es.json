@@ -112,5 +112,12 @@
         "alt": "Tanque de agua de concreto armado en construcción"
       }
     }
+  },
+  "projects": {
+    "empty": "Pronto publicaremos aquí fotos de nuestras obras, con el antes y el después.",
+    "filter": "Filtrar por servicio",
+    "all": "Todos",
+    "before": "Antes",
+    "after": "Después"
   }
 }
