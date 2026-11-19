@@ -3,8 +3,8 @@
 import isChromatic from "chromatic/isChromatic";
 import crane from "../assets/crane.svg";
 
-// Size, start, opacity and speed per crane, from the mockup; small ones first so big ones paint on top.
-const CRANES = [
+// Size, start, opacity and speed per crane
+const DARK = [
   {
     width: 150,
     left: "22%",
@@ -40,33 +40,70 @@ const CRANES = [
   { width: 420, left: "8%", opacity: 0.1, duration: 95, delay: -65, bottom: 0 },
 ];
 
+// Light sections: fewer cranes, and stronger, since yellow fades on white.
+const LIGHT = [
+  {
+    width: 140,
+    left: "64%",
+    opacity: 0.13,
+    duration: 150,
+    delay: -90,
+    bottom: 0,
+  },
+  {
+    width: 100,
+    left: "36%",
+    opacity: 0.13,
+    duration: 165,
+    delay: -20,
+    bottom: 0,
+  },
+  {
+    width: 480,
+    left: "6%",
+    opacity: 0.26,
+    duration: 90,
+    delay: -55,
+    bottom: -8,
+  },
+];
+
 // Renders every crane; the drift animation lives in index.css and stops with reduced motion.
-export default function CraneBackdrop() {
+// offset staggers stacked sections: each step moves every crane's start
+export default function CraneBackdrop({
+  tone = "dark",
+  offset = 0,
+}: {
+  tone?: "dark" | "light";
+  offset?: number;
+}) {
   // Frozen in Chromatic, so every screenshot catches the cranes in the same place.
   const still = isChromatic();
   return (
     <>
-      {CRANES.map(({ width, left, opacity, duration, delay, bottom }) => (
-        <img
-          key={`${width}-${left}`}
-          src={crane}
-          alt=""
-          // Matches crane.svg's 352 × 312 box, so the browser reserves the height before the image decodes.
-          width={width}
-          height={Math.round((width * 312) / 352)}
-          className="crane block h-auto"
-          aria-hidden="true"
-          style={{
-            width,
-            left,
-            bottom,
-            opacity,
-            animationName: still ? "none" : undefined,
-            animationDuration: `${duration}s`,
-            animationDelay: `${delay}s`,
-          }}
-        />
-      ))}
+      {(tone === "light" ? LIGHT : DARK).map(
+        ({ width, left, opacity, duration, delay, bottom }) => (
+          <img
+            key={`${width}-${left}`}
+            src={crane}
+            alt=""
+            // Matches crane.svg's 352 × 312 box, so the browser reserves the height before the image decodes.
+            width={width}
+            height={Math.round((width * 312) / 352)}
+            className="crane block h-auto"
+            aria-hidden="true"
+            style={{
+              width,
+              left: `${(parseFloat(left) + offset * 29) % 100}%`,
+              bottom,
+              opacity,
+              animationName: still ? "none" : undefined,
+              animationDuration: `${duration}s`,
+              animationDelay: `${delay - offset * 37}s`,
+            }}
+          />
+        ),
+      )}
     </>
   );
 }

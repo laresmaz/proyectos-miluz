@@ -1,0 +1,225 @@
+{
+  "nav": {
+    "label": "Principal",
+    "menu": "Menú",
+    "services": "Servicios",
+    "projects": "Proyectos",
+    "about": "Sobre el ingeniero",
+    "whatsapp": "WhatsApp"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "back": "Volver al inicio"
+  },
+  "footer": {
+    "tagline": "Ingeniería civil, reformas y estructuras de concreto armado en [zonas].",
+    "contact": "Contacto",
+    "links": "Enlaces",
+    "whatsapp": "WhatsApp: {{number}}"
+  },
+  "services": {
+    "label": "{{number}} · Servicio",
+    "seeMore": "Ver más",
+    "includes": "Qué incluye",
+    "whatsapp": "Consultar por WhatsApp",
+    "all": "Todos los servicios",
+    "items": {
+      "obras-civiles": {
+        "title": "Obras civiles",
+        "summary": "Construcción y ampliación de viviendas, locales y edificaciones, con planificación y supervisión de ingeniero desde el primer día.",
+        "text": "Nos encargamos de su obra de principio a fin: evaluación del terreno o de la edificación existente, planificación, ejecución y entrega. Coordinamos todos los oficios (estructura, albañilería, plomería y electricidad) para que usted tenga un solo responsable y una obra que cumpla con criterios técnicos.",
+        "includes": [
+          "Construcción de viviendas y ampliaciones (nuevos niveles, habitaciones, locales)",
+          "Movimiento de tierra, fundaciones y obras preliminares",
+          "Remodelaciones integrales",
+          "Supervisión técnica y coordinación de cuadrillas"
+        ],
+        "whatsapp": "Hola, quisiera información sobre una obra civil (construcción/ampliación).",
+        "alt": "Obra en construcción con estructura de concreto y andamios",
+        "metaTitle": "Obras civiles y ampliaciones en {{city}} · {{name}}",
+        "metaDescription": "Construcción y ampliación de viviendas y locales con supervisión de ingeniero civil."
+      },
+      "plomeria": {
+        "title": "Plomería",
+        "summary": "Instalación y reparación de tuberías de agua potable y aguas servidas, con soluciones duraderas para su hogar o negocio.",
+        "text": "Desde una fuga puntual hasta la instalación completa de una vivienda, trabajamos con materiales adecuados y pruebas de presión para que el sistema funcione sin filtraciones. También diagnosticamos problemas de presión, humedad y drenaje antes de que se conviertan en daños mayores.",
+        "includes": [
+          "Instalaciones nuevas de aguas blancas y servidas",
+          "Detección y reparación de fugas y filtraciones",
+          "Instalación de bombas, hidroneumáticos y conexiones a tanques",
+          "Baños y cocinas: piezas sanitarias, griferías y desagües"
+        ],
+        "whatsapp": "Hola, necesito un servicio de plomería.",
+        "alt": "Instalación de tuberías de agua bajo un lavamanos",
+        "metaTitle": "Plomería en {{city}} · {{name}}",
+        "metaDescription": "Instalación y reparación de tuberías, fugas, bombas e hidroneumáticos."
+      },
+      "electricidad": {
+        "title": "Electricidad",
+        "summary": "Instalaciones eléctricas residenciales y comerciales seguras, ordenadas y pensadas para crecer.",
+        "text": "Una instalación eléctrica bien hecha protege su inversión y a su familia. Diseñamos y ejecutamos instalaciones nuevas, actualizamos las antiguas y corregimos fallas, con el tablero bien dimensionado y los circuitos identificados. También preparamos su instalación para conectar una planta eléctrica o un sistema de respaldo.",
+        "includes": [
+          "Instalaciones nuevas y remodelaciones eléctricas",
+          "Tableros, breakers y circuitos independientes",
+          "Tomacorrientes, iluminación y puntos para aire acondicionado",
+          "Preparación para planta eléctrica o sistema de respaldo"
+        ],
+        "whatsapp": "Hola, quisiera información sobre una instalación eléctrica.",
+        "alt": "Técnico trabajando en un tablero eléctrico",
+        "metaTitle": "Instalaciones eléctricas en {{city}} · {{name}}",
+        "metaDescription": "Instalaciones eléctricas seguras: tableros, circuitos, iluminación y preparación para planta."
+      },
+      "albanileria": {
+        "title": "Albañilería",
+        "summary": "Paredes, frisos, pisos y acabados hechos con oficio y a nivel, para que su espacio quede firme y bien terminado.",
+        "text": "La albañilería es la base de cualquier reforma. Levantamos paredes de bloque, frisamos, colocamos cerámica y porcelanato, y reparamos grietas y humedades buscando su origen, no solo tapándolas. Cuidamos los niveles, las escuadras y la limpieza de la obra.",
+        "includes": [
+          "Paredes de bloque de arcilla o de concreto",
+          "Friso, empastado y preparación para pintura",
+          "Pisos y revestimientos de cerámica y porcelanato",
+          "Reparación de grietas y tratamiento de humedades"
+        ],
+        "whatsapp": "Hola, necesito un trabajo de albañilería.",
+        "alt": "Albañil levantando una pared de bloques con mortero",
+        "metaTitle": "Albañilería y acabados en {{city}} · {{name}}",
+        "metaDescription": "Paredes de bloque, friso, cerámica, porcelanato y reparación de grietas y humedades."
+      },
+      "drywall": {
+        "title": "Drywall",
+        "summary": "Divisiones, techos y muebles en drywall: rápidos de instalar, limpios y con acabado profesional.",
+        "text": "El drywall permite redistribuir espacios sin obra pesada: nuevas habitaciones, oficinas, cielos rasos o muebles empotrados, con menos escombros y en menos tiempo. Usamos perfilería galvanizada y, en zonas húmedas, láminas resistentes a la humedad, con juntas bien tratadas para un acabado liso.",
+        "includes": [
+          "Paredes divisorias y tabiques",
+          "Cielos rasos y techos decorativos con iluminación",
+          "Muebles y nichos empotrados",
+          "Láminas resistentes a la humedad para baños y cocinas"
+        ],
+        "whatsapp": "Hola, quisiera información sobre trabajos en drywall.",
+        "alt": "Instalación de láminas de drywall sobre perfilería metálica",
+        "metaTitle": "Drywall en {{city}} · {{name}}",
+        "metaDescription": "Divisiones, cielos rasos y muebles en drywall con acabado profesional."
+      },
+      "concreto-armado": {
+        "title": "Estructuras de concreto armado",
+        "summary": "Cálculo, construcción y refuerzo de estructuras de concreto armado, con la experiencia de un ingeniero estructurista.",
+        "text": "La estructura es lo que no se ve, pero lo que sostiene todo. Como ingeniero estructurista, calculo y ejecuto fundaciones, columnas, vigas y losas, y evalúo estructuras existentes que presentan grietas o que se quieren ampliar. Cada vaciado se hace con cabillas bien colocadas, encofrado adecuado y el curado correcto.",
+        "includes": [
+          "Cálculo y diseño estructural",
+          "Fundaciones, columnas, vigas y losas (incluidas platabandas)",
+          "Evaluación de grietas y refuerzo de estructuras existentes",
+          "Ampliaciones verticales: nuevos niveles sobre construcciones existentes"
+        ],
+        "whatsapp": "Hola, necesito asesoría sobre una estructura de concreto.",
+        "alt": "Armado de cabillas para una losa de concreto antes del vaciado",
+        "metaTitle": "Estructuras de concreto armado en {{city}} · {{name}}",
+        "metaDescription": "Cálculo, construcción y refuerzo de fundaciones, columnas, vigas y losas."
+      },
+      "muros-y-tanques": {
+        "title": "Muros y tanques de agua",
+        "summary": "Tanques de agua y muros de concreto armado bien impermeabilizados, para almacenar agua de forma segura y contener el terreno.",
+        "text": "Un buen tanque le da tranquilidad cuando falla el servicio de agua. Construimos tanques subterráneos y elevados en concreto armado, reparamos filtraciones y los impermeabilizamos por dentro. También construimos muros de contención y perimetrales calculados para las cargas del terreno, con drenaje adecuado.",
+        "includes": [
+          "Tanques subterráneos y elevados en concreto armado",
+          "Impermeabilización y reparación de filtraciones en tanques existentes",
+          "Muros de contención con cálculo estructural y drenaje",
+          "Muros perimetrales y de cerramiento"
+        ],
+        "whatsapp": "Hola, quisiera información sobre un tanque de agua o un muro.",
+        "alt": "Tanque de agua de concreto armado en construcción",
+        "metaTitle": "Tanques de agua y muros de concreto en {{city}} · {{name}}",
+        "metaDescription": "Tanques subterráneos y elevados, impermeabilización y muros de contención."
+      }
+    }
+  },
+  "projects": {
+    "empty": "Pronto publicaremos aquí fotos de nuestras obras, con el antes y el después.",
+    "filter": "Filtrar por servicio",
+    "all": "Todos",
+    "before": "Antes",
+    "after": "Después"
+  },
+  "about": {
+    "eyebrow": "Sobre el ingeniero",
+    "title": "Me involucro en cada obra",
+    "bio": "Soy <strong>[Nombre]</strong>, ingeniero civil [colegiado en el CIV con el N.º X], con <strong>más de 50 años</strong> de experiencia en reformas, cálculo estructural y construcción. He participado en [tipo de obras: viviendas, edificios, locales…] en [zonas].",
+    "presence": "Desde la evaluación inicial hasta la entrega, estoy presente para que su obra quede bien hecha.",
+    "photoAlt": "El ingeniero en obra"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Ingeniería civil · Reformas · Estructuras",
+      "title": "Reformas y estructuras con respaldo de ingeniero",
+      "subtitle": "Más de 50 años construyendo, reparando y reforzando viviendas y edificios en [ciudad/estado].",
+      "whatsapp": "Escríbanos por WhatsApp",
+      "projects": "Ver proyectos",
+      "photoAlt": "Obra con estructura de concreto"
+    },
+    "trust": {
+      "label": "Datos de confianza",
+      "years": "años de experiencia",
+      "yearsFull": "Más de {{number}} años de experiencia",
+      "works": "obras realizadas",
+      "worksFull": "Más de {{number}} obras realizadas"
+    },
+    "services": {
+      "eyebrow": "Servicios",
+      "title": "Todo lo que su obra necesita, con un solo responsable",
+      "intro": "Desde una fuga hasta una ampliación completa: cada trabajo con criterio técnico y supervisión de ingeniero."
+    },
+    "steps": {
+      "eyebrow": "Cómo trabajamos",
+      "title": "Cuatro pasos, sin sorpresas",
+      "items": [
+        {
+          "title": "Escríbanos",
+          "text": "Cuéntenos qué necesita por WhatsApp. Si puede, envíe fotos.",
+          "textWithoutWhatsapp": "Cuéntenos qué necesita. Si puede, envíe fotos."
+        },
+        {
+          "title": "Visita y evaluación",
+          "text": "Revisamos el sitio, tomamos medidas y le explicamos las opciones."
+        },
+        {
+          "title": "Presupuesto claro",
+          "text": "Cotizamos con los precios y la disponibilidad de materiales del momento, por escrito."
+        },
+        {
+          "title": "Ejecución y entrega",
+          "text": "Hacemos el trabajo con supervisión de ingeniero y se lo entregamos limpio y probado."
+        }
+      ]
+    },
+    "projects": {
+      "eyebrow": "Proyectos",
+      "title": "Obras realizadas",
+      "all": "Ver todos los proyectos"
+    },
+    "cta": {
+      "title": "¿Tiene una obra en mente?",
+      "text": "Cuéntenos qué necesita y le respondemos lo antes posible.",
+      "whatsapp": "Escribir por WhatsApp"
+    }
+  },
+  "meta": {
+    "home": {
+      "title": "{{name}} · Ingeniero civil, reformas y estructuras en {{city}}",
+      "description": "Reformas, plomería, electricidad, albañilería, drywall y estructuras de concreto armado con respaldo de ingeniero."
+    },
+    "services": {
+      "title": "Servicios · {{name}}",
+      "description": "Desde una fuga hasta una ampliación completa: cada trabajo con criterio técnico y supervisión de ingeniero."
+    },
+    "projects": {
+      "title": "Proyectos · {{name}}",
+      "description": "Obras realizadas, con fotos del antes y el después."
+    },
+    "about": {
+      "title": "Sobre el ingeniero · {{name}}",
+      "description": "Ingeniero civil con más de 50 años de experiencia en reformas, cálculo estructural y construcción."
+    },
+    "notFound": {
+      "title": "Página no encontrada · {{name}}",
+      "description": "Esta página no existe."
+    }
+  }
+}

@@ -7,11 +7,21 @@ const OTHER_LANGUAGE = {
   en: { code: "es", name: "Español" },
 } as const;
 
+// Dark text on the white site header, white on the teaser's deep blue.
+const TONES = {
+  light: "text-ink hover:text-brand-medium focus-visible:outline-brand",
+  dark: "text-white hover:text-crane focus-visible:outline-crane",
+};
+const BASE =
+  "inline-flex min-h-11 min-w-11 items-center gap-2 rounded-lg px-3 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2";
+
 // Shows the language you can switch to; the hidden prefix keeps the visible name inside the accessible name.
 export default function LanguageSwitch({
   className = "",
+  onLight = false,
 }: {
   className?: string;
+  onLight?: boolean;
 }) {
   const { t, i18n } = useTranslation();
   const other = OTHER_LANGUAGE[i18n.resolvedLanguage === "en" ? "en" : "es"];
@@ -20,7 +30,7 @@ export default function LanguageSwitch({
     <button
       type="button"
       onClick={() => i18n.changeLanguage(other.code)}
-      className={`inline-flex min-h-11 min-w-11 items-center gap-2 rounded-lg px-3 text-sm font-semibold text-white hover:text-crane focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-crane ${className}`}
+      className={`${BASE} ${TONES[onLight ? "light" : "dark"]} ${className}`}
     >
       <svg
         width="20"
