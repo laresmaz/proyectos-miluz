@@ -9,7 +9,7 @@ import userEvent from "@testing-library/user-event";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import fallback from "../assets/fallback-photo.svg";
-import SiteLayout from "../components/SiteLayout";
+import SiteLayout from "../components/layout/SiteLayout";
 import { createI18n } from "../i18n";
 import es from "../locales/site/es.json";
 import type { Project } from "../projects";

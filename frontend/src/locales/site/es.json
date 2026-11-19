@@ -4,14 +4,18 @@
     "menu": "Menú",
     "services": "Servicios",
     "projects": "Proyectos",
-    "about": "Sobre mí"
+    "about": "Sobre el ingeniero",
+    "whatsapp": "WhatsApp"
   },
   "notFound": {
     "title": "Página no encontrada",
     "back": "Volver al inicio"
   },
   "footer": {
-    "copyright": "© {{year}} {{name}} · {{city}}"
+    "tagline": "Ingeniería civil, reformas y estructuras de concreto armado en [zonas].",
+    "contact": "Contacto",
+    "links": "Enlaces",
+    "whatsapp": "WhatsApp: {{number}}"
   },
   "services": {
     "label": "{{number}} · Servicio",

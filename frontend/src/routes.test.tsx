@@ -1,5 +1,5 @@
 // Tests for the site shell: every URL opens its page, the nav moves between them and unknown URLs get a 404.
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { afterEach, describe, expect, it, vi } from "vitest";
@@ -19,9 +19,12 @@ function openSite(path: string) {
 // Reads the page's main heading.
 const pageHeading = () => screen.getByRole("heading", { level: 1 }).textContent;
 
+const whatsappEnabledInConfig = BUSINESS.whatsappEnabled;
+
 afterEach(() => {
   cleanup();
   vi.restoreAllMocks();
+  BUSINESS.whatsappEnabled = whatsappEnabledInConfig;
 });
 
 describe("site shell", () => {
@@ -47,7 +50,11 @@ describe("site shell", () => {
     openSite("/");
 
     // Act
-    await userEvent.click(screen.getByRole("link", { name: es.nav.projects }));
+    await userEvent.click(
+      within(screen.getByRole("banner")).getByRole("link", {
+        name: es.nav.projects,
+      }),
+    );
 
     // Assert
     expect(pageHeading()).toBe(es.nav.projects);
@@ -89,4 +96,61 @@ describe("site shell", () => {
     // Assert
     expect(pageHeading()).toBe(BUSINESS.name);
   });
+});
+
+describe("site header and footer", () => {
+  it("names the business beside the logo in the header and the footer", () => {
+    // Arrange
+    const url = "/proyectos";
+
+    // Act
+    openSite(url);
+
+    // Assert
+    const header = screen.getByRole("banner");
+    const footer = screen.getByRole("contentinfo");
+    expect(within(header).getByText(BUSINESS.name)).toBeTruthy();
+    expect(within(footer).getByText(BUSINESS.name)).toBeTruthy();
+    expect(within(footer).getByText(BUSINESS.city)).toBeTruthy();
+  });
+
+  it.each([true, false])(
+    "shows the WhatsApp button and number only when WhatsApp is on (%s)",
+    (enabled) => {
+      // Arrange
+      BUSINESS.whatsappEnabled = enabled;
+
+      // Act
+      openSite("/proyectos");
+
+      // Assert
+      const button = within(screen.getByRole("banner")).queryByRole("link", {
+        name: es.nav.whatsapp,
+      });
+      const number = within(screen.getByRole("contentinfo")).queryByText(
+        `WhatsApp: ${BUSINESS.whatsapp}`,
+      );
+      expect(button !== null).toBe(enabled);
+      expect(number !== null).toBe(enabled);
+    },
+  );
+
+  it.each([
+    { path: "/proyectos", sky: "var(--color-white)" },
+    { path: "/sobre-mi", sky: "var(--color-brand-mist)" },
+  ])(
+    "blends the footer's mountains into the last section of $path",
+    ({ path, sky }) => {
+      // Arrange
+      const url = path;
+
+      // Act
+      openSite(url);
+
+      // Assert
+      const divider = screen.getByRole("contentinfo")
+        .firstElementChild as HTMLElement;
+      expect(divider.style.background).toBe(sky);
+    },
+  );
 });
