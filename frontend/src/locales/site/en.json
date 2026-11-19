@@ -35,7 +35,9 @@
           "Technical supervision and crew coordination"
         ],
         "whatsapp": "Hello, I'd like information about a civil works project (building/extension).",
-        "alt": "Building under construction with a concrete frame and scaffolding"
+        "alt": "Building under construction with a concrete frame and scaffolding",
+        "metaTitle": "Civil works and extensions in {{city}} · {{name}}",
+        "metaDescription": "Building and extending homes and shops, supervised by a civil engineer."
       },
       "plomeria": {
         "title": "Plumbing",
@@ -48,7 +50,9 @@
           "Bathrooms and kitchens: fixtures, taps and drains"
         ],
         "whatsapp": "Hello, I need a plumbing service.",
-        "alt": "Water pipes being installed under a washbasin"
+        "alt": "Water pipes being installed under a washbasin",
+        "metaTitle": "Plumbing in {{city}} · {{name}}",
+        "metaDescription": "Installing and repairing pipes, leaks, pumps and pressure tanks."
       },
       "electricidad": {
         "title": "Electrical",
@@ -61,7 +65,9 @@
           "Preparation for a generator or backup system"
         ],
         "whatsapp": "Hello, I'd like information about an electrical installation.",
-        "alt": "Technician working on an electrical panel"
+        "alt": "Technician working on an electrical panel",
+        "metaTitle": "Electrical installations in {{city}} · {{name}}",
+        "metaDescription": "Safe electrical installations: panels, circuits, lighting and generator preparation."
       },
       "albanileria": {
         "title": "Masonry",
@@ -74,7 +80,9 @@
           "Crack repair and damp treatment"
         ],
         "whatsapp": "Hello, I need masonry work.",
-        "alt": "Mason building a block wall with mortar"
+        "alt": "Mason building a block wall with mortar",
+        "metaTitle": "Masonry and finishes in {{city}} · {{name}}",
+        "metaDescription": "Block walls, rendering, ceramic and porcelain tiles, and crack and damp repair."
       },
       "drywall": {
         "title": "Drywall",
@@ -87,7 +95,9 @@
           "Moisture-resistant boards for bathrooms and kitchens"
         ],
         "whatsapp": "Hello, I'd like information about drywall work.",
-        "alt": "Drywall boards being fixed to metal framing"
+        "alt": "Drywall boards being fixed to metal framing",
+        "metaTitle": "Drywall in {{city}} · {{name}}",
+        "metaDescription": "Drywall partitions, ceilings and furniture with a professional finish."
       },
       "concreto-armado": {
         "title": "Reinforced concrete structures",
@@ -100,7 +110,9 @@
           "Vertical extensions: new floors on existing buildings"
         ],
         "whatsapp": "Hello, I need advice about a concrete structure.",
-        "alt": "Rebar laid out for a concrete slab before the pour"
+        "alt": "Rebar laid out for a concrete slab before the pour",
+        "metaTitle": "Reinforced concrete structures in {{city}} · {{name}}",
+        "metaDescription": "Designing, building and strengthening foundations, columns, beams and slabs."
       },
       "muros-y-tanques": {
         "title": "Walls and water tanks",
@@ -113,7 +125,9 @@
           "Boundary and enclosure walls"
         ],
         "whatsapp": "Hello, I'd like information about a water tank or a wall.",
-        "alt": "Reinforced concrete water tank under construction"
+        "alt": "Reinforced concrete water tank under construction",
+        "metaTitle": "Water tanks and concrete walls in {{city}} · {{name}}",
+        "metaDescription": "Underground and elevated tanks, waterproofing and retaining walls."
       }
     }
   },
@@ -174,6 +188,38 @@
           "text": "We do the work under an engineer's supervision and hand it over clean and tested."
         }
       ]
+    },
+    "projects": {
+      "eyebrow": "Projects",
+      "title": "Work we've done",
+      "all": "See all projects"
+    },
+    "cta": {
+      "title": "Got a project in mind?",
+      "text": "Tell us what you need and we'll get back to you as soon as we can.",
+      "whatsapp": "Write on WhatsApp"
+    }
+  },
+  "meta": {
+    "home": {
+      "title": "{{name}} · Civil engineer, renovations and structures in {{city}}",
+      "description": "Renovations, plumbing, electrical, masonry, drywall and reinforced concrete structures, backed by an engineer."
+    },
+    "services": {
+      "title": "Services · {{name}}",
+      "description": "From a leak to a full extension: every job done with technical judgement and an engineer's supervision."
+    },
+    "projects": {
+      "title": "Projects · {{name}}",
+      "description": "Work we've done, with before and after photos."
+    },
+    "about": {
+      "title": "About the engineer · {{name}}",
+      "description": "A civil engineer with more than 50 years of experience in renovations, structural design and construction."
+    },
+    "notFound": {
+      "title": "Page not found · {{name}}",
+      "description": "This page doesn't exist."
     }
   }
 }

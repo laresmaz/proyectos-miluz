@@ -163,7 +163,9 @@ describe("home services and how we work", () => {
     expect(
       screen.getByRole("heading", { level: 2, name: es.home.services.title }),
     ).toBeTruthy();
-    const blocks = screen.getAllByRole("article");
+    const blocks = screen
+      .getAllByRole("article")
+      .filter((article) => within(article).queryByRole("list"));
     expect(blocks).toHaveLength(services.length);
     blocks.forEach((block, i) => {
       const included = within(block)
@@ -208,6 +210,60 @@ describe("home services and how we work", () => {
 
       // Assert
       expect(screen.getByText(text)).toBeTruthy();
+    },
+  );
+});
+
+describe("home projects, about and call to action", () => {
+  it("shows three finished projects with a way to see them all", () => {
+    // Arrange
+    const heading = es.home.projects.title;
+
+    // Act
+    openHome();
+
+    // Assert
+    const section = screen
+      .getByRole("heading", { level: 2, name: heading })
+      .closest("section") as HTMLElement;
+    expect(within(section).getAllByRole("article")).toHaveLength(3);
+    expect(
+      within(section)
+        .getByRole("link", { name: new RegExp(es.home.projects.all) })
+        .getAttribute("href"),
+    ).toBe("/proyectos");
+  });
+
+  it("introduces the engineer further down the page", () => {
+    // Arrange
+    const heading = es.about.title;
+
+    // Act
+    openHome();
+
+    // Assert
+    expect(
+      screen.getByRole("heading", { level: 2, name: heading }),
+    ).toBeTruthy();
+  });
+
+  it.each([true, false])(
+    "ends with the WhatsApp call to action only when WhatsApp is on (%s)",
+    (enabled) => {
+      // Arrange
+      BUSINESS.whatsappEnabled = enabled;
+
+      // Act
+      openHome();
+
+      // Assert
+      const cta = screen.queryByRole("heading", {
+        level: 2,
+        name: es.home.cta.title,
+      });
+      const button = screen.queryByRole("link", { name: es.home.cta.whatsapp });
+      expect(cta !== null).toBe(enabled);
+      expect(button !== null).toBe(enabled);
     },
   );
 });

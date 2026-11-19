@@ -35,7 +35,9 @@
           "Supervisión técnica y coordinación de cuadrillas"
         ],
         "whatsapp": "Hola, quisiera información sobre una obra civil (construcción/ampliación).",
-        "alt": "Obra en construcción con estructura de concreto y andamios"
+        "alt": "Obra en construcción con estructura de concreto y andamios",
+        "metaTitle": "Obras civiles y ampliaciones en {{city}} · {{name}}",
+        "metaDescription": "Construcción y ampliación de viviendas y locales con supervisión de ingeniero civil."
       },
       "plomeria": {
         "title": "Plomería",
@@ -48,7 +50,9 @@
           "Baños y cocinas: piezas sanitarias, griferías y desagües"
         ],
         "whatsapp": "Hola, necesito un servicio de plomería.",
-        "alt": "Instalación de tuberías de agua bajo un lavamanos"
+        "alt": "Instalación de tuberías de agua bajo un lavamanos",
+        "metaTitle": "Plomería en {{city}} · {{name}}",
+        "metaDescription": "Instalación y reparación de tuberías, fugas, bombas e hidroneumáticos."
       },
       "electricidad": {
         "title": "Electricidad",
@@ -61,7 +65,9 @@
           "Preparación para planta eléctrica o sistema de respaldo"
         ],
         "whatsapp": "Hola, quisiera información sobre una instalación eléctrica.",
-        "alt": "Técnico trabajando en un tablero eléctrico"
+        "alt": "Técnico trabajando en un tablero eléctrico",
+        "metaTitle": "Instalaciones eléctricas en {{city}} · {{name}}",
+        "metaDescription": "Instalaciones eléctricas seguras: tableros, circuitos, iluminación y preparación para planta."
       },
       "albanileria": {
         "title": "Albañilería",
@@ -74,7 +80,9 @@
           "Reparación de grietas y tratamiento de humedades"
         ],
         "whatsapp": "Hola, necesito un trabajo de albañilería.",
-        "alt": "Albañil levantando una pared de bloques con mortero"
+        "alt": "Albañil levantando una pared de bloques con mortero",
+        "metaTitle": "Albañilería y acabados en {{city}} · {{name}}",
+        "metaDescription": "Paredes de bloque, friso, cerámica, porcelanato y reparación de grietas y humedades."
       },
       "drywall": {
         "title": "Drywall",
@@ -87,7 +95,9 @@
           "Láminas resistentes a la humedad para baños y cocinas"
         ],
         "whatsapp": "Hola, quisiera información sobre trabajos en drywall.",
-        "alt": "Instalación de láminas de drywall sobre perfilería metálica"
+        "alt": "Instalación de láminas de drywall sobre perfilería metálica",
+        "metaTitle": "Drywall en {{city}} · {{name}}",
+        "metaDescription": "Divisiones, cielos rasos y muebles en drywall con acabado profesional."
       },
       "concreto-armado": {
         "title": "Estructuras de concreto armado",
@@ -100,7 +110,9 @@
           "Ampliaciones verticales: nuevos niveles sobre construcciones existentes"
         ],
         "whatsapp": "Hola, necesito asesoría sobre una estructura de concreto.",
-        "alt": "Armado de cabillas para una losa de concreto antes del vaciado"
+        "alt": "Armado de cabillas para una losa de concreto antes del vaciado",
+        "metaTitle": "Estructuras de concreto armado en {{city}} · {{name}}",
+        "metaDescription": "Cálculo, construcción y refuerzo de fundaciones, columnas, vigas y losas."
       },
       "muros-y-tanques": {
         "title": "Muros y tanques de agua",
@@ -113,7 +125,9 @@
           "Muros perimetrales y de cerramiento"
         ],
         "whatsapp": "Hola, quisiera información sobre un tanque de agua o un muro.",
-        "alt": "Tanque de agua de concreto armado en construcción"
+        "alt": "Tanque de agua de concreto armado en construcción",
+        "metaTitle": "Tanques de agua y muros de concreto en {{city}} · {{name}}",
+        "metaDescription": "Tanques subterráneos y elevados, impermeabilización y muros de contención."
       }
     }
   },
@@ -174,6 +188,38 @@
           "text": "Hacemos el trabajo con supervisión de ingeniero y se lo entregamos limpio y probado."
         }
       ]
+    },
+    "projects": {
+      "eyebrow": "Proyectos",
+      "title": "Obras realizadas",
+      "all": "Ver todos los proyectos"
+    },
+    "cta": {
+      "title": "¿Tiene una obra en mente?",
+      "text": "Cuéntenos qué necesita y le respondemos lo antes posible.",
+      "whatsapp": "Escribir por WhatsApp"
+    }
+  },
+  "meta": {
+    "home": {
+      "title": "{{name}} · Ingeniero civil, reformas y estructuras en {{city}}",
+      "description": "Reformas, plomería, electricidad, albañilería, drywall y estructuras de concreto armado con respaldo de ingeniero."
+    },
+    "services": {
+      "title": "Servicios · {{name}}",
+      "description": "Desde una fuga hasta una ampliación completa: cada trabajo con criterio técnico y supervisión de ingeniero."
+    },
+    "projects": {
+      "title": "Proyectos · {{name}}",
+      "description": "Obras realizadas, con fotos del antes y el después."
+    },
+    "about": {
+      "title": "Sobre el ingeniero · {{name}}",
+      "description": "Ingeniero civil con más de 50 años de experiencia en reformas, cálculo estructural y construcción."
+    },
+    "notFound": {
+      "title": "Página no encontrada · {{name}}",
+      "description": "Esta página no existe."
     }
   }
 }

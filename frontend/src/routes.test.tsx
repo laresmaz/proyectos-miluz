@@ -162,3 +162,38 @@ describe("site header and footer", () => {
     },
   );
 });
+
+describe("page titles", () => {
+  it.each([
+    { path: "/", meta: es.meta.home },
+    {
+      path: "/servicios/plomeria",
+      meta: {
+        title: es.services.items.plomeria.metaTitle,
+        description: es.services.items.plomeria.metaDescription,
+      },
+    },
+    { path: "/sobre-mi", meta: es.meta.about },
+  ])(
+    "names $path in the browser tab and in search results",
+    ({ path, meta }) => {
+      // Arrange
+      document.head.innerHTML =
+        '<title></title><meta name="description" content="">';
+      const expected = meta.title
+        .replace("{{name}}", BUSINESS.name)
+        .replace("{{city}}", BUSINESS.city);
+
+      // Act
+      openSite(path);
+
+      // Assert
+      expect(document.title).toBe(expected);
+      expect(
+        document
+          .querySelector('meta[name="description"]')
+          ?.getAttribute("content"),
+      ).toBe(meta.description);
+    },
+  );
+});

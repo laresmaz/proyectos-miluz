@@ -4,16 +4,24 @@ import { Link, useParams } from "react-router";
 import BrandPhoto from "../components/BrandPhoto";
 import { BUSINESS } from "../config";
 import { SERVICES } from "../services";
+import { usePageMeta } from "../usePageMeta";
 import NotFound from "./NotFound";
 
 // Renders the service named in the URL, or the 404 page for an unknown one.
 export default function ServiceDetail() {
   const { slug } = useParams();
-  const { t } = useTranslation("site");
   const index = SERVICES.findIndex((service) => service.slug === slug);
-  if (index === -1) return <NotFound />;
+  return index === -1 ? <NotFound /> : <ServicePage index={index} />;
+}
 
-  const key = `services.items.${slug}`;
+// One known service, with its own title and description for the browser tab and search results.
+function ServicePage({ index }: { index: number }) {
+  const { t } = useTranslation("site");
+  const key = `services.items.${SERVICES[index].slug}`;
+  usePageMeta(
+    t(`${key}.metaTitle`, { name: BUSINESS.name, city: BUSINESS.city }),
+    t(`${key}.metaDescription`),
+  );
   const includes = t(`${key}.includes`, { returnObjects: true }) as string[];
 
   return (

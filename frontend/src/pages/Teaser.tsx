@@ -1,5 +1,4 @@
 // Teaser page: one screen with the logo, the "under construction" headline and the WhatsApp contact.
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import logo from "../assets/logo.svg";
 import AvilaDivider from "../components/AvilaDivider";
@@ -8,6 +7,7 @@ import LanguageSwitch from "../components/LanguageSwitch";
 import Text from "../components/Text";
 import WhatsAppIcon from "../components/WhatsAppIcon";
 import { BUSINESS } from "../config";
+import { usePageMeta } from "../usePageMeta";
 
 // Read once at load: a static page only needs the year it was opened in.
 const YEAR = new Date().getFullYear();
@@ -17,15 +17,10 @@ export default function Teaser() {
   const { t } = useTranslation();
 
   // Page title change usinng the languageSwitch
-  useEffect(() => {
-    document.title = t("teaser.metaTitle", {
-      name: BUSINESS.name,
-      city: BUSINESS.city,
-    });
-    document
-      .querySelector('meta[name="description"]')
-      ?.setAttribute("content", t("teaser.metaDescription"));
-  }, [t]);
+  usePageMeta(
+    t("teaser.metaTitle", { name: BUSINESS.name, city: BUSINESS.city }),
+    t("teaser.metaDescription"),
+  );
   const services = t("teaser.services", { returnObjects: true }) as string[];
 
   return (

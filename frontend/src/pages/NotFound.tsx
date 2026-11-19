@@ -1,10 +1,16 @@
 // 404 page: shown for any URL the site doesn't have
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
+import { BUSINESS } from "../config";
+import { usePageMeta } from "../usePageMeta";
 
 // Renders the not-found message and the link home.
 export default function NotFound() {
   const { t } = useTranslation("site");
+  usePageMeta(
+    t("meta.notFound.title", { name: BUSINESS.name, city: BUSINESS.city }),
+    t("meta.notFound.description"),
+  );
   return (
     <div className="mx-auto flex max-w-300 flex-col items-start gap-6 px-6 py-16">
       <h1 className="font-display text-5xl font-bold text-brand uppercase">

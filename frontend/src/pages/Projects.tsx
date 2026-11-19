@@ -3,7 +3,9 @@ import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router";
 import ProjectCard from "../components/ProjectCard";
 import { PROJECTS, type Project } from "../projects";
+import { BUSINESS } from "../config";
 import { SERVICES } from "../services";
+import { usePageMeta } from "../usePageMeta";
 
 // Renders the published projects, or a "coming soon" note while there are none; tests pass their own projects.
 export default function Projects({
@@ -12,6 +14,10 @@ export default function Projects({
   projects?: Project[];
 }) {
   const { t } = useTranslation("site");
+  usePageMeta(
+    t("meta.projects.title", { name: BUSINESS.name, city: BUSINESS.city }),
+    t("meta.projects.description"),
+  );
   const [params, setParams] = useSearchParams();
   const selected = params.get("servicio");
 
