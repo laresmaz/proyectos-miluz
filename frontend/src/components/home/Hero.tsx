@@ -1,9 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import { BUSINESS } from "../../config";
-import AvilaDivider from "../AvilaDivider";
 import BrandPhoto from "../BrandPhoto";
-import CraneBackdrop from "../CraneBackdrop";
+import Section from "../Section";
 import WhatsAppIcon from "../WhatsAppIcon";
 
 // Renders the hero, ending in the Ávila divider down into the trust strip
@@ -11,9 +10,7 @@ export default function Hero() {
   const { t } = useTranslation("site");
 
   return (
-    // Cranes share the section with the divider, so they stand on its bottom edge behind the mountains, as on the teaser.
-    <section className="relative isolate overflow-hidden bg-brand-deep">
-      <CraneBackdrop />
+    <Section bg="var(--color-brand-deep)" dividerInto="var(--color-brand)">
       <div className="mx-auto flex max-w-300 flex-wrap items-center gap-14 px-6 pt-24 pb-26">
         <div className="flex min-w-0 flex-[1_1_480px] flex-col gap-7">
           <p className="text-sm font-bold tracking-[0.1em] text-crane uppercase">
@@ -54,7 +51,6 @@ export default function Hero() {
           />
         </div>
       </div>
-      <AvilaDivider topBg="var(--color-brand-deep)" fill="var(--color-brand)" />
-    </section>
+    </Section>
   );
 }

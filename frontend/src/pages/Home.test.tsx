@@ -150,3 +150,64 @@ describe("trust strip", () => {
     expect(shownNumbers()).toEqual(["+50", "+7.000"]);
   });
 });
+
+describe("home services and how we work", () => {
+  it("introduces the services, then shows each one with what it includes", () => {
+    // Arrange
+    const services = Object.values(es.services.items);
+
+    // Act
+    openHome();
+
+    // Assert
+    expect(
+      screen.getByRole("heading", { level: 2, name: es.home.services.title }),
+    ).toBeTruthy();
+    const blocks = screen.getAllByRole("article");
+    expect(blocks).toHaveLength(services.length);
+    blocks.forEach((block, i) => {
+      const included = within(block)
+        .getAllByRole("listitem")
+        .map((item) => item.textContent);
+      expect(included).toEqual(services[i].includes);
+    });
+  });
+
+  it("walks through the four steps of how the engineer works", () => {
+    // Arrange
+    const steps = es.home.steps.items.map((step) => step.title);
+
+    // Act
+    openHome();
+
+    // Assert
+    const section = screen
+      .getByRole("heading", { level: 2, name: es.home.steps.title })
+      .closest("section") as HTMLElement;
+    expect(
+      within(section)
+        .getAllByRole("heading", { level: 3 })
+        .map((h) => h.textContent),
+    ).toEqual(steps);
+  });
+
+  it.each([
+    { enabled: true, text: es.home.steps.items[0].text },
+    {
+      enabled: false,
+      text: es.home.steps.items[0].textWithoutWhatsapp as string,
+    },
+  ])(
+    "only names WhatsApp in the first step once it's on ($enabled)",
+    ({ enabled, text }) => {
+      // Arrange
+      BUSINESS.whatsappEnabled = enabled;
+
+      // Act
+      openHome();
+
+      // Assert
+      expect(screen.getByText(text)).toBeTruthy();
+    },
+  );
+});

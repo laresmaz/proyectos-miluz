@@ -136,11 +136,13 @@ describe("site header and footer", () => {
   );
 
   it.each([
-    { path: "/proyectos", sky: "var(--color-white)" },
-    { path: "/sobre-mi", sky: "var(--color-brand-mist)" },
+    { path: "/", inSection: true },
+    { path: "/servicios", inSection: true },
+    { path: "/sobre-mi", inSection: true },
+    { path: "/proyectos", inSection: false },
   ])(
-    "blends the footer's mountains into the last section of $path",
-    ({ path, sky }) => {
+    "draws the footer's mountains inside $path's last section when it has cranes, so they walk behind them",
+    ({ path, inSection }) => {
       // Arrange
       const url = path;
 
@@ -148,9 +150,15 @@ describe("site header and footer", () => {
       openSite(url);
 
       // Assert
-      const divider = screen.getByRole("contentinfo")
-        .firstElementChild as HTMLElement;
-      expect(divider.style.background).toBe(sky);
+      const sections = screen.getByRole("main").querySelectorAll("section");
+      const last = sections[sections.length - 1];
+      const footer = screen.getByRole("contentinfo");
+      const endsInDivider =
+        last?.lastElementChild?.getAttribute("aria-hidden") === "true";
+      const footerDivider =
+        footer.firstElementChild?.getAttribute("aria-hidden") === "true";
+      expect(endsInDivider).toBe(inSection);
+      expect(footerDivider).toBe(!inSection);
     },
   );
 });

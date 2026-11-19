@@ -5,23 +5,24 @@ import { BUSINESS } from "../../config";
 import AvilaDivider from "../AvilaDivider";
 import { NAV_LINKS } from "./navLinks";
 
-// The route tell the footer the background of its last section, so the mountains rise out of it.
-export type SiteRouteHandle = { lastSection?: string };
+// A page whose last section has cranes draws the footer's mountains inside it, so the cranes walk behind them; the footer then skips its own.
+export type SiteRouteHandle = { endsWithDivider?: boolean };
 
 // Renders the footer
 export default function SiteFooter() {
   const { t } = useTranslation("site");
-  const lastMatch = useMatches().at(-1);
-  const sky =
-    (lastMatch?.handle as SiteRouteHandle | undefined)?.lastSection ??
-    "var(--color-white)";
+  const handle = useMatches().at(-1)?.handle as SiteRouteHandle | undefined;
 
   return (
-    <footer>
-      <div style={{ background: sky }}>
-        <AvilaDivider topBg={sky} fill="var(--color-brand-deep)" />
-      </div>
-      <div className="bg-brand-deep px-6 py-12 text-white">
+    // The footer takes any spare height on short pages, so the deep blue runs straight on from the mountains above.
+    <footer className="flex flex-auto flex-col">
+      {!handle?.endsWithDivider && (
+        <AvilaDivider
+          topBg="var(--color-white)"
+          fill="var(--color-brand-deep)"
+        />
+      )}
+      <div className="flex-auto bg-brand-deep px-6 py-12 text-white">
         <div className="mx-auto flex max-w-300 flex-wrap justify-between gap-8">
           <div className="flex flex-[1_1_260px] flex-col gap-3">
             <div className="flex items-center gap-3">

@@ -146,6 +146,34 @@
       "yearsFull": "More than {{number}} years of experience",
       "works": "projects completed",
       "worksFull": "More than {{number}} projects completed"
+    },
+    "services": {
+      "eyebrow": "Services",
+      "title": "Everything your project needs, with one person responsible",
+      "intro": "From a leak to a full extension: every job done with technical judgement and an engineer's supervision."
+    },
+    "steps": {
+      "eyebrow": "How we work",
+      "title": "Four steps, no surprises",
+      "items": [
+        {
+          "title": "Write to us",
+          "text": "Tell us what you need on WhatsApp. If you can, send photos.",
+          "textWithoutWhatsapp": "Tell us what you need. If you can, send photos."
+        },
+        {
+          "title": "Visit and assessment",
+          "text": "We look at the site, take measurements and explain your options."
+        },
+        {
+          "title": "Clear quote",
+          "text": "We quote in writing, with today's material prices and availability."
+        },
+        {
+          "title": "Work and handover",
+          "text": "We do the work under an engineer's supervision and hand it over clean and tested."
+        }
+      ]
     }
   }
 }

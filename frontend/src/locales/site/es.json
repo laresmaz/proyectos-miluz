@@ -146,6 +146,34 @@
       "yearsFull": "Más de {{number}} años de experiencia",
       "works": "obras realizadas",
       "worksFull": "Más de {{number}} obras realizadas"
+    },
+    "services": {
+      "eyebrow": "Servicios",
+      "title": "Todo lo que su obra necesita, con un solo responsable",
+      "intro": "Desde una fuga hasta una ampliación completa: cada trabajo con criterio técnico y supervisión de ingeniero."
+    },
+    "steps": {
+      "eyebrow": "Cómo trabajamos",
+      "title": "Cuatro pasos, sin sorpresas",
+      "items": [
+        {
+          "title": "Escríbanos",
+          "text": "Cuéntenos qué necesita por WhatsApp. Si puede, envíe fotos.",
+          "textWithoutWhatsapp": "Cuéntenos qué necesita. Si puede, envíe fotos."
+        },
+        {
+          "title": "Visita y evaluación",
+          "text": "Revisamos el sitio, tomamos medidas y le explicamos las opciones."
+        },
+        {
+          "title": "Presupuesto claro",
+          "text": "Cotizamos con los precios y la disponibilidad de materiales del momento, por escrito."
+        },
+        {
+          "title": "Ejecución y entrega",
+          "text": "Hacemos el trabajo con supervisión de ingeniero y se lo entregamos limpio y probado."
+        }
+      ]
     }
   }
 }

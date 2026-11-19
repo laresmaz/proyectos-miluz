@@ -69,10 +69,13 @@ const LIGHT = [
 ];
 
 // Renders every crane; the drift animation lives in index.css and stops with reduced motion.
+// offset staggers stacked sections: each step moves every crane's start
 export default function CraneBackdrop({
   tone = "dark",
+  offset = 0,
 }: {
   tone?: "dark" | "light";
+  offset?: number;
 }) {
   // Frozen in Chromatic, so every screenshot catches the cranes in the same place.
   const still = isChromatic();
@@ -91,12 +94,12 @@ export default function CraneBackdrop({
             aria-hidden="true"
             style={{
               width,
-              left,
+              left: `${(parseFloat(left) + offset * 29) % 100}%`,
               bottom,
               opacity,
               animationName: still ? "none" : undefined,
               animationDuration: `${duration}s`,
-              animationDelay: `${delay}s`,
+              animationDelay: `${delay - offset * 37}s`,
             }}
           />
         ),

@@ -10,7 +10,7 @@ export default function SiteLayout() {
   return (
     <div className="flex min-h-screen flex-col bg-white font-sans text-ink">
       <SiteHeader />
-      <main className="flex-auto">
+      <main>
         <Outlet />
       </main>
       <SiteFooter />

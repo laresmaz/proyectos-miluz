@@ -17,17 +17,19 @@ export const routes: RouteObject[] = [
       {
         path: "/",
         element: <Home />,
-        handle: { lastSection: "var(--color-brand)" } satisfies SiteRouteHandle,
+        handle: { endsWithDivider: true } satisfies SiteRouteHandle,
       },
-      { path: "/servicios", element: <Services /> },
+      {
+        path: "/servicios",
+        element: <Services />,
+        handle: { endsWithDivider: true } satisfies SiteRouteHandle,
+      },
       { path: "/servicios/:slug", element: <ServiceDetail /> },
       { path: "/proyectos", element: <Projects /> },
       {
         path: "/sobre-mi",
         element: <About />,
-        handle: {
-          lastSection: "var(--color-brand-mist)",
-        } satisfies SiteRouteHandle,
+        handle: { endsWithDivider: true } satisfies SiteRouteHandle,
       },
       { path: "*", element: <NotFound /> },
     ],

@@ -2,7 +2,7 @@
 import isChromatic from "chromatic/isChromatic";
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { useTranslation } from "react-i18next";
-import CraneBackdrop from "../CraneBackdrop";
+import Section from "../Section";
 
 // Where each number starts counting and where it ends; 7.000 works is still provisional.
 const STATS = [
@@ -29,11 +29,7 @@ export default function TrustStrip() {
     );
 
   return (
-    <section
-      aria-label={t("home.trust.label")}
-      className="relative isolate overflow-hidden bg-brand"
-    >
-      <CraneBackdrop />
+    <Section aria-label={t("home.trust.label")} bg="var(--color-brand)">
       <div
         ref={strip}
         className="mx-auto flex max-w-225 flex-wrap items-center justify-center gap-x-20 gap-y-8 px-6 py-12"
@@ -60,7 +56,7 @@ export default function TrustStrip() {
           </div>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }
 
