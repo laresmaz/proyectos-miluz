@@ -57,6 +57,23 @@ describe("crane backdrop", () => {
     expect(names.every((name) => (name === "none") === still)).toBe(true);
   });
 
+  it.each([
+    { tone: "dark" as const, opacities: [0.07, 0.07, 0.07, 0.13, 0.1] },
+    { tone: "light" as const, opacities: [0.13, 0.13, 0.26] },
+  ])("uses the mockup's cranes for $tone sections", ({ tone, opacities }) => {
+    // Arrange
+    const props = { tone };
+
+    // Act
+    const { container } = render(<CraneBackdrop {...props} />);
+
+    // Assert
+    const shown = [...container.querySelectorAll<HTMLElement>(".crane")].map(
+      (crane) => Number(crane.style.opacity),
+    );
+    expect(shown).toEqual(opacities);
+  });
+
   it("reserves each crane's height before the image decodes, so the page doesn't jump", () => {
     // Arrange
     const { container } = render(<CraneBackdrop />);
