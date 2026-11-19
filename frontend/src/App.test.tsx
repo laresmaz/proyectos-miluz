@@ -2,9 +2,9 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import App from "./App";
-import { BUSINESS } from "./config";
 import { createI18n } from "./i18n";
 import es from "./locales/es.json";
+import site from "./locales/site/es.json";
 
 // Renders the app at a URL, as a Spanish-speaking visitor would open it.
 function openApp(path: string) {
@@ -49,7 +49,7 @@ describe("app", () => {
     // Assert
     expect(await screen.findByRole("navigation")).toBeTruthy();
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-      BUSINESS.name,
+      site.home.hero.title,
     );
   });
 });

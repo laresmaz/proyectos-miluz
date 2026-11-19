@@ -14,7 +14,11 @@ export const routes: RouteObject[] = [
   {
     element: <SiteLayout />,
     children: [
-      { path: "/", element: <Home /> },
+      {
+        path: "/",
+        element: <Home />,
+        handle: { lastSection: "var(--color-brand)" } satisfies SiteRouteHandle,
+      },
       { path: "/servicios", element: <Services /> },
       { path: "/servicios/:slug", element: <ServiceDetail /> },
       { path: "/proyectos", element: <Projects /> },

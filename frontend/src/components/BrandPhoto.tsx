@@ -7,16 +7,22 @@ type BrandPhotoProps = {
   alt: string;
   eager?: boolean;
   square?: boolean;
+  onDark?: boolean;
 };
 
 // Renders the photo; only the first photo on a page should be eager, so it isn't held back behind the rest.
 export default function BrandPhoto(props: BrandPhotoProps) {
-  // A new src remounts the photo, so its loading and fallback state start over.
   return <Photo key={props.src} {...props} />;
 }
 
-// Tracks one photo's loading and fallback; square photos sit edge to edge inside a card, so they drop the rounded corners.
-function Photo({ src, alt, eager = false, square = false }: BrandPhotoProps) {
+// Tracks one photo's loading and fallback
+function Photo({
+  src,
+  alt,
+  eager = false,
+  square = false,
+  onDark = false,
+}: BrandPhotoProps) {
   const [shown, setShown] = useState(src);
   const [loading, setLoading] = useState(true);
 
@@ -44,7 +50,7 @@ function Photo({ src, alt, eager = false, square = false }: BrandPhotoProps) {
       />
       <div className="absolute inset-0 bg-brand/20 mix-blend-multiply" />
       <div
-        className={`absolute right-0 bottom-0 bg-brand [clip-path:polygon(100%_0,100%_100%,0_100%)] ${square ? "size-8" : "size-14"}`}
+        className={`absolute right-0 bottom-0 [clip-path:polygon(100%_0,100%_100%,0_100%)] ${onDark ? "bg-crane" : "bg-brand"} ${square ? "size-8" : "size-14"}`}
       />
     </div>
   );

@@ -29,7 +29,7 @@ afterEach(() => {
 
 describe("site shell", () => {
   it.each([
-    { path: "/", heading: BUSINESS.name },
+    { path: "/", heading: es.home.hero.title },
     { path: "/servicios", heading: es.nav.services },
     { path: "/proyectos", heading: es.nav.projects },
     { path: "/sobre-mi", heading: es.about.title },
@@ -68,7 +68,7 @@ describe("site shell", () => {
     await userEvent.click(screen.getByRole("link", { name: BUSINESS.name }));
 
     // Assert
-    expect(pageHeading()).toBe(BUSINESS.name);
+    expect(pageHeading()).toBe(es.home.hero.title);
   });
 
   it("opens and closes the mobile menu", async () => {
@@ -94,7 +94,7 @@ describe("site shell", () => {
     await userEvent.click(screen.getByRole("link", { name: es.notFound.back }));
 
     // Assert
-    expect(pageHeading()).toBe(BUSINESS.name);
+    expect(pageHeading()).toBe(es.home.hero.title);
   });
 });
 

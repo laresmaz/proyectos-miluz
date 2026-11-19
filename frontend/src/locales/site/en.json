@@ -130,5 +130,22 @@
     "bio": "I'm <strong>[Name]</strong>, a civil engineer [registered with the CIV, no. X], with <strong>more than 50 years</strong> of experience in renovations, structural design and construction. I've worked on [types of work: homes, buildings, shops…] in [areas].",
     "presence": "From the first assessment to the handover, I'm there so your project is done right.",
     "photoAlt": "The engineer on site"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Civil engineering · Renovations · Structures",
+      "title": "Renovations and structures backed by an engineer",
+      "subtitle": "More than 50 years building, repairing and strengthening homes and buildings in [city/state].",
+      "whatsapp": "Message us on WhatsApp",
+      "projects": "See projects",
+      "photoAlt": "Building with a concrete structure"
+    },
+    "trust": {
+      "label": "Why trust us",
+      "years": "years of experience",
+      "yearsFull": "More than {{number}} years of experience",
+      "works": "projects completed",
+      "worksFull": "More than {{number}} projects completed"
+    }
   }
 }

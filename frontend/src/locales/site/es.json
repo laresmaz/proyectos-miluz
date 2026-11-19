@@ -130,5 +130,22 @@
     "bio": "Soy <strong>[Nombre]</strong>, ingeniero civil [colegiado en el CIV con el N.º X], con <strong>más de 50 años</strong> de experiencia en reformas, cálculo estructural y construcción. He participado en [tipo de obras: viviendas, edificios, locales…] en [zonas].",
     "presence": "Desde la evaluación inicial hasta la entrega, estoy presente para que su obra quede bien hecha.",
     "photoAlt": "El ingeniero en obra"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Ingeniería civil · Reformas · Estructuras",
+      "title": "Reformas y estructuras con respaldo de ingeniero",
+      "subtitle": "Más de 50 años construyendo, reparando y reforzando viviendas y edificios en [ciudad/estado].",
+      "whatsapp": "Escríbanos por WhatsApp",
+      "projects": "Ver proyectos",
+      "photoAlt": "Obra con estructura de concreto"
+    },
+    "trust": {
+      "label": "Datos de confianza",
+      "years": "años de experiencia",
+      "yearsFull": "Más de {{number}} años de experiencia",
+      "works": "obras realizadas",
+      "worksFull": "Más de {{number}} obras realizadas"
+    }
   }
 }
