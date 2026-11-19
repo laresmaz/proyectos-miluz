@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { PROJECTS } from "../../projects";
 import ProjectCard from "../ProjectCard";
 import Section from "../Section";
+import Eyebrow from "../Eyebrow";
 
 export default function FeaturedProjects() {
   const { t } = useTranslation("site");
@@ -13,10 +14,7 @@ export default function FeaturedProjects() {
       <div className="mx-auto flex max-w-300 flex-col gap-10 px-6 py-22">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="flex flex-col gap-3">
-            <p className="text-sm font-bold tracking-[0.1em] text-brand-medium uppercase">
-              <span aria-hidden="true">▸ </span>
-              {t("home.projects.eyebrow")}
-            </p>
+            <Eyebrow>{t("home.projects.eyebrow")}</Eyebrow>
             <h2 className="font-display text-[clamp(34px,4vw,52px)] leading-[1.02] font-bold text-brand uppercase">
               {t("home.projects.title")}
             </h2>

@@ -19,12 +19,14 @@ export default function Projects({
     t("meta.projects.description"),
   );
   const [params, setParams] = useSearchParams();
-  const selected = params.get("servicio");
 
   const published = projects.filter((project) => project.isPublished);
   const filters = SERVICES.filter(({ slug }) =>
     published.some((project) => project.serviceType === slug),
   );
+  // A value that matches no filter, like a mistyped link, falls back to every project.
+  const wanted = params.get("servicio");
+  const selected = filters.some(({ slug }) => slug === wanted) ? wanted : null;
   const shown = published.filter(
     (project) => !selected || project.serviceType === selected,
   );

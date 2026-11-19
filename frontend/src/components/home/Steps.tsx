@@ -2,6 +2,7 @@
 import { useTranslation } from "react-i18next";
 import { BUSINESS } from "../../config";
 import Section from "../Section";
+import Eyebrow from "../Eyebrow";
 
 type Step = { title: string; text: string; textWithoutWhatsapp?: string };
 
@@ -18,10 +19,7 @@ export default function Steps({ dividerInto }: { dividerInto?: string }) {
     >
       <div className="mx-auto flex max-w-300 flex-col gap-10 px-6 py-22">
         <div className="flex max-w-180 flex-col gap-3">
-          <p className="text-sm font-bold tracking-[0.1em] text-brand-medium uppercase">
-            <span aria-hidden="true">▸ </span>
-            {t("home.steps.eyebrow")}
-          </p>
+          <Eyebrow>{t("home.steps.eyebrow")}</Eyebrow>
           <h2 className="font-display text-[clamp(34px,4vw,52px)] leading-[1.02] font-bold text-brand uppercase">
             {t("home.steps.title")}
           </h2>

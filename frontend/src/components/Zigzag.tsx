@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import { BUSINESS } from "../config";
 import BrandPhoto from "./BrandPhoto";
 import Section from "./Section";
+import Eyebrow from "./Eyebrow";
 
 export type ZigzagItem = {
   id: string;
@@ -46,10 +47,7 @@ export default function Zigzag({
           <BrandPhoto src={item.image} alt={item.alt} />
         </div>
         <div className="flex min-w-0 flex-col items-start gap-4 lg:flex-1">
-          <p className="text-sm font-bold tracking-[0.08em] text-brand-medium uppercase">
-            <span aria-hidden="true">▸ </span>
-            {item.label}
-          </p>
+          <Eyebrow>{item.label}</Eyebrow>
           <Heading className="font-display text-[44px] leading-[1.05] font-bold text-brand uppercase">
             {item.title}
           </Heading>

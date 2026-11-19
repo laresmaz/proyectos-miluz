@@ -66,4 +66,34 @@ describe("app", () => {
       site.home.hero.title,
     );
   });
+
+  it("opens the teaser with ?teaser even in a tab that was previewing the site", () => {
+    // Arrange
+    openApp("/?preview");
+    cleanup();
+
+    // Act
+    openApp("/?teaser");
+
+    // Assert
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toContain(
+      es.teaser.headlineAccent,
+    );
+  });
+
+  it("shows the logo while the site's code is still loading, instead of a blank page", async () => {
+    // Arrange: a fresh copy of the app, since an earlier test already loaded the site's code.
+    vi.resetModules();
+    const { default: FreshApp } = await import("./App");
+    window.history.replaceState({}, "", "/?preview");
+    createI18n();
+
+    // Act
+    render(<FreshApp />);
+    const whileLoading = screen.queryByRole("img", { name: BUSINESS.name });
+
+    // Assert
+    expect(whileLoading).toBeTruthy();
+    expect(await screen.findByRole("navigation")).toBeTruthy();
+  });
 });

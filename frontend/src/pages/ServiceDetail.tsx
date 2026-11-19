@@ -6,6 +6,7 @@ import { BUSINESS } from "../config";
 import { SERVICES } from "../services";
 import { usePageMeta } from "../usePageMeta";
 import NotFound from "./NotFound";
+import Eyebrow from "../components/Eyebrow";
 
 // Renders the service named in the URL, or the 404 page for an unknown one.
 export default function ServiceDetail() {
@@ -30,10 +31,9 @@ function ServicePage({ index }: { index: number }) {
         <BrandPhoto src={SERVICES[index].image} alt={t(`${key}.alt`)} eager />
       </div>
       <div className="flex flex-col items-start gap-5 lg:w-1/2">
-        <p className="text-sm font-semibold tracking-wide text-brand-medium uppercase">
-          <span aria-hidden="true">▸ </span>
+        <Eyebrow>
           {t("services.label", { number: String(index + 1).padStart(2, "0") })}
-        </p>
+        </Eyebrow>
         <h1 className="font-display text-5xl font-bold text-brand uppercase">
           {t(`${key}.title`)}
         </h1>

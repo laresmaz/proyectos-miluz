@@ -138,6 +138,22 @@ describe("portfolio", () => {
     ).toBe("true");
   });
 
+  it("shows every project for a ?servicio= that matches no filter, like a mistyped link", () => {
+    // Arrange
+    const link = "/proyectos?servicio=no-existe";
+
+    // Act
+    openPortfolio(SAMPLE_PROJECTS, link);
+
+    // Assert
+    expect(cardTitles()).toHaveLength(2);
+    expect(
+      screen
+        .getByRole("button", { name: es.projects.all })
+        .getAttribute("aria-pressed"),
+    ).toBe("true");
+  });
+
   it("says the projects are coming while none are published", () => {
     // Arrange
     const projects: Project[] = [];

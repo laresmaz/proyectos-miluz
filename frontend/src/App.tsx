@@ -9,18 +9,23 @@ import { isPreview } from "./preview";
 // Loaded only for preview tabs, so visitors don't download the whole site.
 const Site = lazy(() => import("./Site"));
 
-// Picks the page from the URL; the holding page's logo is there because Lighthouse fails on a page that paints nothing.
+// Picks the page from the URL; ?teaser comes first, so a tab that remembers ?preview can still open it.
 function App() {
+  if (new URLSearchParams(window.location.search).has("teaser")) {
+    return <Teaser />;
+  }
   if (isPreview()) {
     return (
-      <Suspense>
+      <Suspense fallback={<HoldingPage />}>
         <Site />
       </Suspense>
     );
   }
-  if (new URLSearchParams(window.location.search).has("teaser")) {
-    return <Teaser />;
-  }
+  return <HoldingPage />;
+}
+
+// The logo on deep blue; it also fills the screen while the site's code loads, because Lighthouse fails on a page that paints nothing.
+function HoldingPage() {
   return (
     <main className="grid min-h-dvh place-items-center bg-brand-deep">
       <img src={logo} alt={BUSINESS.name} width={224} height={224} />

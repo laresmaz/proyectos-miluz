@@ -2,6 +2,7 @@
 import { Trans, useTranslation } from "react-i18next";
 import BrandPhoto from "./BrandPhoto";
 import Section from "./Section";
+import Eyebrow from "./Eyebrow";
 
 // Renders the section; the about page makes its heading the h1 and loads the photo first, the home page uses it as an h2 further down.
 export default function AboutSection({
@@ -31,10 +32,7 @@ export default function AboutSection({
           />
         </div>
         <div className="flex min-w-0 flex-[1_1_420px] flex-col gap-4.5">
-          <p className="text-sm font-bold tracking-[0.1em] text-brand-medium uppercase">
-            <span aria-hidden="true">▸ </span>
-            {t("about.eyebrow")}
-          </p>
+          <Eyebrow>{t("about.eyebrow")}</Eyebrow>
           <Heading className="font-display text-[clamp(34px,4vw,52px)] leading-[1.02] font-bold text-brand uppercase">
             {t("about.title")}
           </Heading>

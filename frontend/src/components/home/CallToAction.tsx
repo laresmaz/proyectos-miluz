@@ -4,7 +4,7 @@ import { BUSINESS } from "../../config";
 import Section from "../Section";
 import WhatsAppIcon from "../WhatsAppIcon";
 
-// Its only job is the WhatsApp button call to acction
+// Its only job is the WhatsApp button call to action
 export default function CallToAction() {
   const { t } = useTranslation("site");
 
