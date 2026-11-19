@@ -1,7 +1,8 @@
-// Tests for the root component: visitors get the teaser, ?preview opens the new site before launch.
+// Tests for the root component: visitors get the logo holding page, ?teaser the teaser and ?preview the new site.
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import App from "./App";
+import { BUSINESS } from "./config";
 import { createI18n } from "./i18n";
 import es from "./locales/es.json";
 import site from "./locales/site/es.json";
@@ -22,8 +23,8 @@ afterEach(() => {
 });
 
 describe("app", () => {
-  it.each(["/", "/?preview=false"])(
-    "shows the teaser to visitors at %s",
+  it.each(["/", "/proyectos", "/?preview=false"])(
+    "shows visitors the deep-blue holding page with only the logo at %s",
     (path) => {
       // Arrange
       const url = path;
@@ -32,12 +33,25 @@ describe("app", () => {
       openApp(url);
 
       // Assert
-      expect(screen.getByRole("heading", { level: 1 }).textContent).toContain(
-        es.teaser.headlineAccent,
-      );
-      expect(screen.queryByRole("navigation")).toBeNull();
+      expect(screen.getByRole("main").className).toContain("bg-brand-deep");
+      expect(screen.getByRole("img", { name: BUSINESS.name })).toBeTruthy();
+      expect(screen.queryByRole("heading")).toBeNull();
     },
   );
+
+  it("shows the teaser with ?teaser", () => {
+    // Arrange
+    const url = "/?teaser";
+
+    // Act
+    openApp(url);
+
+    // Assert
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toContain(
+      es.teaser.headlineAccent,
+    );
+    expect(screen.queryByRole("navigation")).toBeNull();
+  });
 
   it("shows the new site with ?preview, so it can be reviewed before launch", async () => {
     // Arrange
