@@ -1,8 +1,9 @@
 // "Sobre el ingeniero" section
 import { Trans, useTranslation } from "react-i18next";
-import BrandPhoto from "./BrandPhoto";
-import Section from "./Section";
-import Eyebrow from "./Eyebrow";
+import BrandPhoto from "../ui/BrandPhoto";
+import Section from "../ui/Section";
+import Eyebrow from "../ui/Eyebrow";
+import Text from "../Text";
 
 // Renders the section; the about page makes its heading the h1 and loads the photo first, the home page uses it as an h2 further down.
 export default function AboutSection({
@@ -33,13 +34,13 @@ export default function AboutSection({
         </div>
         <div className="flex min-w-0 flex-[1_1_420px] flex-col gap-4.5">
           <Eyebrow>{t("about.eyebrow")}</Eyebrow>
-          <Heading className="font-display text-[clamp(34px,4vw,52px)] leading-[1.02] font-bold text-brand uppercase">
+          <Text variant="sectionTitle" as={Heading} className="text-brand">
             {t("about.title")}
-          </Heading>
-          <p className="text-lg leading-[1.65]">
+          </Text>
+          <Text variant="bodyLarge">
             <Trans t={t} i18nKey="about.bio" />
-          </p>
-          <p className="text-lg leading-[1.65]">{t("about.presence")}</p>
+          </Text>
+          <Text variant="bodyLarge">{t("about.presence")}</Text>
         </div>
       </div>
     </Section>

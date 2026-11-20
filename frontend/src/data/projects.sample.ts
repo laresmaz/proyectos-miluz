@@ -1,5 +1,5 @@
 // Example projects for the tests
-import fallback from "./assets/fallback-photo.svg";
+import fallback from "../assets/fallback-photo.svg";
 import type { Project } from "./projects";
 
 // Builds a before/after photo pair for an example project.

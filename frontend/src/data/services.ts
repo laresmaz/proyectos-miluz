@@ -1,7 +1,7 @@
 // The seven services in display order
 import { useTranslation } from "react-i18next";
-import fallback from "./assets/fallback-photo.svg";
-import type { ZigzagItem } from "./components/Zigzag";
+import fallback from "../assets/fallback-photo.svg";
+import type { ZigzagItem } from "../components/sections/Zigzag";
 
 // TODO add real photos
 export const SERVICES = [

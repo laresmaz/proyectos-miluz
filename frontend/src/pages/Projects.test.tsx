@@ -10,10 +10,10 @@ import { createMemoryRouter, RouterProvider } from "react-router";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import fallback from "../assets/fallback-photo.svg";
 import SiteLayout from "../components/layout/SiteLayout";
-import { createI18n } from "../i18n";
+import { createI18n } from "../lib/i18n";
 import es from "../locales/site/es.json";
-import type { Project } from "../projects";
-import { SAMPLE_PROJECTS } from "../projects.sample";
+import type { Project } from "../data/projects";
+import { SAMPLE_PROJECTS } from "../data/projects.sample";
 import { routes } from "../routes";
 import Projects from "./Projects";
 

@@ -3,8 +3,8 @@ import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { BUSINESS } from "./config";
-import { createI18n } from "./i18n";
+import { BUSINESS } from "./data/config";
+import { createI18n } from "./lib/i18n";
 import es from "./locales/site/es.json";
 import { routes } from "./routes";
 

@@ -1,8 +1,8 @@
 // About page: the engineer's introduction from the mockup's "Sobre el ingeniero" section.
 import { useTranslation } from "react-i18next";
-import AboutSection from "../components/AboutSection";
-import { BUSINESS } from "../config";
-import { usePageMeta } from "../usePageMeta";
+import AboutSection from "../components/sections/AboutSection";
+import { BUSINESS } from "../data/config";
+import { usePageMeta } from "../lib/usePageMeta";
 
 // Renders the section as the page, with its heading as the h1 and the footer's mountains at its foot.
 export default function About() {

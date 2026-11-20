@@ -1,4 +1,4 @@
-// Lighthouse summary for CI: the median numbers of the last run, next to their budgets and their change against main.
+// Lighthouse summary for CI: each page's median numbers from the last run, next to the budgets and their change against main.
 import {
   appendFileSync,
   existsSync,
@@ -17,6 +17,7 @@ type Summary = {
   kib: number;
 };
 type LighthouseResult = {
+  requestedUrl: string;
   categories: Record<string, { score: number }>;
   audits: Record<string, { numericValue: number }>;
 };
@@ -70,7 +71,7 @@ const ROWS: {
 // Only runs when called from the command line, not when the tests import this file.
 if (process.argv[1] === fileURLToPath(import.meta.url)) main();
 
-// Reads the results, saves this run's numbers, and writes the summary table and notice.
+// Reads the results, saves this run's numbers, and writes each page's summary table and notice.
 function main() {
   const dir = ".lighthouseci";
   const files = existsSync(dir)
@@ -78,19 +79,35 @@ function main() {
     : [];
   if (files.length === 0)
     return console.log("No Lighthouse results to summarize.");
-  const current = summarize(
+  const pages = summarizePages(
     files.map((f) => JSON.parse(readFileSync(`${dir}/${f}`, "utf8"))),
   );
-  writeFileSync("lighthouse-summary.json", JSON.stringify(current));
+  writeFileSync("lighthouse-summary.json", JSON.stringify(pages));
   const mainFile = "baseline/lighthouse-summary.json";
-  const main = existsSync(mainFile)
-    ? (JSON.parse(readFileSync(mainFile, "utf8")) as Summary)
-    : null;
-  const table = summaryTable(current, main);
-  if (process.env.GITHUB_STEP_SUMMARY)
-    appendFileSync(process.env.GITHUB_STEP_SUMMARY, table);
-  else console.log(table);
-  console.log(noticeLine(current));
+  const main: Record<string, Summary> = existsSync(mainFile)
+    ? JSON.parse(readFileSync(mainFile, "utf8"))
+    : {};
+  for (const [page, current] of Object.entries(pages)) {
+    const table = summaryTable(page, current, main[page] ?? null);
+    if (process.env.GITHUB_STEP_SUMMARY)
+      appendFileSync(process.env.GITHUB_STEP_SUMMARY, table);
+    else console.log(table);
+    console.log(noticeLine(page, current));
+  }
+}
+
+// Groups the runs by page (path and query, so "/" and "/?preview" stay apart) and summarizes each.
+export function summarizePages(
+  results: LighthouseResult[],
+): Record<string, Summary> {
+  const byPage: Record<string, LighthouseResult[]> = {};
+  for (const r of results) {
+    const url = new URL(r.requestedUrl);
+    (byPage[url.pathname + url.search] ??= []).push(r);
+  }
+  return Object.fromEntries(
+    Object.entries(byPage).map(([page, runs]) => [page, summarize(runs)]),
+  );
 }
 
 // Median of each metric across the runs, rounded the way the table shows it.
@@ -122,7 +139,11 @@ export function summarize(results: LighthouseResult[]): Summary {
 }
 
 // Markdown table for the GitHub run summary, with the change against main when main has saved numbers.
-export function summaryTable(current: Summary, main: Summary | null): string {
+export function summaryTable(
+  page: string,
+  current: Summary,
+  main: Summary | null,
+): string {
   const rows = ROWS.map((row) => {
     const before = main?.[row.key];
     const change =
@@ -133,7 +154,7 @@ export function summaryTable(current: Summary, main: Summary | null): string {
     ? ""
     : "\nNo numbers from main yet; the change column fills in after the next run on main.\n";
   return [
-    `### Lighthouse (median of ${config.ci.collect.numberOfRuns} runs, throttled phone)`,
+    `### Lighthouse ${page} (median of ${config.ci.collect.numberOfRuns} runs, throttled phone)`,
     "",
     "| Metric | This run | Budget | vs main |",
     "|---|---|---|---|",
@@ -142,9 +163,9 @@ export function summaryTable(current: Summary, main: Summary | null): string {
   ].join("\n");
 }
 
-// One-line GitHub notice, which shows on the PR's checks and in the public API.
-export function noticeLine(s: Summary): string {
-  return `::notice title=Lighthouse::perf ${s.performance} · a11y ${s.accessibility} · LCP ${seconds(s.lcpMs)} s · CLS ${s.cls} · ${s.kib} KiB`;
+// One-line GitHub notice per page, which shows on the PR's checks and in the public API.
+export function noticeLine(page: string, s: Summary): string {
+  return `::notice title=Lighthouse ${page}::perf ${s.performance} · a11y ${s.accessibility} · LCP ${seconds(s.lcpMs)} s · CLS ${s.cls} · ${s.kib} KiB`;
 }
 
 // Rounds to a number of decimals, dropping trailing zeros.

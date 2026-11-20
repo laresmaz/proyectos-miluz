@@ -1,7 +1,7 @@
 // Stories for the crane backdrop: watch the cranes drift inside a section, or look at one still crane up close.
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import crane from "../src/assets/crane.svg";
-import CraneBackdrop from "../src/components/CraneBackdrop";
+import CraneBackdrop from "../src/components/ui/CraneBackdrop";
 
 const meta = {
   title: "Decoration/CraneBackdrop",

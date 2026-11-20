@@ -1,7 +1,7 @@
 // Tests for language selection: browser default, Spanish fallback, remembered choice and <html lang>.
 import { afterEach, describe, expect, it, vi } from "vitest";
-import en from "./locales/en.json";
-import es from "./locales/es.json";
+import en from "../locales/en.json";
+import es from "../locales/es.json";
 import { createI18n } from "./i18n";
 
 // Pretends the visitor's browser is set to the given languages.

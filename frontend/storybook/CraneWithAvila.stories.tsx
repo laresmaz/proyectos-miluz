@@ -1,7 +1,7 @@
 // Story for the cranes and the Ávila divider together, stacked as on the teaser: deep-blue section, mountains, brand-blue footer.
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import AvilaDivider from "../src/components/AvilaDivider";
-import CraneBackdrop from "../src/components/CraneBackdrop";
+import AvilaDivider from "../src/components/ui/AvilaDivider";
+import CraneBackdrop from "../src/components/ui/CraneBackdrop";
 
 const meta = {
   title: "Decoration/CraneWithAvila",

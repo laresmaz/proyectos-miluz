@@ -2,7 +2,7 @@
 import isChromatic from "chromatic/isChromatic";
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { useTranslation } from "react-i18next";
-import Section from "../Section";
+import Section from "../ui/Section";
 
 // Where each number starts counting and where it ends; 7.000 works is still provisional.
 const STATS = [

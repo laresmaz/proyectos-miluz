@@ -2,8 +2,8 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import App from "./App";
-import { BUSINESS } from "./config";
-import { createI18n } from "./i18n";
+import { BUSINESS } from "./data/config";
+import { createI18n } from "./lib/i18n";
 import es from "./locales/es.json";
 import site from "./locales/site/es.json";
 

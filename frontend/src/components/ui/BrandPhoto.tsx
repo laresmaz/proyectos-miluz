@@ -1,6 +1,6 @@
 // Brand photo: a 4:3 image (or square, for the before/after pairs) with a loading skeleton and fallback when it fails
 import { useState } from "react";
-import fallback from "../assets/fallback-photo.svg";
+import fallback from "../../assets/fallback-photo.svg";
 
 type BrandPhotoProps = {
   src: string;
@@ -9,6 +9,10 @@ type BrandPhotoProps = {
   square?: boolean;
   onDark?: boolean;
 };
+
+// Photo widths on screen: half a project card for squares, half the page for the rest, and full width on phones.
+const SIZES = "(min-width: 1024px) 600px, 100vw";
+const SQUARE_SIZES = "(min-width: 1024px) 190px, (min-width: 640px) 25vw, 50vw";
 
 // Renders the photo; only the first photo on a page should be eager, so it isn't held back behind the rest.
 export default function BrandPhoto(props: BrandPhotoProps) {
@@ -25,6 +29,7 @@ function Photo({
 }: BrandPhotoProps) {
   const [shown, setShown] = useState(src);
   const [loading, setLoading] = useState(true);
+  const widths = webpWidths(shown);
 
   // Swaps in the fallback once
   const onError = () => {
@@ -38,12 +43,13 @@ function Photo({
       className={`relative overflow-hidden bg-brand-mist ${square ? "" : "rounded-[10px]"} ${loading ? "motion-safe:animate-pulse" : ""}`}
     >
       <img
-        src={shown}
+        src={widths?.src ?? shown}
+        srcSet={widths?.srcSet}
+        sizes={widths && (square ? SQUARE_SIZES : SIZES)}
         alt={alt}
         width={800}
         height={square ? 800 : 600}
         loading={eager ? "eager" : "lazy"}
-        fetchPriority={eager ? "high" : undefined}
         onLoad={() => setLoading(false)}
         onError={onError}
         className={`w-full object-cover transition-opacity duration-300 ${square ? "aspect-square" : "aspect-4/3"} ${loading ? "opacity-0" : "opacity-100"}`}
@@ -54,4 +60,14 @@ function Photo({
       />
     </div>
   );
+}
+
+// Finds the resized copies of a WebP photo, named <name>-<width>.webp by the resize script; other images have none.
+function webpWidths(src: string) {
+  if (!src.endsWith(".webp")) return undefined;
+  const base = src.slice(0, -".webp".length);
+  return {
+    src: `${base}-960.webp`,
+    srcSet: [480, 960, 1600].map((w) => `${base}-${w}.webp ${w}w`).join(", "),
+  };
 }

@@ -17,6 +17,26 @@ describe("Text", () => {
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(content);
   });
 
+  it.each([
+    ["pageTitle", 1],
+    ["heroTitle", 1],
+    ["sectionTitle", 2],
+    ["blockTitle", 2],
+    ["cardTitle", 3],
+  ] as const)(
+    "renders the %s style as a level %i heading by default",
+    (variant, level) => {
+      // Arrange
+      const content = "Obras civiles";
+
+      // Act
+      render(<Text variant={variant}>{content}</Text>);
+
+      // Assert
+      expect(screen.getByRole("heading", { level }).textContent).toBe(content);
+    },
+  );
+
   it("keeps the style but changes the element when asked", () => {
     // Arrange
     const content = "Plomería";

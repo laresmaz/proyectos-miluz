@@ -1,10 +1,11 @@
 // Zigzag: photo and text bands alternating white and mist
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
-import { BUSINESS } from "../config";
-import BrandPhoto from "./BrandPhoto";
-import Section from "./Section";
-import Eyebrow from "./Eyebrow";
+import { BUSINESS } from "../../data/config";
+import BrandPhoto from "../ui/BrandPhoto";
+import Section from "../ui/Section";
+import Eyebrow from "../ui/Eyebrow";
+import Text from "../Text";
 
 export type ZigzagItem = {
   id: string;
@@ -48,13 +49,18 @@ export default function Zigzag({
         </div>
         <div className="flex min-w-0 flex-col items-start gap-4 lg:flex-1">
           <Eyebrow>{item.label}</Eyebrow>
-          <Heading className="font-display text-[44px] leading-[1.05] font-bold text-brand uppercase">
+          <Text variant="blockTitle" as={Heading} className="text-brand">
             {item.title}
-          </Heading>
-          <p className="text-lg leading-[1.6]">{item.text}</p>
+          </Text>
+          <Text variant="bodyLarge">{item.text}</Text>
           <ul className="mt-1 flex flex-col gap-1.5">
             {item.includes.map((included) => (
-              <li key={included} className="flex gap-2.5 leading-[1.6]">
+              <Text
+                key={included}
+                variant="body"
+                as="li"
+                className="flex gap-2.5"
+              >
                 <svg
                   width="12"
                   height="12"
@@ -65,7 +71,7 @@ export default function Zigzag({
                   <polygon points="2,1 11,6 2,11" />
                 </svg>
                 {included}
-              </li>
+              </Text>
             ))}
           </ul>
           <div className="mt-2 flex flex-wrap gap-x-6">

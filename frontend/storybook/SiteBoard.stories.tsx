@@ -2,7 +2,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { I18nextProvider } from "react-i18next";
 import { createMemoryRouter, RouterProvider } from "react-router";
-import { createI18n } from "../src/i18n";
+import { createI18n } from "../src/lib/i18n";
 import { routes } from "../src/routes";
 
 const meta = {

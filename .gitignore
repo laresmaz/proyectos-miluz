@@ -43,3 +43,4 @@ frontend/baseline
 .env
 .env.*
 !.env.example
+/frontend/photos-originals

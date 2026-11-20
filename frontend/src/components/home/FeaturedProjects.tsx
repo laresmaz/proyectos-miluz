@@ -1,23 +1,24 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
-import { PROJECTS } from "../../projects";
-import ProjectCard from "../ProjectCard";
-import Section from "../Section";
-import Eyebrow from "../Eyebrow";
+import { PROJECTS } from "../../data/projects";
+import ProjectCard from "../sections/ProjectCard";
+import Section from "../ui/Section";
+import Eyebrow from "../ui/Eyebrow";
+import Text from "../Text";
 
 export default function FeaturedProjects() {
   const { t } = useTranslation("site");
   const featured = PROJECTS.filter((p) => p.isPublished).slice(0, 3);
 
   return (
-    <Section bg="var(--color-white)" tone="light" offset={4}>
+    <Section bg="var(--color-white)" withCranes={false}>
       <div className="mx-auto flex max-w-300 flex-col gap-10 px-6 py-22">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="flex flex-col gap-3">
             <Eyebrow>{t("home.projects.eyebrow")}</Eyebrow>
-            <h2 className="font-display text-[clamp(34px,4vw,52px)] leading-[1.02] font-bold text-brand uppercase">
+            <Text variant="sectionTitle" className="text-brand">
               {t("home.projects.title")}
-            </h2>
+            </Text>
           </div>
           <Link
             to="/proyectos"

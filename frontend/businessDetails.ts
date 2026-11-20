@@ -1,7 +1,7 @@
-// Build plugin: fills the business details from src/config.ts into index.html and generates the web manifest,
+// Build plugin: fills the business details from src/data/config.ts into index.html and generates the web manifest,
 // so the name and city are written only once, in config.ts.
 import type { Plugin } from "vite";
-import { BUSINESS } from "./src/config.ts";
+import { BUSINESS } from "./src/data/config.ts";
 
 type Business = typeof BUSINESS;
 
