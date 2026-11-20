@@ -29,6 +29,5 @@ export function useServiceItems(): ZigzagItem[] {
     image,
     alt: t(`services.items.${slug}.alt`),
     href: `/servicios/${slug}`,
-    whatsapp: t(`services.items.${slug}.whatsapp`),
   }));
 }

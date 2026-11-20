@@ -48,6 +48,21 @@ describe("services index", () => {
     expect(links).toEqual(SERVICES.map(({ slug }) => `/servicios/${slug}`));
   });
 
+  it("keeps each service block to its Ver más link, even with WhatsApp on", () => {
+    // Arrange
+    BUSINESS.whatsappEnabled = true;
+
+    // Act
+    openSite("/servicios");
+
+    // Assert
+    screen
+      .getAllByRole("article")
+      .forEach((block) =>
+        expect(within(block).getAllByRole("link")).toHaveLength(1),
+      );
+  });
+
   it("alternates the image side from one block to the next on desktop", () => {
     // Arrange
     openSite("/servicios");

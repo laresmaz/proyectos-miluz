@@ -1,7 +1,6 @@
 // Zigzag: photo and text bands alternating white and mist
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
-import { BUSINESS } from "../../data/config";
 import BrandPhoto from "../ui/BrandPhoto";
 import Section from "../ui/Section";
 import Eyebrow from "../ui/Eyebrow";
@@ -16,7 +15,6 @@ export type ZigzagItem = {
   image: string;
   alt: string;
   href: string;
-  whatsapp: string;
 };
 
 const LINK =
@@ -80,16 +78,6 @@ export default function Zigzag({
               <span className="sr-only">: {item.title}</span>
               <span aria-hidden="true">&nbsp;→</span>
             </Link>
-            {BUSINESS.whatsappEnabled && (
-              <a
-                href={`https://wa.me/${BUSINESS.whatsapp}?text=${encodeURIComponent(item.whatsapp)}`}
-                className={LINK}
-              >
-                {t("services.whatsapp")}
-                <span className="sr-only">: {item.title}</span>
-                <span aria-hidden="true">&nbsp;→</span>
-              </a>
-            )}
           </div>
         </div>
       </article>

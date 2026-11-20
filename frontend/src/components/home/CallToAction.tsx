@@ -10,7 +10,7 @@ export default function CallToAction() {
   const { t } = useTranslation("site");
 
   return (
-    <Section bg="var(--color-brand-deep)">
+    <Section bg="var(--color-brand-deep)" withCranes={false}>
       <div className="mx-auto flex max-w-225 flex-col items-center gap-5.5 px-6 pt-22 pb-24 text-center">
         <img src={logo} alt="" width={72} height={72} />
         <Text variant="sectionTitle" className="text-white">
