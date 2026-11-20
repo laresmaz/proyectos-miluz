@@ -14,7 +14,7 @@ export default function preloadPreviewSite(): Plugin {
   };
 }
 
-// Builds a script that adds a modulepreload for the site chunk, with the same rule as src/lib/preview.ts, so holding page visitors don't download it.
+// Builds a script that adds a modulepreload for the site chunk, with the same rule as src/lib/preview.ts, so teaser visitors don't download it.
 export function previewPreloadTag(fileNames: string[]): HtmlTagDescriptor[] {
   const site = fileNames.find((name) => /(^|\/)Site-[\w-]+\.js$/.test(name));
   if (!site) return [];

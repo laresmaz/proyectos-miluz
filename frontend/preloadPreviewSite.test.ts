@@ -44,7 +44,7 @@ describe("preview site preloading", () => {
   });
 
   it.each(["/", "/?preview=false"])(
-    "leaves holding page visitors alone at %s",
+    "leaves teaser visitors alone at %s",
     (url) => {
       // Arrange
       sessionStorage.setItem("preview", url === "/" ? "" : "1");

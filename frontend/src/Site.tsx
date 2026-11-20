@@ -1,4 +1,4 @@
-// The full site with its router, in its own chunk so the holding page doesn't download it.
+// The full site with its router, in its own chunk so teaser visitors don't download it.
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { routes } from "./routes";
 

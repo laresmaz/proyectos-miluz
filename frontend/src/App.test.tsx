@@ -1,4 +1,4 @@
-// Tests for the root component: visitors get the logo holding page, ?teaser the teaser and ?preview the new site.
+// Tests for the root component: visitors get the teaser, and ?preview the new site.
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import App from "./App";
@@ -24,7 +24,7 @@ afterEach(() => {
 
 describe("app", () => {
   it.each(["/", "/proyectos", "/?preview=false"])(
-    "shows visitors the deep-blue holding page with only the logo at %s",
+    "shows visitors the teaser at %s",
     (path) => {
       // Arrange
       const url = path;
@@ -33,25 +33,12 @@ describe("app", () => {
       openApp(url);
 
       // Assert
-      expect(screen.getByRole("main").className).toContain("bg-brand-deep");
-      expect(screen.getByRole("img", { name: BUSINESS.name })).toBeTruthy();
-      expect(screen.queryByRole("heading")).toBeNull();
+      expect(screen.getByRole("heading", { level: 1 }).textContent).toContain(
+        es.teaser.headlineAccent,
+      );
+      expect(screen.queryByRole("navigation")).toBeNull();
     },
   );
-
-  it("shows the teaser with ?teaser", () => {
-    // Arrange
-    const url = "/?teaser";
-
-    // Act
-    openApp(url);
-
-    // Assert
-    expect(screen.getByRole("heading", { level: 1 }).textContent).toContain(
-      es.teaser.headlineAccent,
-    );
-    expect(screen.queryByRole("navigation")).toBeNull();
-  });
 
   it("shows the new site with ?preview, so it can be reviewed before launch", async () => {
     // Arrange
@@ -64,20 +51,6 @@ describe("app", () => {
     expect(await screen.findByRole("navigation")).toBeTruthy();
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
       site.home.hero.title,
-    );
-  });
-
-  it("opens the teaser with ?teaser even in a tab that was previewing the site", () => {
-    // Arrange
-    openApp("/?preview");
-    cleanup();
-
-    // Act
-    openApp("/?teaser");
-
-    // Assert
-    expect(screen.getByRole("heading", { level: 1 }).textContent).toContain(
-      es.teaser.headlineAccent,
     );
   });
 
