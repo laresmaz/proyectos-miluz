@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { BUSINESS } from "../../config";
 import Section from "../ui/Section";
 import Eyebrow from "../ui/Eyebrow";
+import Text from "../Text";
 
 type Step = { title: string; text: string; textWithoutWhatsapp?: string };
 
@@ -20,9 +21,9 @@ export default function Steps({ dividerInto }: { dividerInto?: string }) {
       <div className="mx-auto flex max-w-300 flex-col gap-10 px-6 py-22">
         <div className="flex max-w-180 flex-col gap-3">
           <Eyebrow>{t("home.steps.eyebrow")}</Eyebrow>
-          <h2 className="font-display text-[clamp(34px,4vw,52px)] leading-[1.02] font-bold text-brand uppercase">
+          <Text variant="sectionTitle" className="text-brand">
             {t("home.steps.title")}
-          </h2>
+          </Text>
         </div>
         <ol className="flex flex-wrap gap-5">
           {steps.map((step, i) => (
@@ -43,14 +44,14 @@ export default function Steps({ dividerInto }: { dividerInto?: string }) {
                   {i + 1}
                 </span>
               </div>
-              <h3 className="font-display text-[26px] font-bold text-brand uppercase">
+              <Text variant="cardTitle" className="text-brand">
                 {step.title}
-              </h3>
-              <p className="leading-[1.6] text-ink-soft">
+              </Text>
+              <Text variant="body" className="text-ink-soft">
                 {BUSINESS.whatsappEnabled
                   ? step.text
                   : (step.textWithoutWhatsapp ?? step.text)}
-              </p>
+              </Text>
             </li>
           ))}
         </ol>

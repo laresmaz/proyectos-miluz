@@ -4,6 +4,7 @@ import { PROJECTS } from "../../projects";
 import ProjectCard from "../sections/ProjectCard";
 import Section from "../ui/Section";
 import Eyebrow from "../ui/Eyebrow";
+import Text from "../Text";
 
 export default function FeaturedProjects() {
   const { t } = useTranslation("site");
@@ -15,9 +16,9 @@ export default function FeaturedProjects() {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="flex flex-col gap-3">
             <Eyebrow>{t("home.projects.eyebrow")}</Eyebrow>
-            <h2 className="font-display text-[clamp(34px,4vw,52px)] leading-[1.02] font-bold text-brand uppercase">
+            <Text variant="sectionTitle" className="text-brand">
               {t("home.projects.title")}
-            </h2>
+            </Text>
           </div>
           <Link
             to="/proyectos"

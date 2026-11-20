@@ -2,6 +2,7 @@
 import { useTranslation } from "react-i18next";
 import type { Project } from "../../projects";
 import BrandPhoto from "../ui/BrandPhoto";
+import Text from "../Text";
 
 // Badge colors from the mockup: Antes in white on brand blue, Después in brand blue on crane yellow.
 const BADGES = {
@@ -34,11 +35,13 @@ export default function ProjectCard({ project }: { project: Project }) {
         })}
       </div>
       <div className="flex flex-col gap-1.5 p-5">
-        <h3 className="text-lg font-bold text-brand">{project.title}</h3>
-        <p className="text-sm text-ink-soft">
+        <Text variant="bodyLarge" as="h3" className="font-bold text-brand">
+          {project.title}
+        </Text>
+        <Text variant="small" as="p" className="text-ink-soft">
           {t(`services.items.${project.serviceType}.title`)} ·{" "}
           {project.location} · {project.year}
-        </p>
+        </Text>
       </div>
     </article>
   );

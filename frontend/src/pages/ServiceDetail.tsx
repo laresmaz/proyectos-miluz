@@ -7,6 +7,7 @@ import { SERVICES } from "../services";
 import { usePageMeta } from "../usePageMeta";
 import NotFound from "./NotFound";
 import Eyebrow from "../components/ui/Eyebrow";
+import Text from "../components/Text";
 
 // Renders the service named in the URL, or the 404 page for an unknown one.
 export default function ServiceDetail() {
@@ -34,16 +35,18 @@ function ServicePage({ index }: { index: number }) {
         <Eyebrow>
           {t("services.label", { number: String(index + 1).padStart(2, "0") })}
         </Eyebrow>
-        <h1 className="font-display text-5xl font-bold text-brand uppercase">
+        <Text variant="pageTitle" className="text-brand">
           {t(`${key}.title`)}
-        </h1>
-        <p className="text-lg leading-relaxed">{t(`${key}.text`)}</p>
-        <h2
+        </Text>
+        <Text variant="bodyLarge">{t(`${key}.text`)}</Text>
+        <Text
+          variant="cardTitle"
+          as="h2"
           id="service-includes"
-          className="font-display text-2xl font-semibold text-brand uppercase"
+          className="text-brand"
         >
           {t("services.includes")}
-        </h2>
+        </Text>
         <ul
           aria-labelledby="service-includes"
           className="list-inside list-disc space-y-2 marker:text-brand-medium"

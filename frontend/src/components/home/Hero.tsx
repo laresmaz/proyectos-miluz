@@ -4,6 +4,7 @@ import { BUSINESS } from "../../config";
 import BrandPhoto from "../ui/BrandPhoto";
 import Section from "../ui/Section";
 import WhatsAppIcon from "../ui/WhatsAppIcon";
+import Text from "../Text";
 
 // Renders the hero, ending in the Ávila divider down into the trust strip
 export default function Hero() {
@@ -13,16 +14,16 @@ export default function Hero() {
     <Section bg="var(--color-brand-deep)" dividerInto="var(--color-brand)">
       <div className="mx-auto flex max-w-300 flex-wrap items-center gap-14 px-6 pt-24 pb-26">
         <div className="flex min-w-0 flex-[1_1_480px] flex-col gap-7">
-          <p className="text-sm font-bold tracking-[0.1em] text-crane uppercase">
+          <Text variant="eyebrow" className="text-crane">
             {t("home.hero.eyebrow")}
-          </p>
+          </Text>
           <div className="flex flex-col gap-5">
-            <h1 className="font-display text-[clamp(44px,6vw,76px)] leading-[0.98] font-bold text-white uppercase">
+            <Text variant="heroTitle" className="text-white">
               {t("home.hero.title")}
-            </h1>
-            <p className="max-w-140 text-xl leading-[1.55] text-haze">
+            </Text>
+            <Text variant="lead" className="max-w-140 text-haze">
               {t("home.hero.subtitle")}
-            </p>
+            </Text>
           </div>
           <div className="flex flex-wrap gap-3.5">
             {BUSINESS.whatsappEnabled && (

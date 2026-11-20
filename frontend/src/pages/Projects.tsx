@@ -6,6 +6,7 @@ import { PROJECTS, type Project } from "../projects";
 import { BUSINESS } from "../config";
 import { SERVICES } from "../services";
 import { usePageMeta } from "../usePageMeta";
+import Text from "../components/Text";
 
 // Renders the published projects, or a "coming soon" note while there are none; tests pass their own projects.
 export default function Projects({
@@ -33,11 +34,13 @@ export default function Projects({
 
   return (
     <div className="mx-auto max-w-300 px-6 py-16">
-      <h1 className="font-display text-5xl font-bold text-brand uppercase">
+      <Text variant="pageTitle" className="text-brand">
         {t("nav.projects")}
-      </h1>
+      </Text>
       {published.length === 0 ? (
-        <p className="mt-6 text-lg">{t("projects.empty")}</p>
+        <Text variant="bodyLarge" className="mt-6">
+          {t("projects.empty")}
+        </Text>
       ) : (
         <>
           <div
