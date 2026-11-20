@@ -7,7 +7,7 @@ import Text from "../Text";
 export default function ServicesIntro() {
   const { t } = useTranslation("site");
   return (
-    <Section id="servicios" bg="var(--color-white)" withCranes={false}>
+    <Section id="servicios" bg="var(--color-brand-mist)" withCranes={false}>
       <div className="mx-auto flex max-w-190 flex-col gap-4 px-6 pt-24 pb-6 text-center">
         <Eyebrow>{t("home.services.eyebrow")}</Eyebrow>
         <Text variant="sectionTitle" className="text-brand">

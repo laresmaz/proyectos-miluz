@@ -34,7 +34,7 @@ export default function Zigzag({
   return items.map((item, i) => (
     <Section
       key={item.id}
-      bg={i % 2 === 1 ? "var(--color-brand-mist)" : "var(--color-white)"}
+      bg={i % 2 === 0 ? "var(--color-brand-mist)" : "var(--color-white)"}
       tone="light"
       offset={i}
       dividerInto={i === items.length - 1 ? dividerInto : undefined}
