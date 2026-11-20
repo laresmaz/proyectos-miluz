@@ -7,9 +7,8 @@ const bundle = [
   "assets/barlow-condensed-latin-700-normal-v1xN8_Wq.woff2",
   "assets/barlow-condensed-latin-700-normal-AbCd.woff",
   "assets/barlow-condensed-latin-ext-700-normal-Zz.woff2",
-  "assets/inter-latin-400-normal-C38fXH4l.woff2",
-  "assets/inter-latin-600-normal-LgqL8muc.woff2",
-  "assets/inter-latin-700-normal-Yt3aPRUw.woff2",
+  "assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+  "assets/inter-latin-ext-wght-normal-HA_RiXHX.woff2",
 ];
 
 describe("font preloading", () => {
@@ -23,8 +22,7 @@ describe("font preloading", () => {
     // Assert
     expect(hrefs).toEqual([
       "/assets/barlow-condensed-latin-700-normal-v1xN8_Wq.woff2",
-      "/assets/inter-latin-400-normal-C38fXH4l.woff2",
-      "/assets/inter-latin-700-normal-Yt3aPRUw.woff2",
+      "/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
     ]);
   });
 
