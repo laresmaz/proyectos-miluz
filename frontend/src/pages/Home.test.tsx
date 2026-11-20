@@ -247,6 +247,20 @@ describe("home projects, about and call to action", () => {
     ).toBeTruthy();
   });
 
+  it("writes the WhatsApp number out under the call-to-action button, for visitors who'd rather dial it", () => {
+    // Arrange
+    BUSINESS.whatsappEnabled = true;
+
+    // Act
+    openHome();
+
+    // Assert
+    const cta = screen
+      .getByRole("heading", { level: 2, name: es.home.cta.title })
+      .closest("section") as HTMLElement;
+    expect(within(cta).getByText(/\+58 424 255 8776/)).toBeTruthy();
+  });
+
   it.each([true, false])(
     "ends with the WhatsApp call to action only when WhatsApp is on (%s)",
     (enabled) => {

@@ -3,7 +3,7 @@ import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { BUSINESS } from "./data/config";
+import { BUSINESS, readableWhatsapp } from "./data/config";
 import { createI18n } from "./lib/i18n";
 import es from "./locales/site/es.json";
 import { routes } from "./routes";
@@ -128,7 +128,7 @@ describe("site header and footer", () => {
         name: es.nav.whatsapp,
       });
       const number = within(screen.getByRole("contentinfo")).queryByText(
-        `WhatsApp: ${BUSINESS.whatsapp}`,
+        `WhatsApp: ${readableWhatsapp(BUSINESS.whatsapp)}`,
       );
       expect(button !== null).toBe(enabled);
       expect(number !== null).toBe(enabled);
@@ -144,6 +144,8 @@ describe("site header and footer", () => {
     "draws the footer's mountains inside $path's last section when it has cranes, so they walk behind them",
     ({ path, inSection }) => {
       // Arrange
+      // With WhatsApp on, / ends in the deep-blue call to action instead, which runs straight into the footer.
+      BUSINESS.whatsappEnabled = false;
       const url = path;
 
       // Act

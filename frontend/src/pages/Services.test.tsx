@@ -41,7 +41,9 @@ describe("services index", () => {
       blocks.map((b) => within(b).getByRole("heading").textContent),
     ).toEqual(expected);
     const links = blocks.map((b) =>
-      within(b).getByRole("link").getAttribute("href"),
+      within(b)
+        .getByRole("link", { name: new RegExp(es.services.seeMore) })
+        .getAttribute("href"),
     );
     expect(links).toEqual(SERVICES.map(({ slug }) => `/servicios/${slug}`));
   });

@@ -213,7 +213,8 @@
     "cta": {
       "title": "Got a project in mind?",
       "text": "Tell us what you need and we'll get back to you as soon as we can.",
-      "whatsapp": "Write on WhatsApp"
+      "whatsapp": "Write on WhatsApp",
+      "number": "or message us on {{number}}"
     }
   },
   "meta": {

@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Link, useMatches } from "react-router";
 import logo from "../../assets/logo.svg";
-import { BUSINESS } from "../../data/config";
+import { BUSINESS, readableWhatsapp } from "../../data/config";
 import AvilaDivider from "../ui/AvilaDivider";
 import { NAV_LINKS } from "./navLinks";
 import Text from "../Text";
@@ -45,7 +45,11 @@ export default function SiteFooter() {
               {t("footer.contact")}
             </Text>
             {BUSINESS.whatsappEnabled && (
-              <span>{t("footer.whatsapp", { number: BUSINESS.whatsapp })}</span>
+              <span>
+                {t("footer.whatsapp", {
+                  number: readableWhatsapp(BUSINESS.whatsapp),
+                })}
+              </span>
             )}
             <span>{BUSINESS.city}</span>
             <span>{t("footer.rif", { rif: BUSINESS.rif })}</span>

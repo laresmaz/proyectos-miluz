@@ -6,6 +6,11 @@ export const BUSINESS = {
   rif: "J-31280442-4",
   // International format, digits only (e.g. 584141234567)
   whatsapp: "584242558776",
-  // Off until launch, so visitors only see WhatsApp buttons once the site is ready.
-  whatsappEnabled: false,
+  // Only ?teaser and ?preview show WhatsApp; the logo page at / has none.
+  whatsappEnabled: true,
 };
+
+// Writes a WhatsApp number the way people read it out, e.g. +58 424 255 8776.
+export function readableWhatsapp(number: string): string {
+  return `+${number.slice(0, 2)} ${number.slice(2, 5)} ${number.slice(5, 8)} ${number.slice(8)}`;
+}
