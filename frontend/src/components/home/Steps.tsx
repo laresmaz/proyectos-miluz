@@ -14,8 +14,6 @@ export default function Steps({ dividerInto }: { dividerInto?: string }) {
   return (
     <Section
       bg="var(--color-brand-mist)"
-      tone="light"
-      offset={3}
       dividerInto={dividerInto}
       withCranes={false}
     >

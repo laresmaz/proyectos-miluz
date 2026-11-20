@@ -13,16 +13,29 @@ main() {
     echo "ImageMagick is missing. Run: nix shell nixpkgs#imagemagick -c ./photos.sh" >&2
     exit 1
   fi
+  # The folders are relative to frontend/, wherever the script is run from.
+  cd "$(dirname "$0")"
   shopt -s nullglob nocaseglob
   local originals=("$SOURCE_DIR"/*.{jpg,jpeg,png,heic,webp})
   if ((${#originals[@]} == 0)); then
     echo "No photos in $SOURCE_DIR/. Add one named after its use, like hero.jpg or proyecto-1-antes.jpg." >&2
     exit 1
   fi
+  check_unique_names "${originals[@]}"
   mkdir -p "$OUT_DIR"
   for original in "${originals[@]}"; do
     convert_photo "$original"
   done
+}
+
+# Stops if two originals share a name (hero.jpg and hero.png), since both would write the same copies
+check_unique_names() {
+  local duplicates
+  duplicates=$(for original in "$@"; do basename "${original%.*}"; done | sort -f | uniq -di)
+  if [[ -n $duplicates ]]; then
+    echo "Two originals share a name, so one would overwrite the other's copies: $duplicates. Rename or remove one." >&2
+    exit 1
+  fi
 }
 
 # Writes one original at each width, cropped from the centre and never enlarged
