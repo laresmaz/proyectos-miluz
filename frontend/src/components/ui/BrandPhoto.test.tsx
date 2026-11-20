@@ -1,7 +1,7 @@
 // Tests for the brand photo: a skeleton while the photo loads, and the fallback image when it fails.
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
-import fallback from "../assets/fallback-photo.svg";
+import fallback from "../../assets/fallback-photo.svg";
 import BrandPhoto from "./BrandPhoto";
 
 afterEach(cleanup);

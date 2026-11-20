@@ -1,6 +1,6 @@
 // Services page: the seven services in the zigzag layout
 import { useTranslation } from "react-i18next";
-import Zigzag from "../components/Zigzag";
+import Zigzag from "../components/sections/Zigzag";
 import { BUSINESS } from "../config";
 import { useServiceItems } from "../services";
 import { usePageMeta } from "../usePageMeta";

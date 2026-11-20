@@ -1,6 +1,6 @@
 // Stories for the Ávila divider: try the mountain shapes against the section colors they will sit between.
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import AvilaDivider from "../src/components/AvilaDivider";
+import AvilaDivider from "../src/components/ui/AvilaDivider";
 
 const meta = {
   title: "Decoration/AvilaDivider",
@@ -22,10 +22,10 @@ type Story = StoryObj<typeof meta>;
 
 // The teaser: deep-blue page above, brand-blue footer below.
 export const DeepToBrand: Story = {
-  args: { topBg: "#05054A", fill: "#00007E" },
+  args: { topBg: "var(--color-brand-deep)", fill: "var(--color-brand)" },
 };
 
 // The full site's alternating sections: white above, Azul niebla below.
 export const WhiteToMist: Story = {
-  args: { topBg: "#FFFFFF", fill: "#EEF0FA" },
+  args: { topBg: "var(--color-white)", fill: "var(--color-brand-mist)" },
 };

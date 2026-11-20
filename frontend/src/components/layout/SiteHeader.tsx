@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 import { Link, NavLink } from "react-router";
 import logo from "../../assets/logo.svg";
 import { BUSINESS } from "../../config";
-import LanguageSwitch from "../LanguageSwitch";
-import WhatsAppIcon from "../WhatsAppIcon";
+import LanguageSwitch from "./LanguageSwitch";
+import WhatsAppIcon from "../ui/WhatsAppIcon";
 import { NAV_LINKS } from "./navLinks";
 
 export default function SiteHeader() {

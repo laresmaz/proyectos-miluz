@@ -1,12 +1,12 @@
 // Service page: one service's full text
 import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router";
-import BrandPhoto from "../components/BrandPhoto";
+import BrandPhoto from "../components/ui/BrandPhoto";
 import { BUSINESS } from "../config";
 import { SERVICES } from "../services";
 import { usePageMeta } from "../usePageMeta";
 import NotFound from "./NotFound";
-import Eyebrow from "../components/Eyebrow";
+import Eyebrow from "../components/ui/Eyebrow";
 
 // Renders the service named in the URL, or the 404 page for an unknown one.
 export default function ServiceDetail() {

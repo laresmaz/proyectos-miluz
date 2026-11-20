@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import { BUSINESS } from "../../config";
-import BrandPhoto from "../BrandPhoto";
-import Section from "../Section";
-import WhatsAppIcon from "../WhatsAppIcon";
+import BrandPhoto from "../ui/BrandPhoto";
+import Section from "../ui/Section";
+import WhatsAppIcon from "../ui/WhatsAppIcon";
 
 // Renders the hero, ending in the Ávila divider down into the trust strip
 export default function Hero() {
@@ -20,7 +20,7 @@ export default function Hero() {
             <h1 className="font-display text-[clamp(44px,6vw,76px)] leading-[0.98] font-bold text-white uppercase">
               {t("home.hero.title")}
             </h1>
-            <p className="max-w-140 text-xl leading-[1.55] text-[#C9CDE8]">
+            <p className="max-w-140 text-xl leading-[1.55] text-haze">
               {t("home.hero.subtitle")}
             </p>
           </div>

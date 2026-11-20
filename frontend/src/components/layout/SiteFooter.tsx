@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useMatches } from "react-router";
 import logo from "../../assets/logo.svg";
 import { BUSINESS } from "../../config";
-import AvilaDivider from "../AvilaDivider";
+import AvilaDivider from "../ui/AvilaDivider";
 import { NAV_LINKS } from "./navLinks";
 
 // A page whose last section has cranes draws the footer's mountains inside it, so the cranes walk behind them; the footer then skips its own.
@@ -31,7 +31,7 @@ export default function SiteFooter() {
                 {BUSINESS.name}
               </span>
             </div>
-            <p className="text-sm leading-relaxed text-[#B8BCE0]">
+            <p className="text-sm leading-relaxed text-haze-dim">
               {t("footer.tagline")}
             </p>
           </div>

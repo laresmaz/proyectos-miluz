@@ -2,14 +2,24 @@
 @import "tailwindcss";
 
 @theme {
+  /* Only these colors exist: Tailwind's default palette is switched off. */
+  --color-*: initial;
+  --color-white: #ffffff;
   --color-brand: #00007e;
   --color-brand-deep: #05054a;
   --color-brand-mist: #eef0fa;
   --color-brand-medium: #3d4bd9;
   --color-ink: #1a1c2e;
+  --color-ink-soft: #5a5f7a;
+  /* Soft text on the deep blue: the lead paragraphs, and the footer a shade dimmer. */
+  --color-haze: #c9cde8;
+  --color-haze-dim: #b8bce0;
   /* Amarillo grúa: only the main button and details on dark backgrounds, never text on white. */
   --color-crane: #ffc20e;
   --color-whatsapp: #25d366;
+
+  --shadow-card: 0 1px 2px
+    color-mix(in srgb, var(--color-brand-deep) 8%, transparent);
 
   --font-sans: Inter, "Inter fallback", system-ui, sans-serif;
   --font-display: "Barlow Condensed", "Barlow Condensed fallback", sans-serif;

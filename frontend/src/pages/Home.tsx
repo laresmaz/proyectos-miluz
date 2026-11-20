@@ -1,12 +1,12 @@
 import { useTranslation } from "react-i18next";
-import AboutSection from "../components/AboutSection";
+import AboutSection from "../components/sections/AboutSection";
 import CallToAction from "../components/home/CallToAction";
 import FeaturedProjects from "../components/home/FeaturedProjects";
 import Hero from "../components/home/Hero";
 import ServicesIntro from "../components/home/ServicesIntro";
 import Steps from "../components/home/Steps";
 import TrustStrip from "../components/home/TrustStrip";
-import Zigzag from "../components/Zigzag";
+import Zigzag from "../components/sections/Zigzag";
 import { BUSINESS } from "../config";
 import { useServiceItems } from "../services";
 import { usePageMeta } from "../usePageMeta";

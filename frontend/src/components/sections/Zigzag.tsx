@@ -1,10 +1,10 @@
 // Zigzag: photo and text bands alternating white and mist
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
-import { BUSINESS } from "../config";
-import BrandPhoto from "./BrandPhoto";
-import Section from "./Section";
-import Eyebrow from "./Eyebrow";
+import { BUSINESS } from "../../config";
+import BrandPhoto from "../ui/BrandPhoto";
+import Section from "../ui/Section";
+import Eyebrow from "../ui/Eyebrow";
 
 export type ZigzagItem = {
   id: string;

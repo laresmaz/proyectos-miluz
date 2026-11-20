@@ -1,8 +1,8 @@
 // "Sobre el ingeniero" section
 import { Trans, useTranslation } from "react-i18next";
-import BrandPhoto from "./BrandPhoto";
-import Section from "./Section";
-import Eyebrow from "./Eyebrow";
+import BrandPhoto from "../ui/BrandPhoto";
+import Section from "../ui/Section";
+import Eyebrow from "../ui/Eyebrow";
 
 // Renders the section; the about page makes its heading the h1 and loads the photo first, the home page uses it as an h2 further down.
 export default function AboutSection({

@@ -1,7 +1,7 @@
 // Project card from the before/after photos with their labels, then the title and its details.
 import { useTranslation } from "react-i18next";
-import type { Project } from "../projects";
-import BrandPhoto from "./BrandPhoto";
+import type { Project } from "../../projects";
+import BrandPhoto from "../ui/BrandPhoto";
 
 // Badge colors from the mockup: Antes in white on brand blue, Después in brand blue on crane yellow.
 const BADGES = {
@@ -17,7 +17,7 @@ export default function ProjectCard({ project }: { project: Project }) {
     .filter((image) => image !== undefined);
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-[0_1px_2px_rgba(5,5,74,0.08)]">
+    <article className="flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-card">
       <div className="grid grid-cols-2 gap-0.5 bg-brand-mist">
         {pair.map((image) => {
           const badge = BADGES[image.kind as keyof typeof BADGES];
@@ -35,7 +35,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       </div>
       <div className="flex flex-col gap-1.5 p-5">
         <h3 className="text-lg font-bold text-brand">{project.title}</h3>
-        <p className="text-sm text-[#5A5F7A]">
+        <p className="text-sm text-ink-soft">
           {t(`services.items.${project.serviceType}.title`)} ·{" "}
           {project.location} · {project.year}
         </p>

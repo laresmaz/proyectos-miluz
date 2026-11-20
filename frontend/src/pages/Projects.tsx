@@ -1,7 +1,7 @@
 // Projects page: the portfolio with before and after photos.
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router";
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "../components/sections/ProjectCard";
 import { PROJECTS, type Project } from "../projects";
 import { BUSINESS } from "../config";
 import { SERVICES } from "../services";

@@ -1,7 +1,7 @@
 // Crane backdrop: yellow triangle cranes drifting slowly behind a section's content
 // The parent needs `relative isolate overflow-hidden` so the cranes stay behind and inside it.
 import isChromatic from "chromatic/isChromatic";
-import crane from "../assets/crane.svg";
+import crane from "../../assets/crane.svg";
 
 // Size, start, opacity and speed per crane
 const DARK = [

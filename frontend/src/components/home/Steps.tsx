@@ -1,8 +1,8 @@
 // "Cómo trabajamos": four numbered step cards on a mist band.
 import { useTranslation } from "react-i18next";
 import { BUSINESS } from "../../config";
-import Section from "../Section";
-import Eyebrow from "../Eyebrow";
+import Section from "../ui/Section";
+import Eyebrow from "../ui/Eyebrow";
 
 type Step = { title: string; text: string; textWithoutWhatsapp?: string };
 
@@ -28,7 +28,7 @@ export default function Steps({ dividerInto }: { dividerInto?: string }) {
           {steps.map((step, i) => (
             <li
               key={step.title}
-              className="flex min-w-0 flex-[1_1_240px] flex-col gap-3.5 rounded-xl bg-white p-7 shadow-[0_1px_2px_rgba(5,5,74,0.08)]"
+              className="flex min-w-0 flex-[1_1_240px] flex-col gap-3.5 rounded-xl bg-white p-7 shadow-card"
             >
               <div className="relative h-12.5 w-14" aria-hidden="true">
                 <svg
@@ -46,7 +46,7 @@ export default function Steps({ dividerInto }: { dividerInto?: string }) {
               <h3 className="font-display text-[26px] font-bold text-brand uppercase">
                 {step.title}
               </h3>
-              <p className="leading-[1.6] text-[#5A5F7A]">
+              <p className="leading-[1.6] text-ink-soft">
                 {BUSINESS.whatsappEnabled
                   ? step.text
                   : (step.textWithoutWhatsapp ?? step.text)}

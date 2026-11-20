@@ -1,6 +1,6 @@
 // About page: the engineer's introduction from the mockup's "Sobre el ingeniero" section.
 import { useTranslation } from "react-i18next";
-import AboutSection from "../components/AboutSection";
+import AboutSection from "../components/sections/AboutSection";
 import { BUSINESS } from "../config";
 import { usePageMeta } from "../usePageMeta";
 

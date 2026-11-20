@@ -1,6 +1,6 @@
 // Brand photo: a 4:3 image (or square, for the before/after pairs) with a loading skeleton and fallback when it fails
 import { useState } from "react";
-import fallback from "../assets/fallback-photo.svg";
+import fallback from "../../assets/fallback-photo.svg";
 
 type BrandPhotoProps = {
   src: string;
