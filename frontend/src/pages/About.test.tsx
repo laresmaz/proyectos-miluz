@@ -1,7 +1,7 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { createI18n } from "../i18n";
+import { createI18n } from "../lib/i18n";
 import es from "../locales/site/es.json";
 import { routes } from "../routes";
 

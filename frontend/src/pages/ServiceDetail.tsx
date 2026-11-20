@@ -2,9 +2,9 @@
 import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router";
 import BrandPhoto from "../components/ui/BrandPhoto";
-import { BUSINESS } from "../config";
-import { SERVICES } from "../services";
-import { usePageMeta } from "../usePageMeta";
+import { BUSINESS } from "../data/config";
+import { SERVICES } from "../data/services";
+import { usePageMeta } from "../lib/usePageMeta";
 import NotFound from "./NotFound";
 import Eyebrow from "../components/ui/Eyebrow";
 import Text from "../components/Text";

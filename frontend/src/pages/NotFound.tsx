@@ -1,8 +1,8 @@
 // 404 page: shown for any URL the site doesn't have
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
-import { BUSINESS } from "../config";
-import { usePageMeta } from "../usePageMeta";
+import { BUSINESS } from "../data/config";
+import { usePageMeta } from "../lib/usePageMeta";
 import Text from "../components/Text";
 
 // Renders the not-found message and the link home.

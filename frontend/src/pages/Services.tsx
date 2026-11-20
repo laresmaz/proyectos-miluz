@@ -1,9 +1,9 @@
 // Services page: the seven services in the zigzag layout
 import { useTranslation } from "react-i18next";
 import Zigzag from "../components/sections/Zigzag";
-import { BUSINESS } from "../config";
-import { useServiceItems } from "../services";
-import { usePageMeta } from "../usePageMeta";
+import { BUSINESS } from "../data/config";
+import { useServiceItems } from "../data/services";
+import { usePageMeta } from "../lib/usePageMeta";
 import Text from "../components/Text";
 
 // Renders the heading and one zigzag band per service; the last band carries the footer's mountains.

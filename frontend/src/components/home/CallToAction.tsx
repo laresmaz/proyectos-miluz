@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import logo from "../../assets/logo.svg";
-import { BUSINESS } from "../../config";
+import { BUSINESS } from "../../data/config";
 import Section from "../ui/Section";
 import WhatsAppIcon from "../ui/WhatsAppIcon";
 import Text from "../Text";

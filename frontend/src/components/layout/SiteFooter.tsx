@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Link, useMatches } from "react-router";
 import logo from "../../assets/logo.svg";
-import { BUSINESS } from "../../config";
+import { BUSINESS } from "../../data/config";
 import AvilaDivider from "../ui/AvilaDivider";
 import { NAV_LINKS } from "./navLinks";
 import Text from "../Text";

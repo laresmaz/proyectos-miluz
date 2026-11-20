@@ -2,9 +2,9 @@
 // TODO: at launch (WhatsApp number in, real photos), drop the checks and render the site for everyone.
 import { lazy, Suspense } from "react";
 import logo from "./assets/logo.svg";
-import { BUSINESS } from "./config";
+import { BUSINESS } from "./data/config";
 import Teaser from "./pages/Teaser";
-import { isPreview } from "./preview";
+import { isPreview } from "./lib/preview";
 
 // Loaded only for preview tabs, so visitors don't download the whole site.
 const Site = lazy(() => import("./Site"));

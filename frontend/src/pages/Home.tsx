@@ -7,9 +7,9 @@ import ServicesIntro from "../components/home/ServicesIntro";
 import Steps from "../components/home/Steps";
 import TrustStrip from "../components/home/TrustStrip";
 import Zigzag from "../components/sections/Zigzag";
-import { BUSINESS } from "../config";
-import { useServiceItems } from "../services";
-import { usePageMeta } from "../usePageMeta";
+import { BUSINESS } from "../data/config";
+import { useServiceItems } from "../data/services";
+import { usePageMeta } from "../lib/usePageMeta";
 
 // "Sobre el ingeniero" carries the mountains into the deep blue of the call to action, or of the footer while there's no WhatsApp.
 export default function Home() {

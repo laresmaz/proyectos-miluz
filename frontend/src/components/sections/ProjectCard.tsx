@@ -1,6 +1,6 @@
 // Project card from the before/after photos with their labels, then the title and its details.
 import { useTranslation } from "react-i18next";
-import type { Project } from "../../projects";
+import type { Project } from "../../data/projects";
 import BrandPhoto from "../ui/BrandPhoto";
 import Text from "../Text";
 

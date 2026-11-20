@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
-import { PROJECTS } from "../../projects";
+import { PROJECTS } from "../../data/projects";
 import ProjectCard from "../sections/ProjectCard";
 import Section from "../ui/Section";
 import Eyebrow from "../ui/Eyebrow";

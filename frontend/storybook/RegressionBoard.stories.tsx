@@ -3,7 +3,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { CSSProperties } from "react";
 import { I18nextProvider } from "react-i18next";
-import { createI18n } from "../src/i18n";
+import { createI18n } from "../src/lib/i18n";
 import Teaser from "../src/pages/Teaser";
 
 const meta = {

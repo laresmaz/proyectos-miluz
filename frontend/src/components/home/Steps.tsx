@@ -1,6 +1,6 @@
 // "Cómo trabajamos": four numbered step cards on a mist band.
 import { useTranslation } from "react-i18next";
-import { BUSINESS } from "../../config";
+import { BUSINESS } from "../../data/config";
 import Section from "../ui/Section";
 import Eyebrow from "../ui/Eyebrow";
 import Text from "../Text";

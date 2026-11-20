@@ -1,4 +1,4 @@
-/* Global styles (the fonts themselves load from src/fonts.ts). */
+/* Global styles (the fonts themselves load from src/lib/fonts.ts). */
 @import "tailwindcss";
 
 @theme {

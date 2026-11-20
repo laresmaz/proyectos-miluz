@@ -1,6 +1,6 @@
 // Storybook preview: loads the site's CSS so stories get Tailwind, the brand colors and the fonts.
 import type { Preview } from "@storybook/react-vite";
-import "../src/fonts";
+import "../src/lib/fonts";
 import "../src/index.css";
 
 const preview: Preview = {

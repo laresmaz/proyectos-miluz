@@ -2,8 +2,8 @@
 import i18next, { type i18n } from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
-import en from "./locales/en.json";
-import es from "./locales/es.json";
+import en from "../locales/en.json";
+import es from "../locales/es.json";
 
 // Builds a ready-to-use translations instance; called once in main.tsx and fresh in each test.
 export function createI18n(): i18n {

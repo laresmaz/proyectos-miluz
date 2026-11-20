@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
-import { BUSINESS } from "../../config";
+import { BUSINESS } from "../../data/config";
 import BrandPhoto from "../ui/BrandPhoto";
 import Section from "../ui/Section";
 import WhatsAppIcon from "../ui/WhatsAppIcon";

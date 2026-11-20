@@ -2,10 +2,10 @@
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router";
 import ProjectCard from "../components/sections/ProjectCard";
-import { PROJECTS, type Project } from "../projects";
-import { BUSINESS } from "../config";
-import { SERVICES } from "../services";
-import { usePageMeta } from "../usePageMeta";
+import { PROJECTS, type Project } from "../data/projects";
+import { BUSINESS } from "../data/config";
+import { SERVICES } from "../data/services";
+import { usePageMeta } from "../lib/usePageMeta";
 import Text from "../components/Text";
 
 // Renders the published projects, or a "coming soon" note while there are none; tests pass their own projects.

@@ -6,8 +6,8 @@ import CraneBackdrop from "../components/ui/CraneBackdrop";
 import LanguageSwitch from "../components/layout/LanguageSwitch";
 import Text from "../components/Text";
 import WhatsAppIcon from "../components/ui/WhatsAppIcon";
-import { BUSINESS } from "../config";
-import { usePageMeta } from "../usePageMeta";
+import { BUSINESS } from "../data/config";
+import { usePageMeta } from "../lib/usePageMeta";
 
 // Read once at load: a static page only needs the year it was opened in.
 const YEAR = new Date().getFullYear();
