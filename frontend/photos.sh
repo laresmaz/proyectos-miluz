@@ -5,7 +5,7 @@ set -euo pipefail
 SOURCE_DIR="photos-originals"
 OUT_DIR="public/photos"
 WIDTHS=(480 960 1600)
-QUALITY=70
+QUALITY=50
 
 # Converts every original, checking each file it writes
 main() {
