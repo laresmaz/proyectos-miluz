@@ -18,6 +18,7 @@ export default function AboutSection({
 
   return (
     <Section
+      id="sobre-mi"
       bg="var(--color-brand-mist)"
       tone="light"
       offset={5}

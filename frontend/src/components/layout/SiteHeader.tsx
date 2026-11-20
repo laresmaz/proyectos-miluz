@@ -1,7 +1,7 @@
 // Site header
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link, NavLink } from "react-router";
+import { Link } from "react-router";
 import logo from "../../assets/logo.svg";
 import { BUSINESS } from "../../data/config";
 import LanguageSwitch from "./LanguageSwitch";
@@ -54,15 +54,13 @@ export default function SiteHeader() {
         >
           {NAV_LINKS.map(({ to, label }) => (
             <li key={to}>
-              <NavLink
+              <Link
                 to={to}
                 onClick={() => setOpen(false)}
-                className={({ isActive }) =>
-                  `flex min-h-11 items-center rounded px-1 text-[15px] font-semibold hover:text-brand-medium focus-visible:outline-2 focus-visible:outline-brand ${isActive ? "text-brand" : "text-ink"}`
-                }
+                className="flex min-h-11 items-center rounded px-1 text-[15px] font-semibold text-ink hover:text-brand-medium focus-visible:outline-2 focus-visible:outline-brand"
               >
                 {t(label)}
-              </NavLink>
+              </Link>
             </li>
           ))}
           <li>

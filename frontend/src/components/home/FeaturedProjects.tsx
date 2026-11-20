@@ -11,7 +11,7 @@ export default function FeaturedProjects() {
   const featured = PROJECTS.filter((p) => p.isPublished).slice(0, 3);
 
   return (
-    <Section bg="var(--color-white)" withCranes={false}>
+    <Section id="proyectos" bg="var(--color-white)" withCranes={false}>
       <div className="mx-auto flex max-w-300 flex-col gap-10 px-6 py-22">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="flex flex-col gap-3">

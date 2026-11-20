@@ -14,6 +14,7 @@ function openSite(path: string) {
   createI18n();
   const router = createMemoryRouter(routes, { initialEntries: [path] });
   render(<RouterProvider router={router} />);
+  return router;
 }
 
 // Reads the page's main heading.
@@ -45,9 +46,9 @@ describe("site shell", () => {
     expect(pageHeading()).toBe(heading);
   });
 
-  it("moves between pages from the nav", async () => {
+  it("takes the nav to the home page's sections, from any page", async () => {
     // Arrange
-    openSite("/");
+    const router = openSite("/proyectos");
 
     // Act
     await userEvent.click(
@@ -57,7 +58,25 @@ describe("site shell", () => {
     );
 
     // Assert
-    expect(pageHeading()).toBe(es.nav.projects);
+    expect(pageHeading()).toBe(es.home.hero.title);
+    expect(router.state.location.hash).toBe("#proyectos");
+  });
+
+  it("has a home section for every nav link", () => {
+    // Arrange
+    openSite("/");
+
+    // Act
+    const targets = within(screen.getByRole("banner"))
+      .getAllByRole("link")
+      .map((link) => link.getAttribute("href") ?? "")
+      .filter((href) => href.startsWith("/#"));
+
+    // Assert
+    expect(targets).toEqual(["/#servicios", "/#proyectos", "/#sobre-mi"]);
+    targets.forEach((href) =>
+      expect(document.getElementById(href.slice(2))).not.toBeNull(),
+    );
   });
 
   it("goes home from the logo", async () => {
