@@ -6,7 +6,7 @@ export const BUSINESS = {
   rif: "J-31280442-4",
   // The company's track record, and the engineer's own years, quoted across the site and the teaser.
   years: 30,
-  works: 1000,
+  works: 800,
   engineerYears: 50,
   // International format, digits only (e.g. 584141234567)
   whatsapp: "584242558776",
@@ -16,5 +16,5 @@ export const BUSINESS = {
 
 // Writes a WhatsApp number the way people read it out, e.g. +58 424 255 8776.
 export function readableWhatsapp(number: string): string {
-  return `+${number.slice(0, 2)} ${number.slice(2, 5)} ${number.slice(5, 8)} ${number.slice(8)}`;
+  return `(+${number.slice(0, 2)}) ${number.slice(2, 5)} ${number.slice(5, 8)} ${number.slice(8)}`;
 }

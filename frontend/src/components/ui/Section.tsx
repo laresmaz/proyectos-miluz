@@ -2,6 +2,7 @@
 import type { ComponentProps } from "react";
 import AvilaDivider from "./AvilaDivider";
 import CraneBackdrop from "./CraneBackdrop";
+import SunriseGlow from "./SunriseGlow";
 
 type SectionProps = ComponentProps<"section"> & {
   bg: string;
@@ -30,13 +31,7 @@ export default function Section({
       className={`relative isolate overflow-hidden ${className}`}
       style={{ background: bg, ...style }}
     >
-      {sunrise && (
-        // Behind the cranes (z -1); the mountains' solid back layer hides it, so it only glows above the peaks.
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-[-2] h-1/2 bg-linear-to-t from-sunrise/45 to-transparent"
-        />
-      )}
+      {sunrise && <SunriseGlow />}
       {withCranes && <CraneBackdrop tone={tone} offset={offset} />}
       {children}
       {dividerInto && <AvilaDivider topBg={bg} fill={dividerInto} />}

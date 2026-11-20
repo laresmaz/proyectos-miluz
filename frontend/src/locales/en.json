@@ -9,15 +9,16 @@
     "intro": "We are preparing our new website. In the meantime, tell us about your project: more than {{years}} years of experience stand behind us.",
     "whatsapp": "Message us on WhatsApp",
     "servicesLabel": "Services",
-    "services": [
-      "Civil works",
-      "Plumbing",
-      "Electrical",
-      "Masonry",
-      "Drywall",
-      "Reinforced concrete",
-      "Walls and water tanks"
-    ],
+    "services": {
+      "obras-civiles": "Civil works",
+      "plomeria": "Plumbing",
+      "electricidad": "Electrical",
+      "albanileria": "Masonry",
+      "drywall": "Drywall",
+      "concreto-armado": "Reinforced concrete",
+      "muros-y-tanques": "Walls and water tanks",
+      "mantenimiento-integral": "Facility maintenance"
+    },
     "footer": "© {{year}} {{name}} · {{city}}",
     "footerWhatsapp": "WhatsApp: {{number}}",
     "metaTitle": "{{name}} · Civil engineer, renovations and structures in {{city}}",
