@@ -103,12 +103,13 @@ describe("brand photo", () => {
     expect(showsSkeleton()).toBe(true);
   });
 
+  // No high fetch priority: on phones the hero photo sits below the heading and would steal bandwidth from it.
   it.each([
-    { eager: true, loading: "eager", priority: "high" },
-    { eager: false, loading: "lazy", priority: null },
+    { eager: true, loading: "eager" },
+    { eager: false, loading: "lazy" },
   ])(
-    "loads the photo $loading when eager is $eager",
-    ({ eager, loading, priority }) => {
+    "loads the photo $loading when eager is $eager, without jumping the download queue",
+    ({ eager, loading }) => {
       // Arrange
       const props = { src: "/obra.webp", alt: "Obra", eager };
 
@@ -118,7 +119,7 @@ describe("brand photo", () => {
       // Assert
       const img = screen.getByRole("img");
       expect(img.getAttribute("loading")).toBe(loading);
-      expect(img.getAttribute("fetchpriority")).toBe(priority);
+      expect(img.getAttribute("fetchpriority")).toBeNull();
     },
   );
 });

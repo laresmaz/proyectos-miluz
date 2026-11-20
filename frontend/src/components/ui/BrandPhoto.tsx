@@ -50,7 +50,6 @@ function Photo({
         width={800}
         height={square ? 800 : 600}
         loading={eager ? "eager" : "lazy"}
-        fetchPriority={eager ? "high" : undefined}
         onLoad={() => setLoading(false)}
         onError={onError}
         className={`w-full object-cover transition-opacity duration-300 ${square ? "aspect-square" : "aspect-4/3"} ${loading ? "opacity-0" : "opacity-100"}`}
