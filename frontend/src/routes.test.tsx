@@ -25,13 +25,13 @@ const whatsappEnabledInConfig = BUSINESS.whatsappEnabled;
 afterEach(() => {
   cleanup();
   vi.restoreAllMocks();
+  vi.unstubAllGlobals();
   BUSINESS.whatsappEnabled = whatsappEnabledInConfig;
 });
 
 describe("site shell", () => {
   it.each([
     { path: "/", heading: es.home.hero.title },
-    { path: "/servicios", heading: es.nav.services },
     { path: "/proyectos", heading: es.nav.projects },
     { path: "/sobre-mi", heading: es.about.title },
     { path: "/no-existe", heading: es.notFound.title },
@@ -62,6 +62,33 @@ describe("site shell", () => {
     expect(router.state.location.hash).toBe("#proyectos");
   });
 
+  it.each([
+    { reduce: false, behavior: "smooth" },
+    { reduce: true, behavior: "auto" },
+  ])(
+    "glides to the section on the home page instead of jumping, unless the visitor asks for less motion ($behavior)",
+    async ({ reduce, behavior }) => {
+      // Arrange
+      vi.stubGlobal("matchMedia", (query: string) => ({
+        matches: reduce && query.includes("reduce"),
+      }));
+      const glide = vi.fn();
+      Element.prototype.scrollIntoView = glide;
+      openSite("/");
+
+      // Act
+      await userEvent.click(
+        within(screen.getByRole("banner")).getByRole("link", {
+          name: es.nav.projects,
+        }),
+      );
+
+      // Assert
+      expect(glide).toHaveBeenCalledWith({ behavior });
+      expect(glide.mock.contexts[0]).toBe(document.getElementById("proyectos"));
+    },
+  );
+
   it("has a home section for every nav link", () => {
     // Arrange
     openSite("/");
@@ -76,6 +103,20 @@ describe("site shell", () => {
     expect(targets).toEqual(["/#servicios", "/#proyectos", "/#sobre-mi"]);
     targets.forEach((href) =>
       expect(document.getElementById(href.slice(2))).not.toBeNull(),
+    );
+  });
+
+  it("sends /servicios to the home page's services section", () => {
+    // Arrange
+    const url = "/servicios";
+
+    // Act
+    const router = openSite(url);
+
+    // Assert
+    expect(pageHeading()).toBe(es.home.hero.title);
+    expect(router.state.location.pathname + router.state.location.hash).toBe(
+      "/#servicios",
     );
   });
 
@@ -175,7 +216,6 @@ describe("site header and footer", () => {
 
   it.each([
     { path: "/", inSection: true },
-    { path: "/servicios", inSection: true },
     { path: "/sobre-mi", inSection: true },
     { path: "/proyectos", inSection: false },
   ])(

@@ -3,7 +3,7 @@ import { Link, useMatches } from "react-router";
 import logo from "../../assets/logo.svg";
 import { BUSINESS, readableWhatsapp } from "../../data/config";
 import AvilaDivider from "../ui/AvilaDivider";
-import { NAV_LINKS } from "./navLinks";
+import { NAV_LINKS, useGlideToSection } from "./navLinks";
 import Text from "../Text";
 
 // A page whose last section has cranes draws the footer's mountains inside it, so the cranes walk behind them; the footer then skips its own.
@@ -12,6 +12,7 @@ export type SiteRouteHandle = { endsWithDivider?: boolean };
 // Renders the footer
 export default function SiteFooter() {
   const { t } = useTranslation("site");
+  const glide = useGlideToSection();
   const handle = useMatches().at(-1)?.handle as SiteRouteHandle | undefined;
 
   return (
@@ -62,6 +63,7 @@ export default function SiteFooter() {
               <Link
                 key={to}
                 to={to}
+                onClick={(event) => glide(event, to)}
                 className="rounded hover:text-crane focus-visible:outline-2 focus-visible:outline-crane"
               >
                 {t(label)}

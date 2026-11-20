@@ -223,10 +223,6 @@
       "title": "{{name}} · Ingeniero civil, reformas y estructuras en {{city}}",
       "description": "Obras civiles, remodelaciones, mantenimiento integral, plomería, electricidad, drywall y estructuras de concreto armado en Caracas, con respaldo de ingeniero."
     },
-    "services": {
-      "title": "Servicios · {{name}}",
-      "description": "Desde una fuga hasta una ampliación completa: cada trabajo con criterio técnico y supervisión de ingeniero."
-    },
     "projects": {
       "title": "Proyectos · {{name}}",
       "description": "Obras realizadas, con fotos del antes y el después."

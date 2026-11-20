@@ -19,6 +19,10 @@ function openSite(path: string) {
   );
 }
 
+// The zigzag's service blocks, which come before the project cards on the home page.
+const serviceBlocks = () =>
+  screen.getAllByRole("article").slice(0, SERVICES.length);
+
 const whatsappEnabledInConfig = BUSINESS.whatsappEnabled;
 
 afterEach(() => {
@@ -27,16 +31,16 @@ afterEach(() => {
   BUSINESS.whatsappEnabled = whatsappEnabledInConfig;
 });
 
-describe("services index", () => {
+describe("services on the home page", () => {
   it("lists every service in order, each linking to its own page", () => {
     // Arrange
     const expected = SERVICES.map(({ slug }) => es.services.items[slug].title);
 
     // Act
-    openSite("/servicios");
+    openSite("/");
 
     // Assert
-    const blocks = screen.getAllByRole("article");
+    const blocks = serviceBlocks();
     expect(
       blocks.map((b) => within(b).getByRole("heading").textContent),
     ).toEqual(expected);
@@ -53,22 +57,20 @@ describe("services index", () => {
     BUSINESS.whatsappEnabled = true;
 
     // Act
-    openSite("/servicios");
+    openSite("/");
 
     // Assert
-    screen
-      .getAllByRole("article")
-      .forEach((block) =>
-        expect(within(block).getAllByRole("link")).toHaveLength(1),
-      );
+    serviceBlocks().forEach((block) =>
+      expect(within(block).getAllByRole("link")).toHaveLength(1),
+    );
   });
 
   it("alternates the image side from one block to the next on desktop", () => {
     // Arrange
-    openSite("/servicios");
+    openSite("/");
 
     // Act
-    const blocks = screen.getAllByRole("article");
+    const blocks = serviceBlocks();
 
     // Assert
     blocks.forEach((block, i) =>
@@ -112,6 +114,21 @@ describe("service page", () => {
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
       "Mantenimiento integral",
     );
+  });
+
+  it("leads back to the home page's services section", () => {
+    // Arrange
+    const url = "/servicios/plomeria";
+
+    // Act
+    openSite(url);
+
+    // Assert
+    expect(
+      screen
+        .getByRole("link", { name: new RegExp(es.services.all) })
+        .getAttribute("href"),
+    ).toBe("/#servicios");
   });
 
   it("shows the 404 page for a service that doesn't exist", () => {

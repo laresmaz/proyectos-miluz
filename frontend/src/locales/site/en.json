@@ -223,10 +223,6 @@
       "title": "{{name}} · Civil engineer, renovations and structures in {{city}}",
       "description": "Civil works, remodelling, facility maintenance, plumbing, electrical, drywall and reinforced concrete structures in Caracas, backed by an engineer."
     },
-    "services": {
-      "title": "Services · {{name}}",
-      "description": "From a leak to a full extension: every job done with technical judgement and an engineer's supervision."
-    },
     "projects": {
       "title": "Projects · {{name}}",
       "description": "Work we've done, with before and after photos."

@@ -64,7 +64,7 @@ function ServicePage({ index }: { index: number }) {
           </a>
         )}
         <Link
-          to="/servicios"
+          to="/#servicios"
           className="inline-flex min-h-11 items-center font-semibold text-brand hover:text-brand-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
         >
           <span aria-hidden="true">←&nbsp;</span>
