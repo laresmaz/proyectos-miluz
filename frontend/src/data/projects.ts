@@ -17,7 +17,7 @@ export type Project = {
   images: ProjectImage[];
 };
 
-// Builds a project's before/after pair under its planned file names; BrandPhoto shows the placeholder until photos.sh writes them.
+// Builds a project's before/after pair from its file names; BrandPhoto shows the placeholder until photos.sh writes them.
 const plannedPhotos = (slug: string, title: string) =>
   (["antes", "despues"] as const).map((kind) => ({
     id: `${slug}-${kind}`,
@@ -28,6 +28,18 @@ const plannedPhotos = (slug: string, title: string) =>
 
 // Real works from the engineer's CV, in Spanish only like the data model; years are left out until he confirms them.
 export const PROJECTS: Project[] = [
+  // First, so the home page shows a real before/after pair; name and place to confirm with the engineer.
+  {
+    slug: "canalizacion-electrica",
+    title: "Canalización eléctrica de fachada",
+    serviceType: "electricidad",
+    location: "",
+    isPublished: true,
+    images: plannedPhotos(
+      "canalizacion-electrica",
+      "Canalización eléctrica de fachada",
+    ),
+  },
   {
     slug: "refuerzo-clinica-lara",
     title: "Refuerzo estructural de la Clínica Lara",

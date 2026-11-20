@@ -36,7 +36,7 @@
           "Supervisión técnica y coordinación de cuadrillas"
         ],
         "whatsapp": "Hola, quisiera información sobre una obra civil (construcción/ampliación).",
-        "alt": "Obra en construcción con estructura de concreto y andamios",
+        "alt": "Piscina terminada en una vivienda",
         "metaTitle": "Obras civiles y ampliaciones en {{city}} · {{name}}",
         "metaDescription": "Construcción y ampliación de viviendas y locales con supervisión de ingeniero civil."
       },
@@ -51,7 +51,7 @@
           "Baños y cocinas: piezas sanitarias, griferías y desagües"
         ],
         "whatsapp": "Hola, necesito un servicio de plomería.",
-        "alt": "Instalación de tuberías de agua bajo un lavamanos",
+        "alt": "Cuarto de bombas con filtro, válvulas y tuberías de agua",
         "metaTitle": "Plomería en {{city}} · {{name}}",
         "metaDescription": "Instalación y reparación de tuberías, fugas, bombas e hidroneumáticos."
       },
@@ -66,7 +66,7 @@
           "Preparación para planta eléctrica o sistema de respaldo"
         ],
         "whatsapp": "Hola, quisiera información sobre una instalación eléctrica.",
-        "alt": "Técnico trabajando en un tablero eléctrico",
+        "alt": "Tablero eléctrico con breakers recién instalado",
         "metaTitle": "Instalaciones eléctricas en {{city}} · {{name}}",
         "metaDescription": "Instalaciones eléctricas seguras: tableros, circuitos, iluminación y preparación para planta."
       },
@@ -96,7 +96,7 @@
           "Láminas resistentes a la humedad para baños y cocinas"
         ],
         "whatsapp": "Hola, quisiera información sobre trabajos en drywall.",
-        "alt": "Instalación de láminas de drywall sobre perfilería metálica",
+        "alt": "Techo de drywall con líneas de luz LED empotradas",
         "metaTitle": "Drywall en {{city}} · {{name}}",
         "metaDescription": "Divisiones, cielos rasos y muebles en drywall con acabado profesional."
       },
@@ -168,7 +168,7 @@
       "subtitle": "Más de 30 años construyendo, remodelando y reforzando viviendas, oficinas y edificios en Caracas y el resto de Venezuela.",
       "whatsapp": "Escríbanos por WhatsApp",
       "projects": "Ver proyectos",
-      "photoAlt": "Obra con estructura de concreto"
+      "photoAlt": "Pasillo terminado con líneas de luz LED en el techo"
     },
     "trust": {
       "label": "Datos de confianza",

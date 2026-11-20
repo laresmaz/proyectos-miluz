@@ -12,7 +12,7 @@ import fallback from "../assets/fallback-photo.svg";
 import SiteLayout from "../components/layout/SiteLayout";
 import { createI18n } from "../lib/i18n";
 import es from "../locales/site/es.json";
-import type { Project } from "../data/projects";
+import { PROJECTS, type Project } from "../data/projects";
 import { SAMPLE_PROJECTS } from "../data/projects.sample";
 import { routes } from "../routes";
 import Projects from "./Projects";
@@ -166,7 +166,7 @@ describe("portfolio", () => {
     expect(screen.queryAllByRole("article")).toHaveLength(0);
   });
 
-  it("shows the three example projects, whose photos fall back until the real ones are uploaded", () => {
+  it("shows every published project, falling back for photos that aren't uploaded yet", () => {
     // Arrange
     vi.spyOn(navigator, "languages", "get").mockReturnValue(["es-VE"]);
     createI18n();
@@ -183,8 +183,9 @@ describe("portfolio", () => {
     photos.forEach((photo) => fireEvent.error(photo));
 
     // Assert
-    expect(screen.getAllByRole("article")).toHaveLength(3);
-    expect(photos).toHaveLength(6);
+    const published = PROJECTS.filter((p) => p.isPublished);
+    expect(screen.getAllByRole("article")).toHaveLength(published.length);
+    expect(photos).toHaveLength(published.length * 2);
     expect(
       photos.every((photo) => photo.getAttribute("src") === fallback),
     ).toBe(true);

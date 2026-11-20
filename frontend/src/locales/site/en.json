@@ -36,7 +36,7 @@
           "Technical supervision and crew coordination"
         ],
         "whatsapp": "Hello, I'd like information about a civil works project (building/extension).",
-        "alt": "Building under construction with a concrete frame and scaffolding",
+        "alt": "Finished swimming pool at a home",
         "metaTitle": "Civil works and extensions in {{city}} · {{name}}",
         "metaDescription": "Building and extending homes and shops, supervised by a civil engineer."
       },
@@ -51,7 +51,7 @@
           "Bathrooms and kitchens: fixtures, taps and drains"
         ],
         "whatsapp": "Hello, I need a plumbing service.",
-        "alt": "Water pipes being installed under a washbasin",
+        "alt": "Pump room with a filter, valves and water pipes",
         "metaTitle": "Plumbing in {{city}} · {{name}}",
         "metaDescription": "Installing and repairing pipes, leaks, pumps and pressure tanks."
       },
@@ -66,7 +66,7 @@
           "Preparation for a generator or backup system"
         ],
         "whatsapp": "Hello, I'd like information about an electrical installation.",
-        "alt": "Technician working on an electrical panel",
+        "alt": "Newly installed electrical panel with breakers",
         "metaTitle": "Electrical installations in {{city}} · {{name}}",
         "metaDescription": "Safe electrical installations: panels, circuits, lighting and generator preparation."
       },
@@ -96,7 +96,7 @@
           "Moisture-resistant boards for bathrooms and kitchens"
         ],
         "whatsapp": "Hello, I'd like information about drywall work.",
-        "alt": "Drywall boards being fixed to metal framing",
+        "alt": "Drywall ceiling with recessed LED light lines",
         "metaTitle": "Drywall in {{city}} · {{name}}",
         "metaDescription": "Drywall partitions, ceilings and furniture with a professional finish."
       },
@@ -168,7 +168,7 @@
       "subtitle": "More than 30 years building, remodelling and reinforcing homes, offices and buildings in Caracas and across Venezuela.",
       "whatsapp": "Message us on WhatsApp",
       "projects": "See projects",
-      "photoAlt": "Building with a concrete structure"
+      "photoAlt": "Finished corridor with LED light lines in the ceiling"
     },
     "trust": {
       "label": "Why trust us",

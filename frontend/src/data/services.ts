@@ -3,13 +3,13 @@ import { useTranslation } from "react-i18next";
 import fallback from "../assets/fallback-photo.svg";
 import type { ZigzagItem } from "../components/sections/Zigzag";
 
-// TODO add real photos
+// Services without a photo yet show the placeholder.
 export const SERVICES = [
-  { slug: "obras-civiles", image: fallback },
-  { slug: "plomeria", image: fallback },
-  { slug: "electricidad", image: fallback },
+  { slug: "obras-civiles", image: "/photos/obras-civiles.webp" },
+  { slug: "plomeria", image: "/photos/plomeria.webp" },
+  { slug: "electricidad", image: "/photos/electricidad.webp" },
   { slug: "albanileria", image: fallback },
-  { slug: "drywall", image: fallback },
+  { slug: "drywall", image: "/photos/drywall.webp" },
   { slug: "concreto-armado", image: fallback },
   { slug: "muros-y-tanques", image: fallback },
   { slug: "mantenimiento-integral", image: fallback },
