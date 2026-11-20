@@ -8,6 +8,7 @@ type SectionProps = ComponentProps<"section"> & {
   tone?: "dark" | "light";
   offset?: number;
   dividerInto?: string;
+  withCranes?: boolean;
 };
 
 export default function Section({
@@ -15,6 +16,7 @@ export default function Section({
   tone,
   offset,
   dividerInto,
+  withCranes = true,
   className = "",
   style,
   children,
@@ -26,7 +28,7 @@ export default function Section({
       className={`relative isolate overflow-hidden ${className}`}
       style={{ background: bg, ...style }}
     >
-      <CraneBackdrop tone={tone} offset={offset} />
+      {withCranes && <CraneBackdrop tone={tone} offset={offset} />}
       {children}
       {dividerInto && <AvilaDivider topBg={bg} fill={dividerInto} />}
     </section>

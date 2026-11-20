@@ -17,6 +17,7 @@ export default function Steps({ dividerInto }: { dividerInto?: string }) {
       tone="light"
       offset={3}
       dividerInto={dividerInto}
+      withCranes={false}
     >
       <div className="mx-auto flex max-w-300 flex-col gap-10 px-6 py-22">
         <div className="flex max-w-180 flex-col gap-3">
