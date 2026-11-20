@@ -42,7 +42,7 @@ export default function TrustStrip() {
     >
       <div
         ref={strip}
-        className="mx-auto flex max-w-225 flex-wrap items-center justify-center gap-x-20 gap-y-8 px-6 py-12"
+        className="mx-auto flex max-w-225 flex-wrap items-center justify-center gap-x-20 gap-y-8 px-6 py-12 lg:py-[3.5dvh]"
       >
         {STATS.map(({ from, to, label, full }) => (
           <div
@@ -52,7 +52,7 @@ export default function TrustStrip() {
             <span
               aria-hidden="true"
               data-count
-              className="font-display text-[clamp(64px,8vw,96px)] leading-none font-bold text-crane tabular-nums"
+              className="font-display text-[clamp(64px,8vw,96px)] leading-none lg:text-[clamp(48px,min(8vw,9dvh),96px)] font-bold text-crane tabular-nums"
             >
               +{format(Math.round(from + (to - from) * progress))}
             </span>
