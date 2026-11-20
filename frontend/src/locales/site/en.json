@@ -5,7 +5,8 @@
     "services": "Services",
     "projects": "Projects",
     "about": "About the engineer",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "whatsappFloating": "Open a WhatsApp chat"
   },
   "notFound": {
     "title": "Page not found",

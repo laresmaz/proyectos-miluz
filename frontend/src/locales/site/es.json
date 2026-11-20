@@ -5,7 +5,8 @@
     "services": "Servicios",
     "projects": "Proyectos",
     "about": "Sobre el ingeniero",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "whatsappFloating": "Abrir un chat de WhatsApp"
   },
   "notFound": {
     "title": "Página no encontrada",

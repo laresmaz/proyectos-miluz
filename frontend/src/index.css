@@ -22,6 +22,8 @@
 
   --shadow-card: 0 1px 2px
     color-mix(in srgb, var(--color-brand-deep) 8%, transparent);
+  --shadow-float: 0 6px 20px
+    color-mix(in srgb, var(--color-brand-deep) 25%, transparent);
 
   --font-sans:
     "Inter Variable", "Inter Variable fallback", system-ui, sans-serif;

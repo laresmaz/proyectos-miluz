@@ -154,6 +154,25 @@ describe("site header and footer", () => {
     },
   );
 
+  it.each([true, false])(
+    "keeps a floating WhatsApp button on every page only when WhatsApp is on (%s)",
+    (enabled) => {
+      // Arrange
+      BUSINESS.whatsappEnabled = enabled;
+
+      // Act
+      openSite("/proyectos");
+
+      // Assert
+      const button = screen.queryByRole("link", {
+        name: es.nav.whatsappFloating,
+      });
+      expect(button?.getAttribute("href") ?? null).toBe(
+        enabled ? `https://wa.me/${BUSINESS.whatsapp}` : null,
+      );
+    },
+  );
+
   it.each([
     { path: "/", inSection: true },
     { path: "/servicios", inSection: true },
