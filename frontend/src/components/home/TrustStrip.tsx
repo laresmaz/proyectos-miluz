@@ -4,12 +4,12 @@ import { useEffect, useRef, useState, type RefObject } from "react";
 import { useTranslation } from "react-i18next";
 import Section from "../ui/Section";
 
-// Where each number starts counting and where it ends; 7.000 works is still provisional.
+// Where each number starts counting and where it ends.
 const STATS = [
-  { from: 40, to: 50, label: "home.trust.years", full: "home.trust.yearsFull" },
+  { from: 20, to: 30, label: "home.trust.years", full: "home.trust.yearsFull" },
   {
     from: 0,
-    to: 7000,
+    to: 1000,
     label: "home.trust.works",
     full: "home.trust.worksFull",
   },
@@ -29,7 +29,11 @@ export default function TrustStrip() {
     );
 
   return (
-    <Section aria-label={t("home.trust.label")} bg="var(--color-brand)">
+    <Section
+      aria-label={t("home.trust.label")}
+      bg="var(--color-brand)"
+      withCranes={false}
+    >
       <div
         ref={strip}
         className="mx-auto flex max-w-225 flex-wrap items-center justify-center gap-x-20 gap-y-8 px-6 py-12"

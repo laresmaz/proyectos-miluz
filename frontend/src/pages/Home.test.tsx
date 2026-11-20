@@ -110,10 +110,10 @@ describe("trust strip", () => {
 
     // Assert
     expect(
-      within(region()).getByText("Más de 50 años de experiencia"),
+      within(region()).getByText("Más de 30 años de experiencia"),
     ).toBeTruthy();
     expect(
-      within(region()).getByText("Más de 7.000 obras realizadas"),
+      within(region()).getByText("Más de 1.000 obras realizadas"),
     ).toBeTruthy();
   });
 
@@ -135,8 +135,8 @@ describe("trust strip", () => {
     });
 
     // Assert
-    expect(before).toEqual(["+40", "+0"]);
-    expect(shownNumbers()).toEqual(["+50", "+7.000"]);
+    expect(before).toEqual(["+20", "+0"]);
+    expect(shownNumbers()).toEqual(["+30", "+1.000"]);
   });
 
   it("shows the final numbers straight away when the visitor asks for reduced motion", () => {
@@ -147,7 +147,7 @@ describe("trust strip", () => {
     openHome();
 
     // Assert
-    expect(shownNumbers()).toEqual(["+50", "+7.000"]);
+    expect(shownNumbers()).toEqual(["+30", "+1.000"]);
   });
 });
 
