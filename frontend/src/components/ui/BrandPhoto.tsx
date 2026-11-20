@@ -10,8 +10,8 @@ type BrandPhotoProps = {
   onDark?: boolean;
 };
 
-// Photo widths on screen: half a project card for squares, half the page for the rest, and full width on phones.
-const SIZES = "(min-width: 1024px) 600px, 100vw";
+// Photo widths on screen: half a project card for squares; the rest keep their desktop size (520px) and shrink only on narrower screens.
+const SIZES = "(min-width: 568px) 520px, calc(100vw - 48px)";
 const SQUARE_SIZES = "(min-width: 1024px) 190px, (min-width: 640px) 25vw, 50vw";
 
 // Renders the photo; only the first photo on a page should be eager, so it isn't held back behind the rest.
@@ -40,7 +40,7 @@ function Photo({
   return (
     <div
       aria-busy={loading}
-      className={`relative overflow-hidden bg-brand-mist ${square ? "" : "rounded-[10px]"} ${loading ? "motion-safe:animate-pulse" : ""}`}
+      className={`relative overflow-hidden bg-brand-mist ${square ? "" : "mx-auto max-w-130 rounded-[10px]"} ${loading ? "motion-safe:animate-pulse" : ""}`}
     >
       <img
         src={widths?.src ?? shown}
