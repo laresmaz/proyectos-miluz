@@ -12,10 +12,11 @@
     "back": "Volver al inicio"
   },
   "footer": {
-    "tagline": "Ingeniería civil, reformas y estructuras de concreto armado en [zonas].",
+    "tagline": "Obras civiles, remodelaciones y mantenimiento integral en Caracas y el resto de Venezuela.",
     "contact": "Contacto",
     "links": "Enlaces",
-    "whatsapp": "WhatsApp: {{number}}"
+    "whatsapp": "WhatsApp: {{number}}",
+    "rif": "RIF {{rif}}"
   },
   "services": {
     "label": "{{number}} · Servicio",
@@ -156,7 +157,7 @@
   "about": {
     "eyebrow": "Sobre el ingeniero",
     "title": "Me involucro en cada obra",
-    "bio": "Soy <strong>[Nombre]</strong>, ingeniero civil [colegiado en el CIV con el N.º X], con <strong>más de 50 años</strong> de experiencia en reformas, cálculo estructural y construcción. He participado en [tipo de obras: viviendas, edificios, locales…] en [zonas].",
+    "bio": "Soy <strong>Miguel Lares</strong>, ingeniero civil egresado de la UCV en 1979 y colegiado en el CIV con el N.º 26488, con <strong>más de 50 años</strong> de experiencia en obras civiles, refuerzo estructural y mantenimiento. Dirijo Proyectos Miluz 10, C.A., un equipo de ingenieros, arquitectos y técnicos que ha trabajado en edificios, clínicas, oficinas corporativas y viviendas en Caracas, Oriente y los Andes.",
     "presence": "Desde la evaluación inicial hasta la entrega, estoy presente para que su obra quede bien hecha.",
     "photoAlt": "El ingeniero en obra"
   },
@@ -164,7 +165,7 @@
     "hero": {
       "eyebrow": "Ingeniería civil · Reformas · Estructuras",
       "title": "Reformas y estructuras con respaldo de ingeniero",
-      "subtitle": "Más de 50 años construyendo, reparando y reforzando viviendas y edificios en [ciudad/estado].",
+      "subtitle": "Más de 30 años construyendo, remodelando y reforzando viviendas, oficinas y edificios en Caracas y el resto de Venezuela.",
       "whatsapp": "Escríbanos por WhatsApp",
       "projects": "Ver proyectos",
       "photoAlt": "Obra con estructura de concreto"
@@ -196,7 +197,7 @@
         },
         {
           "title": "Presupuesto claro",
-          "text": "Cotizamos con los precios y la disponibilidad de materiales del momento, por escrito."
+          "text": "Cotizamos por escrito, con los precios y la disponibilidad de materiales del momento. La asesoría y el presupuesto son sin compromiso."
         },
         {
           "title": "Ejecución y entrega",
@@ -218,7 +219,7 @@
   "meta": {
     "home": {
       "title": "{{name}} · Ingeniero civil, reformas y estructuras en {{city}}",
-      "description": "Reformas, plomería, electricidad, albañilería, drywall y estructuras de concreto armado con respaldo de ingeniero."
+      "description": "Obras civiles, remodelaciones, mantenimiento integral, plomería, electricidad, drywall y estructuras de concreto armado en Caracas, con respaldo de ingeniero."
     },
     "services": {
       "title": "Servicios · {{name}}",

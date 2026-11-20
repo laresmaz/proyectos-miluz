@@ -12,10 +12,11 @@
     "back": "Back to home"
   },
   "footer": {
-    "tagline": "Civil engineering, renovations and reinforced concrete structures in [areas].",
+    "tagline": "Civil works, remodelling and facility maintenance in Caracas and across Venezuela.",
     "contact": "Contact",
     "links": "Links",
-    "whatsapp": "WhatsApp: {{number}}"
+    "whatsapp": "WhatsApp: {{number}}",
+    "rif": "Tax ID (RIF) {{rif}}"
   },
   "services": {
     "label": "{{number}} · Service",
@@ -156,7 +157,7 @@
   "about": {
     "eyebrow": "About the engineer",
     "title": "I'm involved in every project",
-    "bio": "I'm <strong>[Name]</strong>, a civil engineer [registered with the CIV, no. X], with <strong>more than 50 years</strong> of experience in renovations, structural design and construction. I've worked on [types of work: homes, buildings, shops…] in [areas].",
+    "bio": "I'm <strong>Miguel Lares</strong>, a civil engineer who graduated from UCV in 1979, registered with the CIV under no. 26488, with <strong>more than 50 years</strong> of experience in civil works, structural reinforcement and maintenance. I lead Proyectos Miluz 10, C.A., a team of engineers, architects and technicians that has worked on buildings, clinics, corporate offices and homes in Caracas, eastern Venezuela and the Andes.",
     "presence": "From the first assessment to the handover, I'm there so your project is done right.",
     "photoAlt": "The engineer on site"
   },
@@ -164,7 +165,7 @@
     "hero": {
       "eyebrow": "Civil engineering · Renovations · Structures",
       "title": "Renovations and structures backed by an engineer",
-      "subtitle": "More than 50 years building, repairing and strengthening homes and buildings in [city/state].",
+      "subtitle": "More than 30 years building, remodelling and reinforcing homes, offices and buildings in Caracas and across Venezuela.",
       "whatsapp": "Message us on WhatsApp",
       "projects": "See projects",
       "photoAlt": "Building with a concrete structure"
@@ -196,7 +197,7 @@
         },
         {
           "title": "Clear quote",
-          "text": "We quote in writing, with today's material prices and availability."
+          "text": "We quote in writing, with today's material prices and availability. Advice and quotes come with no obligation."
         },
         {
           "title": "Work and handover",
@@ -218,7 +219,7 @@
   "meta": {
     "home": {
       "title": "{{name}} · Civil engineer, renovations and structures in {{city}}",
-      "description": "Renovations, plumbing, electrical, masonry, drywall and reinforced concrete structures, backed by an engineer."
+      "description": "Civil works, remodelling, facility maintenance, plumbing, electrical, drywall and reinforced concrete structures in Caracas, backed by an engineer."
     },
     "services": {
       "title": "Services · {{name}}",

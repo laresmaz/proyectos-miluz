@@ -5,6 +5,7 @@ import { buildManifest, fillBusinessDetails } from "./businessDetails.ts";
 const business = {
   name: "Pérez & Hijos",
   city: "Valencia, Venezuela",
+  rif: "J-12345678-9",
   whatsapp: "584141234567",
   whatsappEnabled: true,
 };

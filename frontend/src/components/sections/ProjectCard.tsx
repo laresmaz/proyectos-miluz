@@ -39,8 +39,13 @@ export default function ProjectCard({ project }: { project: Project }) {
           {project.title}
         </Text>
         <Text variant="small" as="p" className="text-ink-soft">
-          {t(`services.items.${project.serviceType}.title`)} ·{" "}
-          {project.location} · {project.year}
+          {[
+            t(`services.items.${project.serviceType}.title`),
+            project.location,
+            project.year,
+          ]
+            .filter(Boolean)
+            .join(" · ")}
         </Text>
       </div>
     </article>

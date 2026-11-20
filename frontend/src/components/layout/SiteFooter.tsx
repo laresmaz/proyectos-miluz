@@ -48,6 +48,7 @@ export default function SiteFooter() {
               <span>{t("footer.whatsapp", { number: BUSINESS.whatsapp })}</span>
             )}
             <span>{BUSINESS.city}</span>
+            <span>{t("footer.rif", { rif: BUSINESS.rif })}</span>
           </div>
           <div className="flex flex-[1_1_180px] flex-col items-start gap-2 text-[15px]">
             <Text variant="label" className="mb-1 text-crane">
