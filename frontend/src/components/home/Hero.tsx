@@ -11,7 +11,11 @@ export default function Hero() {
   const { t } = useTranslation("site");
 
   return (
-    <Section bg="var(--color-brand-deep)" dividerInto="var(--color-brand)">
+    <Section
+      bg="var(--color-brand-deep)"
+      dividerInto="var(--color-brand)"
+      sunrise
+    >
       <div className="mx-auto flex max-w-300 flex-wrap items-center gap-14 px-6 pt-24 pb-26">
         <div className="flex min-w-0 flex-[1_1_480px] flex-col gap-7">
           <Text variant="eyebrow" className="text-crane">

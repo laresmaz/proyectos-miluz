@@ -21,6 +21,7 @@ export default function AboutSection({
     <Section
       id="sobre-mi"
       bg="var(--color-brand-mist)"
+      sunrise
       tone="light"
       offset={5}
       dividerInto={dividerInto}
