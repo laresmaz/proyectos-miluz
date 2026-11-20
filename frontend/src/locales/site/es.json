@@ -128,6 +128,21 @@
         "alt": "Tanque de agua de concreto armado en construcción",
         "metaTitle": "Tanques de agua y muros de concreto en {{city}} · {{name}}",
         "metaDescription": "Tanques subterráneos y elevados, impermeabilización y muros de contención."
+      },
+      "mantenimiento-integral": {
+        "title": "Mantenimiento integral",
+        "summary": "Cuadrillas propias para el mantenimiento programado y correctivo de oficinas, locales y edificios, con atención inmediata y supervisión de ingeniero.",
+        "text": "Nos encargamos del mantenimiento de sus instalaciones como empresa externa: revisiones periódicas de iluminación, plomería, pintura y sistemas del edificio, y atención inmediata cuando algo falla. Contamos con plomeros, electricistas, albañiles, técnicos de aire acondicionado, carpinteros, herreros, cerrajeros e instaladores de drywall, coordinados por supervisores. Lo hemos hecho para oficinas corporativas como las de DirecTV y Digitel.",
+        "includes": [
+          "Mantenimiento programado: revisiones semanales de iluminación, plomería, pintura y sistemas del edificio",
+          "Mantenimiento correctivo: luminarias, drenajes, fluxómetros, cerraduras, vidrios y puntos eléctricos",
+          "Pintura, impermeabilizaciones y trabajos en drywall",
+          "Remodelación de oficinas y obras adicionales, con presupuesto previo"
+        ],
+        "whatsapp": "Hola, quisiera información sobre el mantenimiento de unas instalaciones.",
+        "alt": "Cuadrilla de mantenimiento trabajando en una oficina",
+        "metaTitle": "Mantenimiento integral de oficinas y edificios en {{city}} · {{name}}",
+        "metaDescription": "Mantenimiento programado y correctivo de oficinas y edificios, con cuadrillas propias y supervisión de ingeniero."
       }
     }
   },

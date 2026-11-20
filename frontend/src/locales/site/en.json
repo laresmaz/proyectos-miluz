@@ -128,6 +128,21 @@
         "alt": "Reinforced concrete water tank under construction",
         "metaTitle": "Water tanks and concrete walls in {{city}} · {{name}}",
         "metaDescription": "Underground and elevated tanks, waterproofing and retaining walls."
+      },
+      "mantenimiento-integral": {
+        "title": "Facility maintenance",
+        "summary": "Our own crews for scheduled and corrective maintenance of offices, shops and buildings, with quick response and an engineer's supervision.",
+        "text": "We look after your premises as an outsourced maintenance company: regular checks of lighting, plumbing, paint and building systems, and immediate help when something fails. Our team includes plumbers, electricians, masons, air-conditioning technicians, carpenters, metalworkers, locksmiths and drywall installers, coordinated by supervisors. We have done this for corporate offices such as DirecTV's and Digitel's.",
+        "includes": [
+          "Scheduled maintenance: weekly checks of lighting, plumbing, paint and building systems",
+          "Corrective maintenance: light fittings, drains, flush valves, locks, glass and electrical points",
+          "Painting, waterproofing and drywall work",
+          "Office remodelling and additional works, quoted in advance"
+        ],
+        "whatsapp": "Hello, I'd like information about maintenance for a property.",
+        "alt": "Maintenance crew working in an office",
+        "metaTitle": "Office and building maintenance in {{city}} · {{name}}",
+        "metaDescription": "Scheduled and corrective maintenance of offices and buildings, with our own crews and an engineer's supervision."
       }
     }
   },

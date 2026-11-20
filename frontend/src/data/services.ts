@@ -1,4 +1,4 @@
-// The seven services in display order
+// The services in display order
 import { useTranslation } from "react-i18next";
 import fallback from "../assets/fallback-photo.svg";
 import type { ZigzagItem } from "../components/sections/Zigzag";
@@ -12,6 +12,7 @@ export const SERVICES = [
   { slug: "drywall", image: fallback },
   { slug: "concreto-armado", image: fallback },
   { slug: "muros-y-tanques", image: fallback },
+  { slug: "mantenimiento-integral", image: fallback },
 ] as const;
 
 // The services as zigzag bands in the visitor's language, shared by the home and services pages.

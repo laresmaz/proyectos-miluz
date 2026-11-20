@@ -28,7 +28,7 @@ afterEach(() => {
 });
 
 describe("services index", () => {
-  it("lists the seven services in order, each linking to its own page", () => {
+  it("lists every service in order, each linking to its own page", () => {
     // Arrange
     const expected = SERVICES.map(({ slug }) => es.services.items[slug].title);
 
@@ -83,6 +83,19 @@ describe("service page", () => {
       expect(screen.getByRole("img", { name: texts.alt })).toBeTruthy();
     },
   );
+
+  it("offers integral maintenance for offices and buildings as its own service", () => {
+    // Arrange
+    const url = "/servicios/mantenimiento-integral";
+
+    // Act
+    openSite(url);
+
+    // Assert
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
+      "Mantenimiento integral",
+    );
+  });
 
   it("shows the 404 page for a service that doesn't exist", () => {
     // Arrange

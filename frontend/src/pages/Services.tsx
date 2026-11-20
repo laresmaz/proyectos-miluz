@@ -1,4 +1,4 @@
-// Services page: the seven services in the zigzag layout
+// Services page: every service in the zigzag layout
 import { useTranslation } from "react-i18next";
 import Zigzag from "../components/sections/Zigzag";
 import { BUSINESS } from "../data/config";
