@@ -214,7 +214,12 @@ describe("page titles", () => {
         document
           .querySelector('meta[name="description"]')
           ?.getAttribute("content"),
-      ).toBe(meta.description);
+      ).toBe(
+        meta.description.replace(
+          "{{engineerYears}}",
+          String(BUSINESS.engineerYears),
+        ),
+      );
     },
   );
 });

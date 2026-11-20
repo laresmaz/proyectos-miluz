@@ -100,6 +100,25 @@ describe("home hero", () => {
 });
 
 describe("trust strip", () => {
+  it("counts up to the years and works in the business details, also quoted in the hero", () => {
+    // Arrange
+    prefersReducedMotion(true);
+
+    // Act
+    openHome();
+
+    // Assert
+    expect(shownNumbers()).toEqual([
+      `+${BUSINESS.years}`,
+      `+${String(BUSINESS.works).replace(/\B(?=(\d{3})+$)/g, ".")}`,
+    ]);
+    expect(
+      screen.getByText(
+        es.home.hero.subtitle.replace("{{years}}", String(BUSINESS.years)),
+      ),
+    ).toBeTruthy();
+  });
+
   it("gives screen readers the final numbers from the start", () => {
     // Arrange
     const region = () =>

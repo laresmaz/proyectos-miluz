@@ -1,5 +1,6 @@
 // "Sobre el ingeniero" section
 import { Trans, useTranslation } from "react-i18next";
+import { BUSINESS } from "../../data/config";
 import BrandPhoto from "../ui/BrandPhoto";
 import Section from "../ui/Section";
 import Eyebrow from "../ui/Eyebrow";
@@ -39,7 +40,11 @@ export default function AboutSection({
             {t("about.title")}
           </Text>
           <Text variant="bodyLarge">
-            <Trans t={t} i18nKey="about.bio" />
+            <Trans
+              t={t}
+              i18nKey="about.bio"
+              values={{ engineerYears: BUSINESS.engineerYears }}
+            />
           </Text>
           <Text variant="bodyLarge">{t("about.presence")}</Text>
         </div>

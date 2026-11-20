@@ -2,14 +2,20 @@
 import isChromatic from "chromatic/isChromatic";
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { useTranslation } from "react-i18next";
+import { BUSINESS } from "../../data/config";
 import Section from "../ui/Section";
 
 // Where each number starts counting and where it ends.
 const STATS = [
-  { from: 20, to: 30, label: "home.trust.years", full: "home.trust.yearsFull" },
+  {
+    from: 20,
+    to: BUSINESS.years,
+    label: "home.trust.years",
+    full: "home.trust.yearsFull",
+  },
   {
     from: 0,
-    to: 1000,
+    to: BUSINESS.works,
     label: "home.trust.works",
     full: "home.trust.worksFull",
   },
@@ -21,7 +27,7 @@ export default function TrustStrip() {
   const { t, i18n } = useTranslation("site");
   const strip = useRef<HTMLDivElement>(null);
   const progress = useCountUp(strip);
-  // The dot groups thousands in Spanish (7.000), the comma in English.
+  // The dot groups thousands in Spanish (1.000), the comma in English.
   const format = (n: number) =>
     String(n).replace(
       /\B(?=(\d{3})+$)/g,

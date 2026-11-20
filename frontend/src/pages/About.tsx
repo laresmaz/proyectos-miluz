@@ -9,7 +9,7 @@ export default function About() {
   const { t } = useTranslation("site");
   usePageMeta(
     t("meta.about.title", { name: BUSINESS.name, city: BUSINESS.city }),
-    t("meta.about.description"),
+    t("meta.about.description", { engineerYears: BUSINESS.engineerYears }),
   );
   return <AboutSection heading="h1" dividerInto="var(--color-brand-deep)" />;
 }

@@ -157,7 +157,7 @@
   "about": {
     "eyebrow": "Sobre el ingeniero",
     "title": "Me involucro en cada obra",
-    "bio": "Soy <strong>Miguel Lares</strong>, ingeniero civil egresado de la UCV en 1979 y colegiado en el CIV con el N.º 26488, con <strong>más de 50 años</strong> de experiencia en obras civiles, refuerzo estructural y mantenimiento. Dirijo Proyectos Miluz 10, C.A., un equipo de ingenieros, arquitectos y técnicos que ha trabajado en edificios, clínicas, oficinas corporativas y viviendas en Caracas, Oriente y los Andes.",
+    "bio": "Soy <strong>Miguel Lares</strong>, ingeniero civil egresado de la UCV en 1979 y colegiado en el CIV con el N.º 26488, con <strong>más de {{engineerYears}} años</strong> de experiencia en obras civiles, refuerzo estructural y mantenimiento. Dirijo Proyectos Miluz 10, C.A., un equipo de ingenieros, arquitectos y técnicos que ha trabajado en edificios, clínicas, oficinas corporativas y viviendas en Caracas, Oriente y los Andes.",
     "presence": "Desde la evaluación inicial hasta la entrega, estoy presente para que su obra quede bien hecha.",
     "photoAlt": "El ingeniero en obra"
   },
@@ -165,7 +165,7 @@
     "hero": {
       "eyebrow": "Ingeniería civil · Reformas · Estructuras",
       "title": "Reformas y estructuras con respaldo de ingeniero",
-      "subtitle": "Más de 30 años construyendo, remodelando y reforzando viviendas, oficinas y edificios en Caracas y el resto de Venezuela.",
+      "subtitle": "Más de {{years}} años construyendo, remodelando y reforzando viviendas, oficinas y edificios en Caracas y el resto de Venezuela.",
       "whatsapp": "Escríbanos por WhatsApp",
       "projects": "Ver proyectos",
       "photoAlt": "Pasillo terminado con líneas de luz LED en el techo"
@@ -232,7 +232,7 @@
     },
     "about": {
       "title": "Sobre el ingeniero · {{name}}",
-      "description": "Ingeniero civil con más de 50 años de experiencia en reformas, cálculo estructural y construcción."
+      "description": "Ingeniero civil con más de {{engineerYears}} años de experiencia en reformas, cálculo estructural y construcción."
     },
     "notFound": {
       "title": "Página no encontrada · {{name}}",

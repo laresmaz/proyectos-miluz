@@ -52,6 +52,17 @@ describe("teaser page", () => {
     },
   );
 
+  it("quotes the company's years of experience from the business details", () => {
+    // Arrange
+    const years = `${BUSINESS.years} años`;
+
+    // Act
+    renderTeaser("es-VE");
+
+    // Assert
+    expect(screen.getByText(new RegExp(years))).toBeTruthy();
+  });
+
   it("sends the visitor to the business WhatsApp chat when WhatsApp is on", () => {
     // Arrange
     BUSINESS.whatsappEnabled = true;

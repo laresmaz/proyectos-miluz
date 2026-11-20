@@ -4,6 +4,10 @@ export const BUSINESS = {
   name: "Proyectos Miluz 10, C.A.",
   city: "Caracas, Venezuela",
   rif: "J-31280442-4",
+  // The company's track record, and the engineer's own years, quoted across the site and the teaser.
+  years: 30,
+  works: 1000,
+  engineerYears: 50,
   // International format, digits only (e.g. 584141234567)
   whatsapp: "584242558776",
   // Only ?teaser and ?preview show WhatsApp; the logo page at / has none.

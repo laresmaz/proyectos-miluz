@@ -6,7 +6,7 @@
     "eyebrow": "{{name}} · Civil engineering",
     "headline": "Something good",
     "headlineAccent": "it's under construction",
-    "intro": "We are preparing our new website. In the meantime, tell us about your project: more than 50 years of experience stand behind us.",
+    "intro": "We are preparing our new website. In the meantime, tell us about your project: more than {{years}} years of experience stand behind us.",
     "whatsapp": "Message us on WhatsApp",
     "servicesLabel": "Services",
     "services": [

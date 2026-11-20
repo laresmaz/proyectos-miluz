@@ -6,7 +6,7 @@
     "eyebrow": "{{name}} · Ingeniería civil",
     "headline": "Algo bueno",
     "headlineAccent": "en construcción",
-    "intro": "Estamos preparando nuestra nueva web. Mientras tanto, cuéntenos su proyecto: más de 50 años de experiencia nos respaldan.",
+    "intro": "Estamos preparando nuestra nueva web. Mientras tanto, cuéntenos su proyecto: más de {{years}} años de experiencia nos respaldan.",
     "whatsapp": "Escríbanos por WhatsApp",
     "servicesLabel": "Servicios",
     "services": [

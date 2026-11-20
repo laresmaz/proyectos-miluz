@@ -41,7 +41,7 @@ export default function Teaser() {
               <span className="text-crane">{t("teaser.headlineAccent")}</span>
             </Text>
             <Text variant="lead" className="max-w-140 text-haze">
-              {t("teaser.intro")}
+              {t("teaser.intro", { years: BUSINESS.years })}
             </Text>
             {BUSINESS.whatsappEnabled && (
               <a

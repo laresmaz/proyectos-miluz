@@ -22,7 +22,7 @@ export default function Hero() {
               {t("home.hero.title")}
             </Text>
             <Text variant="lead" className="max-w-140 text-haze">
-              {t("home.hero.subtitle")}
+              {t("home.hero.subtitle", { years: BUSINESS.years })}
             </Text>
           </div>
           <div className="flex flex-wrap gap-3.5">
