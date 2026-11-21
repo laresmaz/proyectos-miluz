@@ -1,8 +1,27 @@
 {
   "hosting": {
     "public": "dist",
-    "rewrites": [{ "source": "**", "destination": "/index.html" }],
+    "rewrites": [
+      { "source": "/servicios", "destination": "/index.html" },
+      { "source": "/servicios/*", "destination": "/index.html" },
+      { "source": "/proyectos", "destination": "/index.html" },
+      { "source": "/sobre-mi", "destination": "/index.html" }
+    ],
     "headers": [
+      {
+        "source": "**",
+        "headers": [
+          { "key": "X-Content-Type-Options", "value": "nosniff" },
+          {
+            "key": "Referrer-Policy",
+            "value": "strict-origin-when-cross-origin"
+          },
+          {
+            "key": "Content-Security-Policy",
+            "value": "frame-ancestors 'none'"
+          }
+        ]
+      },
       {
         "source": "/assets/**",
         "headers": [
@@ -13,7 +32,7 @@
         ]
       },
       {
-        "regex": "^/(index\\.html|robots\\.txt|site\\.webmanifest)?$",
+        "regex": "^/(index\\.html|404\\.html|robots\\.txt|site\\.webmanifest)?$",
         "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
       }
     ]

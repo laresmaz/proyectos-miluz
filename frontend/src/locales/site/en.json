@@ -189,8 +189,7 @@
       "items": [
         {
           "title": "Write to us",
-          "text": "Tell us what you need on WhatsApp. If you can, send photos.",
-          "textWithoutWhatsapp": "Tell us what you need. If you can, send photos."
+          "text": "Tell us what you need on WhatsApp. If you can, send photos."
         },
         {
           "title": "Visit and assessment",

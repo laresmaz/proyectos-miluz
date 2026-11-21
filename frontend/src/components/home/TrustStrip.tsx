@@ -1,5 +1,4 @@
 // Trust strip from the mockup: the years of experience and works done, counting up once the strip scrolls into view (DISENO.md section 5).
-import isChromatic from "chromatic/isChromatic";
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { useTranslation } from "react-i18next";
 import { BUSINESS } from "../../data/config";
@@ -102,7 +101,6 @@ function useCountUp(target: RefObject<HTMLElement | null>) {
 // True when the numbers should show their final value without counting.
 function shouldSkipAnimation() {
   return (
-    isChromatic() ||
     typeof IntersectionObserver === "undefined" ||
     window.matchMedia?.("(prefers-reduced-motion: reduce)").matches === true
   );

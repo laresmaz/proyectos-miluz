@@ -1,7 +1,8 @@
+// Home projects: the first three published works, with a link to the full portfolio.
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router";
 import { PROJECTS } from "../../data/projects";
 import ProjectCard from "../sections/ProjectCard";
+import ArrowLink from "../ui/ArrowLink";
 import Section from "../ui/Section";
 import Eyebrow from "../ui/Eyebrow";
 import Text from "../Text";
@@ -20,13 +21,7 @@ export default function FeaturedProjects() {
               {t("home.projects.title")}
             </Text>
           </div>
-          <Link
-            to="/proyectos"
-            className="border-b-2 border-crane py-2.5 font-bold text-brand hover:text-brand-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-          >
-            {t("home.projects.all")}
-            <span aria-hidden="true">&nbsp;→</span>
-          </Link>
+          <ArrowLink to="/proyectos">{t("home.projects.all")}</ArrowLink>
         </div>
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {featured.map((project) => (

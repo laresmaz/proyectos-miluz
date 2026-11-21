@@ -1,6 +1,6 @@
 // Crane backdrop: yellow triangle cranes drifting slowly behind a section's content
 // The parent needs `relative isolate overflow-hidden` so the cranes stay behind and inside it.
-import isChromatic from "chromatic/isChromatic";
+import type { CSSProperties } from "react";
 import crane from "../../assets/crane.svg";
 
 // Size, start, opacity and speed per crane
@@ -77,32 +77,36 @@ export default function CraneBackdrop({
   tone?: "dark" | "light";
   offset?: number;
 }) {
-  // Frozen in Chromatic, so every screenshot catches the cranes in the same place.
-  const still = isChromatic();
   return (
     <>
       {(tone === "light" ? LIGHT : DARK).map(
-        ({ width, left, opacity, duration, delay, bottom }) => (
-          <img
-            key={`${width}-${left}`}
-            src={crane}
-            alt=""
-            // Matches crane.svg's 352 × 312 box, so the browser reserves the height before the image decodes.
-            width={width}
-            height={Math.round((width * 312) / 352)}
-            className="crane block h-auto"
-            aria-hidden="true"
-            style={{
-              width,
-              left: `${(parseFloat(left) + offset * 29) % 100}%`,
-              bottom,
-              opacity,
-              animationName: still ? "none" : undefined,
-              animationDuration: `${duration}s`,
-              animationDelay: `${delay - offset * 37}s`,
-            }}
-          />
-        ),
+        ({ width, left, opacity, duration, delay, bottom }) => {
+          const start = (parseFloat(left) + offset * 29) % 100;
+          return (
+            <img
+              key={`${width}-${left}`}
+              src={crane}
+              alt=""
+              // Matches crane.svg's 352 × 312 box, so the browser reserves the height before the image decodes.
+              width={width}
+              height={Math.round((width * 312) / 352)}
+              className="crane block h-auto"
+              aria-hidden="true"
+              style={
+                {
+                  width,
+                  left: `${start}%`,
+                  // The same spot for the drift in index.css, which moves by transform and needs it as a length.
+                  "--start": `${start}vw`,
+                  bottom,
+                  opacity,
+                  animationDuration: `${duration}s`,
+                  animationDelay: `${delay - offset * 37}s`,
+                } as CSSProperties
+              }
+            />
+          );
+        },
       )}
     </>
   );

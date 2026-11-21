@@ -2,7 +2,7 @@
 import { cleanup, render, screen, within } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { BUSINESS } from "../data/config";
+import { whatsappUrl } from "../data/config";
 import { createI18n } from "../lib/i18n";
 import es from "../locales/site/es.json";
 import { routes } from "../routes";
@@ -23,12 +23,9 @@ function openSite(path: string) {
 const serviceBlocks = () =>
   screen.getAllByRole("article").slice(0, SERVICES.length);
 
-const whatsappEnabledInConfig = BUSINESS.whatsappEnabled;
-
 afterEach(() => {
   cleanup();
   vi.restoreAllMocks();
-  BUSINESS.whatsappEnabled = whatsappEnabledInConfig;
 });
 
 describe("services on the home page", () => {
@@ -52,12 +49,12 @@ describe("services on the home page", () => {
     expect(links).toEqual(SERVICES.map(({ slug }) => `/servicios/${slug}`));
   });
 
-  it("keeps each service block to its Ver más link, even with WhatsApp on", () => {
+  it("keeps each service block to its Ver más link", () => {
     // Arrange
-    BUSINESS.whatsappEnabled = true;
+    const url = "/";
 
     // Act
-    openSite("/");
+    openSite(url);
 
     // Assert
     serviceBlocks().forEach((block) =>
@@ -144,30 +141,15 @@ describe("service page", () => {
     );
   });
 
-  it("asks on WhatsApp with the service's message when WhatsApp is on", () => {
+  it("asks on WhatsApp with the service's message already typed", () => {
     // Arrange
-    BUSINESS.whatsappEnabled = true;
+    const message = es.services.items.plomeria.whatsapp;
 
     // Act
     openSite("/servicios/plomeria");
 
     // Assert
     const link = screen.getByRole("link", { name: es.services.whatsapp });
-    expect(link.getAttribute("href")).toBe(
-      `https://wa.me/${BUSINESS.whatsapp}?text=${encodeURIComponent(es.services.items.plomeria.whatsapp)}`,
-    );
-  });
-
-  it("hides the WhatsApp button while WhatsApp is off", () => {
-    // Arrange
-    BUSINESS.whatsappEnabled = false;
-
-    // Act
-    openSite("/servicios/plomeria");
-
-    // Assert
-    expect(
-      screen.queryByRole("link", { name: es.services.whatsapp }),
-    ).toBeNull();
+    expect(link.getAttribute("href")).toBe(whatsappUrl(message));
   });
 });

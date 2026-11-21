@@ -41,23 +41,6 @@ describe("crane backdrop", () => {
   });
 
   it.each([
-    { browser: "a visitor's browser", userAgent: "Mozilla/5.0", still: false },
-    { browser: "Chromatic", userAgent: "Mozilla/5.0 Chromatic", still: true },
-  ])("holds the cranes still only in $browser", ({ userAgent, still }) => {
-    // Arrange
-    vi.spyOn(navigator, "userAgent", "get").mockReturnValue(userAgent);
-
-    // Act
-    const { container } = render(<CraneBackdrop />);
-
-    // Assert
-    const names = [...container.querySelectorAll<HTMLElement>(".crane")].map(
-      (crane) => crane.style.animationName,
-    );
-    expect(names.every((name) => (name === "none") === still)).toBe(true);
-  });
-
-  it.each([
     { tone: "dark" as const, opacities: [0.07, 0.07, 0.07, 0.13, 0.1] },
     { tone: "light" as const, opacities: [0.13, 0.13, 0.26] },
   ])("uses the mockup's cranes for $tone sections", ({ tone, opacities }) => {

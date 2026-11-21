@@ -1,3 +1,4 @@
+// Shared frame for every site page: header, page, footer, the floating WhatsApp button and scroll restoration.
 import { useTranslation } from "react-i18next";
 import { Outlet, ScrollRestoration } from "react-router";
 import siteEn from "../../locales/site/en.json";

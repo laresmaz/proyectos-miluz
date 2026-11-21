@@ -11,6 +11,8 @@ main() {
   check_live_is_this_build
   check_bare_redirects
   check_cache_headers
+  check_security_headers
+  check_unknown_page_is_404
   echo "Smoke test passed for $SITE"
 }
 
@@ -46,6 +48,22 @@ check_cache_headers() {
   asset_cache=$(header "$SITE$asset" cache-control)
   [[ "$index_cache" == *no-cache* ]] || fail "$SITE/ has Cache-Control '$index_cache', expected no-cache."
   [[ "$asset_cache" == *immutable* ]] || fail "$SITE$asset has Cache-Control '$asset_cache', expected immutable."
+}
+
+# Every response must forbid MIME sniffing and framing by other sites (firebase.json).
+check_security_headers() {
+  local nosniff frame
+  nosniff=$(header "$SITE/" x-content-type-options)
+  frame=$(header "$SITE/" content-security-policy)
+  [ "$nosniff" = nosniff ] || fail "$SITE/ has X-Content-Type-Options '$nosniff', expected nosniff."
+  [[ "$frame" == *"frame-ancestors 'none'"* ]] || fail "$SITE/ has Content-Security-Policy '$frame', expected frame-ancestors 'none'."
+}
+
+# An address the site doesn't have must answer 404, not the app with 200, so search engines drop it.
+check_unknown_page_is_404() {
+  local status
+  status=$(curl -sS -o /dev/null -w '%{http_code}' "$SITE/no-such-page")
+  [ "$status" = 404 ] || fail "$SITE/no-such-page answered $status instead of 404."
 }
 
 # Prints one response header's value, or nothing when it's missing; fails when the URL doesn't answer 2xx.
