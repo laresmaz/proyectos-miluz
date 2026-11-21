@@ -1,5 +1,5 @@
-// Build plugin: fills the business details from src/data/config.ts into index.html and generates the web manifest,
-// so the name and city are written only once, in config.ts.
+// Build plugin: fills the business details from src/data/config.ts into index.html, adds the business data search engines read,
+// and generates the web manifest, so the details are written only once, in config.ts.
 import type { Plugin } from "vite";
 import { BUSINESS } from "./src/data/config.ts";
 
@@ -10,7 +10,17 @@ export default function businessDetails(): Plugin {
   const manifest = buildManifest(BUSINESS);
   return {
     name: "business-details",
-    transformIndexHtml: (html) => fillBusinessDetails(html, BUSINESS),
+    transformIndexHtml: (html) => ({
+      html: fillBusinessDetails(html, BUSINESS),
+      tags: [
+        {
+          tag: "script",
+          attrs: { type: "application/ld+json" },
+          children: buildLocalBusiness(BUSINESS),
+          injectTo: "head",
+        },
+      ],
+    }),
     configureServer(server) {
       server.middlewares.use("/site.webmanifest", (_req, res) => {
         res.setHeader("Content-Type", "application/manifest+json");
@@ -33,6 +43,29 @@ export function fillBusinessDetails(html: string, business: Business): string {
     .replaceAll("%BUSINESS_NAME%", escapeHtml(business.name))
     .replaceAll("%BUSINESS_CITY%", escapeHtml(business.city))
     .replaceAll("%SITE_URL%", escapeHtml(business.url));
+}
+
+// Builds the schema.org data Google reads for local results, as JSON safe to place inside a <script> tag.
+export function buildLocalBusiness(business: Business): string {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "GeneralContractor",
+    name: business.name,
+    url: `${business.url}/`,
+    logo: `${business.url}/icon-512.png`,
+    image: `${business.url}/og-image.jpg`,
+    telephone: `+${business.whatsapp}`,
+    taxID: business.rif,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: business.city.split(",")[0],
+      addressCountry: "VE",
+    },
+    areaServed: { "@type": "Country", name: "Venezuela" },
+    founder: { "@type": "Person", name: business.engineer },
+  };
+  // \u003c is "<" to JSON, but the HTML parser can't read it as the start of </script>.
+  return JSON.stringify(data).replaceAll("<", "\\u003c");
 }
 
 // Builds the web manifest Android reads for the home-screen name and icon.

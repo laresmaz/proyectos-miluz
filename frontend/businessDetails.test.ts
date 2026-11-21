@@ -1,7 +1,11 @@
 // Tests for the build plugin that fills the business details into index.html and the web manifest.
 import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { buildManifest, fillBusinessDetails } from "./businessDetails.ts";
+import {
+  buildLocalBusiness,
+  buildManifest,
+  fillBusinessDetails,
+} from "./businessDetails.ts";
 import { BUSINESS } from "./src/data/config.ts";
 
 const business = {
@@ -14,6 +18,7 @@ const business = {
   whatsapp: "584141234567",
   whatsappEnabled: true,
   url: "https://www.perezhijos.com",
+  engineer: "Juan Pérez",
 };
 
 // Reads one meta tag's content from the page shell, by its name or property attribute.
@@ -69,6 +74,17 @@ describe("business details in the page shell", () => {
     expect(meta(html, "twitter:card")).toBe("summary_large_image");
   });
 
+  it("names the home page as the one address search engines should index", () => {
+    // Arrange
+    const shell = readFileSync("index.html", "utf8");
+
+    // Act
+    const html = fillBusinessDetails(shell, BUSINESS);
+
+    // Assert
+    expect(html).toContain(`<link rel="canonical" href="${BUSINESS.url}/" />`);
+  });
+
   it("escapes characters that would break the HTML", () => {
     // Arrange
     const html = '<meta content="%BUSINESS_NAME%">';
@@ -96,5 +112,46 @@ describe("business details in the page shell", () => {
     expect(
       manifest.icons.map((icon: { purpose: string }) => icon.purpose),
     ).toEqual(["any", "maskable"]);
+  });
+});
+
+describe("business data for search engines", () => {
+  it("describes the business as a general contractor Google can show in local results", () => {
+    // Arrange
+    const details = business;
+
+    // Act
+    const data = JSON.parse(buildLocalBusiness(details));
+
+    // Assert
+    expect(data).toMatchObject({
+      "@context": "https://schema.org",
+      "@type": "GeneralContractor",
+      name: "Pérez & Hijos",
+      url: "https://www.perezhijos.com/",
+      logo: "https://www.perezhijos.com/icon-512.png",
+      image: "https://www.perezhijos.com/og-image.jpg",
+      telephone: "+584141234567",
+      taxID: "J-12345678-9",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Valencia",
+        addressCountry: "VE",
+      },
+      areaServed: { "@type": "Country", name: "Venezuela" },
+      founder: { "@type": "Person", name: "Juan Pérez" },
+    });
+  });
+
+  it("can't close its script tag early, whatever the business details say", () => {
+    // Arrange
+    const details = { ...business, name: "</script><script>alert(1)</script>" };
+
+    // Act
+    const json = buildLocalBusiness(details);
+
+    // Assert
+    expect(json).not.toContain("<");
+    expect(JSON.parse(json).name).toBe(details.name);
   });
 });
