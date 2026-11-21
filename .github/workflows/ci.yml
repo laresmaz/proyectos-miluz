@@ -63,6 +63,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+      # The checkout is a bare commit with no branch, so the CLI is told which branch and commit to report "UI Tests" on.
+      CHROMATIC_BRANCH: ${{ github.event.pull_request.head.ref }}
+      CHROMATIC_SHA: ${{ github.event.pull_request.head.sha }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
