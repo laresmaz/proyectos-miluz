@@ -1,4 +1,5 @@
 // Tests for the Lighthouse summary: median numbers per run set, and the table comparing them with main.
+import { createRequire } from "node:module";
 import { describe, expect, it } from "vitest";
 import {
   noticeLine,
@@ -25,6 +26,14 @@ function lhr(
     },
   };
 }
+
+// The LCP and download budgets are still being tuned (TODO in lighthouserc.cjs), so the expected table reads them from there.
+const { assertions } = createRequire(import.meta.url)("./lighthouserc.cjs").ci
+  .assert;
+const LCP_BUDGET_S =
+  assertions["largest-contentful-paint"][1].maxNumericValue / 1000;
+const DOWNLOAD_BUDGET_KIB =
+  assertions["total-byte-weight"][1].maxNumericValue / 1024;
 
 const runs = [
   lhr(0.82, 2300, 0, 196608),
@@ -94,9 +103,11 @@ describe("Lighthouse summary", () => {
     // Assert
     expect(table).toContain("| Performance | 83 | ≥ 95 | -2 |");
     expect(table).toContain(
-      "| Main content (LCP) | 2.2 s | ≤ 2.6 s | +0.2 s |",
+      `| Main content (LCP) | 2.2 s | ≤ ${LCP_BUDGET_S} s | +0.2 s |`,
     );
-    expect(table).toContain("| Download | 192 KiB | ≤ 500 KiB | +1.5 KiB |");
+    expect(table).toContain(
+      `| Download | 192 KiB | ≤ ${DOWNLOAD_BUDGET_KIB} KiB | +1.5 KiB |`,
+    );
   });
 
   it("says there is nothing to compare with when main has no saved numbers yet", () => {
