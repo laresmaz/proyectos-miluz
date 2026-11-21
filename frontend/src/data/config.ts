@@ -1,5 +1,5 @@
 // Business details shown on the site identical in every language.
-// businessDetails.ts also fills the name and city into index.html and the web manifest at build time.
+// businessDetails.ts also fills the name, city and address into index.html and the web manifest at build time.
 export const BUSINESS = {
   name: "Proyectos Miluz 10, C.A.",
   city: "Caracas, Venezuela",
@@ -10,6 +10,10 @@ export const BUSINESS = {
   engineerYears: 50,
   // International format, digits only (e.g. 584141234567)
   whatsapp: "584242558776",
+  // The live address, without a trailing slash; link previews need absolute URLs.
+  url: "https://www.proyectosmiluz.com",
+  // Named as the founder in the business data search engines read.
+  engineer: "Miguel Lares",
 };
 
 // Opens a chat with the business, with the visitor's first message already typed when given.

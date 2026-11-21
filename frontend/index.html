@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- Page shell: the Spanish title and description are what link previews (e.g. WhatsApp) show, since they don't run JavaScript. -->
-<!-- The BUSINESS_NAME and BUSINESS_CITY markers (wrapped in % signs) are filled from src/data/config.ts by businessDetails.ts. -->
+<!-- The BUSINESS_NAME, BUSINESS_CITY and SITE_URL markers (wrapped in % signs) are filled from src/data/config.ts by businessDetails.ts. -->
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -12,6 +12,28 @@
       name="description"
       content="Obras civiles, remodelaciones, mantenimiento integral, plomería, electricidad y estructuras de concreto armado en Caracas, con respaldo de ingeniero. Escríbanos por WhatsApp."
     />
+    <!-- Link previews (WhatsApp, Facebook, X) read these; they repeat the title and description because bots don't run JavaScript. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="%BUSINESS_NAME%" />
+    <!-- prettier-ignore -->
+    <meta property="og:title" content="%BUSINESS_NAME% · Ingeniero civil, reformas y estructuras en %BUSINESS_CITY%" />
+    <meta
+      property="og:description"
+      content="Obras civiles, remodelaciones, mantenimiento integral, plomería, electricidad y estructuras de concreto armado en Caracas, con respaldo de ingeniero. Escríbanos por WhatsApp."
+    />
+    <!-- shortcut: every address is the teaser until launch, so all of them point here; at launch each page names its own. -->
+    <link rel="canonical" href="%SITE_URL%/" />
+    <meta property="og:url" content="%SITE_URL%/" />
+    <!-- shortcut: drawn once from the logo and name (1200 × 630); redraw it if either changes. -->
+    <meta property="og:image" content="%SITE_URL%/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Logo de %BUSINESS_NAME% sobre el Ávila: ingeniería civil, reformas y estructuras"
+    />
+    <meta property="og:locale" content="es_VE" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#05054A" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
