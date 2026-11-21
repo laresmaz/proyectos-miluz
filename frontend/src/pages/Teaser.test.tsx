@@ -3,7 +3,7 @@ import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { I18nextProvider } from "react-i18next";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { BUSINESS, readableWhatsapp } from "../data/config";
+import { BUSINESS, readableWhatsapp, whatsappUrl } from "../data/config";
 import { SERVICES } from "../data/services";
 import { createI18n } from "../lib/i18n";
 import en from "../locales/en.json";
@@ -20,13 +20,10 @@ function renderTeaser(browserLanguage: string) {
   );
 }
 
-const whatsappEnabledInConfig = BUSINESS.whatsappEnabled;
-
 afterEach(() => {
   cleanup();
   vi.restoreAllMocks();
   localStorage.clear();
-  BUSINESS.whatsappEnabled = whatsappEnabledInConfig;
 });
 
 describe("teaser page", () => {
@@ -64,33 +61,17 @@ describe("teaser page", () => {
     expect(screen.getByText(new RegExp(years))).toBeTruthy();
   });
 
-  it("sends the visitor to the business WhatsApp chat when WhatsApp is on", () => {
+  it("sends the visitor to the business WhatsApp chat and writes the number out", () => {
     // Arrange
-    BUSINESS.whatsappEnabled = true;
+    const number = `WhatsApp: ${readableWhatsapp(BUSINESS.whatsapp)}`;
 
     // Act
     renderTeaser("es-VE");
 
     // Assert
     const button = screen.getByRole("link", { name: es.teaser.whatsapp });
-    expect(button.getAttribute("href")).toBe(
-      `https://wa.me/${BUSINESS.whatsapp}`,
-    );
-    expect(
-      screen.getByText(`WhatsApp: ${readableWhatsapp(BUSINESS.whatsapp)}`),
-    ).toBeTruthy();
-  });
-
-  it("hides the WhatsApp button and number while WhatsApp is off", () => {
-    // Arrange
-    BUSINESS.whatsappEnabled = false;
-
-    // Act
-    renderTeaser("es-VE");
-
-    // Assert
-    expect(screen.queryByRole("link", { name: es.teaser.whatsapp })).toBeNull();
-    expect(screen.queryByText(/WhatsApp:/)).toBeNull();
+    expect(button.getAttribute("href")).toBe(whatsappUrl());
+    expect(screen.getByText(number)).toBeTruthy();
   });
 
   it("names the business in the logo for screen readers", () => {

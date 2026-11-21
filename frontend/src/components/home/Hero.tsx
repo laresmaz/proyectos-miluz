@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { BUSINESS } from "../../data/config";
 import BrandPhoto from "../ui/BrandPhoto";
 import Section from "../ui/Section";
-import WhatsAppIcon from "../ui/WhatsAppIcon";
+import WhatsAppButton from "../ui/WhatsAppButton";
 import Text from "../Text";
 
 // Renders the hero, ending in the Ávila divider down into the trust strip
@@ -23,10 +23,7 @@ export default function Hero() {
             {t("home.hero.eyebrow")}
           </Text>
           <div className="flex flex-col gap-5">
-            <Text
-              variant="heroTitle"
-              className="text-white lg:text-[clamp(36px,min(4.5vw,6.5dvh),72px)]"
-            >
+            <Text variant="heroTitle" className="text-white">
               {t("home.hero.title")}
             </Text>
             <Text variant="lead" className="max-w-140 text-haze">
@@ -34,15 +31,7 @@ export default function Hero() {
             </Text>
           </div>
           <div className="flex flex-wrap gap-3.5">
-            {BUSINESS.whatsappEnabled && (
-              <a
-                href={`https://wa.me/${BUSINESS.whatsapp}`}
-                className="inline-flex min-h-12 items-center gap-2.5 rounded-lg bg-crane px-6 font-bold text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                <WhatsAppIcon />
-                {t("home.hero.whatsapp")}
-              </a>
-            )}
+            <WhatsAppButton>{t("home.hero.whatsapp")}</WhatsAppButton>
             <Link
               to="/proyectos"
               className="inline-flex min-h-12 items-center rounded-lg border-2 border-white px-6 font-bold text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"

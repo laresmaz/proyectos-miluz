@@ -6,7 +6,7 @@ import CraneBackdrop from "../components/ui/CraneBackdrop";
 import SunriseGlow from "../components/ui/SunriseGlow";
 import LanguageSwitch from "../components/layout/LanguageSwitch";
 import Text from "../components/Text";
-import WhatsAppIcon from "../components/ui/WhatsAppIcon";
+import WhatsAppButton from "../components/ui/WhatsAppButton";
 import { BUSINESS, readableWhatsapp } from "../data/config";
 import { SERVICES } from "../data/services";
 import { usePageMeta } from "../lib/usePageMeta";
@@ -45,15 +45,7 @@ export default function Teaser() {
             <Text variant="lead" className="max-w-140 text-haze">
               {t("teaser.intro", { years: BUSINESS.years })}
             </Text>
-            {BUSINESS.whatsappEnabled && (
-              <a
-                href={`https://wa.me/${BUSINESS.whatsapp}`}
-                className="inline-flex min-h-13 items-center gap-2.5 rounded-lg bg-crane px-7 text-[17px] font-bold text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                <WhatsAppIcon />
-                {t("teaser.whatsapp")}
-              </a>
-            )}
+            <WhatsAppButton large>{t("teaser.whatsapp")}</WhatsAppButton>
             <ul
               aria-label={t("teaser.servicesLabel")}
               className="mt-2 flex flex-wrap justify-center gap-2.5"
@@ -85,13 +77,11 @@ export default function Teaser() {
               city: BUSINESS.city,
             })}
           </Text>
-          {BUSINESS.whatsappEnabled && (
-            <Text variant="small">
-              {t("teaser.footerWhatsapp", {
-                number: readableWhatsapp(BUSINESS.whatsapp),
-              })}
-            </Text>
-          )}
+          <Text variant="small">
+            {t("teaser.footerWhatsapp", {
+              number: readableWhatsapp(BUSINESS.whatsapp),
+            })}
+          </Text>
         </div>
       </footer>
     </div>

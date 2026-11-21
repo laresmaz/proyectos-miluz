@@ -1,11 +1,10 @@
 // "Cómo trabajamos": four numbered step cards on a mist band.
 import { useTranslation } from "react-i18next";
-import { BUSINESS } from "../../data/config";
 import Section from "../ui/Section";
 import Eyebrow from "../ui/Eyebrow";
 import Text from "../Text";
 
-type Step = { title: string; text: string; textWithoutWhatsapp?: string };
+type Step = { title: string; text: string };
 
 export default function Steps({ dividerInto }: { dividerInto?: string }) {
   const { t } = useTranslation("site");
@@ -47,9 +46,7 @@ export default function Steps({ dividerInto }: { dividerInto?: string }) {
                 {step.title}
               </Text>
               <Text variant="body" className="text-ink-soft">
-                {BUSINESS.whatsappEnabled
-                  ? step.text
-                  : (step.textWithoutWhatsapp ?? step.text)}
+                {step.text}
               </Text>
             </li>
           ))}

@@ -2,7 +2,7 @@
 import { act, cleanup, render, screen, within } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { BUSINESS, readableWhatsapp } from "../data/config";
+import { BUSINESS, readableWhatsapp, whatsappUrl } from "../data/config";
 import { createI18n } from "../lib/i18n";
 import es from "../locales/site/es.json";
 import { routes } from "../routes";
@@ -39,8 +39,6 @@ const shownNumbers = () =>
 // The works figure as the strip writes it in Spanish, with a dot between thousands.
 const works = String(BUSINESS.works).replace(/\B(?=(\d{3})+$)/g, ".");
 
-const whatsappEnabledInConfig = BUSINESS.whatsappEnabled;
-
 beforeEach(() => {
   onIntersect = [];
   vi.stubGlobal(
@@ -61,44 +59,28 @@ afterEach(() => {
   vi.useRealTimers();
   vi.unstubAllGlobals();
   vi.restoreAllMocks();
-  BUSINESS.whatsappEnabled = whatsappEnabledInConfig;
 });
 
 describe("home hero", () => {
-  it("leads with the headline and a way to the projects", () => {
+  it("leads with the headline, WhatsApp and a way to the projects", () => {
     // Arrange
-    BUSINESS.whatsappEnabled = false;
+    const heading = es.home.hero.title;
 
     // Act
     openHome();
 
     // Assert
-    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-      es.home.hero.title,
-    );
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(heading);
+    expect(
+      screen
+        .getByRole("link", { name: es.home.hero.whatsapp })
+        .getAttribute("href"),
+    ).toBe(whatsappUrl());
     expect(
       screen
         .getByRole("link", { name: es.home.hero.projects })
         .getAttribute("href"),
     ).toBe("/proyectos");
-    expect(
-      screen.queryByRole("link", { name: es.home.hero.whatsapp }),
-    ).toBeNull();
-  });
-
-  it("offers WhatsApp once it's on", () => {
-    // Arrange
-    BUSINESS.whatsappEnabled = true;
-
-    // Act
-    openHome();
-
-    // Assert
-    expect(
-      screen
-        .getByRole("link", { name: es.home.hero.whatsapp })
-        .getAttribute("href"),
-    ).toBe(`https://wa.me/${BUSINESS.whatsapp}`);
   });
 });
 
@@ -213,26 +195,6 @@ describe("home services and how we work", () => {
         .map((h) => h.textContent),
     ).toEqual(steps);
   });
-
-  it.each([
-    { enabled: true, text: es.home.steps.items[0].text },
-    {
-      enabled: false,
-      text: es.home.steps.items[0].textWithoutWhatsapp as string,
-    },
-  ])(
-    "only names WhatsApp in the first step once it's on ($enabled)",
-    ({ enabled, text }) => {
-      // Arrange
-      BUSINESS.whatsappEnabled = enabled;
-
-      // Act
-      openHome();
-
-      // Assert
-      expect(screen.getByText(text)).toBeTruthy();
-    },
-  );
 });
 
 describe("home projects, about and call to action", () => {
@@ -270,7 +232,7 @@ describe("home projects, about and call to action", () => {
 
   it("writes the WhatsApp number out under the call-to-action button, for visitors who'd rather dial it", () => {
     // Arrange
-    BUSINESS.whatsappEnabled = true;
+    const number = readableWhatsapp(BUSINESS.whatsapp);
 
     // Act
     openHome();
@@ -279,30 +241,24 @@ describe("home projects, about and call to action", () => {
     const cta = screen
       .getByRole("heading", { level: 2, name: es.home.cta.title })
       .closest("section") as HTMLElement;
-    expect(
-      within(cta).getByText(
-        `Llámenos al ${readableWhatsapp(BUSINESS.whatsapp)}`,
-      ),
-    ).toBeTruthy();
+    expect(within(cta).getByText(`Llámenos al ${number}`)).toBeTruthy();
   });
 
-  it.each([true, false])(
-    "ends with the WhatsApp call to action only when WhatsApp is on (%s)",
-    (enabled) => {
-      // Arrange
-      BUSINESS.whatsappEnabled = enabled;
+  it("ends with the WhatsApp call to action", () => {
+    // Arrange
+    const heading = es.home.cta.title;
 
-      // Act
-      openHome();
+    // Act
+    openHome();
 
-      // Assert
-      const cta = screen.queryByRole("heading", {
-        level: 2,
-        name: es.home.cta.title,
-      });
-      const button = screen.queryByRole("link", { name: es.home.cta.whatsapp });
-      expect(cta !== null).toBe(enabled);
-      expect(button !== null).toBe(enabled);
-    },
-  );
+    // Assert
+    expect(
+      screen.getByRole("heading", { level: 2, name: heading }),
+    ).toBeTruthy();
+    expect(
+      screen
+        .getByRole("link", { name: es.home.cta.whatsapp })
+        .getAttribute("href"),
+    ).toBe(whatsappUrl());
+  });
 });

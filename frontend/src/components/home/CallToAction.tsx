@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import logo from "../../assets/logo.svg";
 import { BUSINESS, readableWhatsapp } from "../../data/config";
 import Section from "../ui/Section";
-import WhatsAppIcon from "../ui/WhatsAppIcon";
+import WhatsAppButton from "../ui/WhatsAppButton";
 import Text from "../Text";
 
 // The WhatsApp call to action: the button, and the number written out for those who'd rather dial it
@@ -19,13 +19,7 @@ export default function CallToAction() {
         <Text variant="lead" className="text-haze">
           {t("home.cta.text")}
         </Text>
-        <a
-          href={`https://wa.me/${BUSINESS.whatsapp}`}
-          className="inline-flex min-h-12 items-center gap-2.5 rounded-lg bg-crane px-6 font-bold text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-        >
-          <WhatsAppIcon />
-          {t("home.cta.whatsapp")}
-        </a>
+        <WhatsAppButton>{t("home.cta.whatsapp")}</WhatsAppButton>
         <Text variant="small" as="p" className="text-haze">
           {t("home.cta.number", {
             number: readableWhatsapp(BUSINESS.whatsapp),

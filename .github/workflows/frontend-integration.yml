@@ -20,9 +20,10 @@ jobs:
     env:
       CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
     steps:
+      # The PR's own commit: not GitHub's merge commit, which muddles Chromatic's baselines, nor the branch, which may have moved on.
       - uses: actions/checkout@v7.0.1
         with:
-          ref: ${{ github.event.pull_request.head.ref || github.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
       - uses: pnpm/action-setup@v6.1.1
         with:
@@ -42,6 +43,10 @@ jobs:
       # Changes don't fail this job: Chromatic's own "UI Tests" check blocks the merge until they're approved.
       - name: Chromatic regression board
         continue-on-error: true
+        # The checkout is a bare commit with no branch, so the CLI is told which branch and commit to report "UI Tests" on.
+        env:
+          CHROMATIC_BRANCH: ${{ github.event.pull_request.head.ref || github.ref_name }}
+          CHROMATIC_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
           if [ -z "$CHROMATIC_PROJECT_TOKEN" ]; then
             echo "::warning::CHROMATIC_PROJECT_TOKEN is missing (or this is a fork PR), so \"UI Tests\" won't report and the PR can't merge."

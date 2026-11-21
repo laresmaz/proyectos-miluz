@@ -11,7 +11,8 @@ const VARIANTS = {
   heroTitle: {
     tag: "h1",
     font: "font-display font-bold uppercase",
-    size: "text-[clamp(44px,6vw,76px)] leading-[0.98]",
+    // From lg it also follows the screen height, so the hero and trust strip fit the first screen.
+    size: "text-[clamp(44px,6vw,76px)] leading-[0.98] lg:text-[clamp(36px,min(4.5vw,6.5dvh),72px)]",
   },
   pageTitle: {
     tag: "h1",

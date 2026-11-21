@@ -10,15 +10,19 @@ export const BUSINESS = {
   engineerYears: 50,
   // International format, digits only (e.g. 584141234567)
   whatsapp: "584242558776",
-  // Only ?teaser and ?preview show WhatsApp; the logo page at / has none.
-  whatsappEnabled: true,
   // The live address, without a trailing slash; link previews need absolute URLs.
   url: "https://www.proyectosmiluz.com",
   // Named as the founder in the business data search engines read.
   engineer: "Miguel Lares",
 };
 
-// Writes a WhatsApp number the way people read it out, e.g. +58 424 255 8776.
+// Opens a chat with the business, with the visitor's first message already typed when given.
+export function whatsappUrl(message?: string): string {
+  const chat = `https://wa.me/${BUSINESS.whatsapp}`;
+  return message ? `${chat}?text=${encodeURIComponent(message)}` : chat;
+}
+
+// Writes a WhatsApp number the way people read it out, e.g. (+58) 424 255 8776.
 export function readableWhatsapp(number: string): string {
   return `(+${number.slice(0, 2)}) ${number.slice(2, 5)} ${number.slice(5, 8)} ${number.slice(8)}`;
 }
