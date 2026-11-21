@@ -15,7 +15,7 @@ export const SERVICES = [
   { slug: "mantenimiento-integral", image: fallback },
 ] as const;
 
-// The services as zigzag bands in the visitor's language, shared by the home and services pages.
+// The services as zigzag bands in the visitor's language, for the home page.
 export function useServiceItems(): ZigzagItem[] {
   const { t } = useTranslation("site");
   return SERVICES.map(({ slug, image }, i) => ({

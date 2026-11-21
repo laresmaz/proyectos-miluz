@@ -7,6 +7,7 @@ import { SERVICES } from "../data/services";
 import { usePageMeta } from "../lib/usePageMeta";
 import NotFound from "./NotFound";
 import Eyebrow from "../components/ui/Eyebrow";
+import WhatsAppButton from "../components/ui/WhatsAppButton";
 import Text from "../components/Text";
 
 // Renders the service named in the URL, or the 404 page for an unknown one.
@@ -55,14 +56,9 @@ function ServicePage({ index }: { index: number }) {
             <li key={item}>{item}</li>
           ))}
         </ul>
-        {BUSINESS.whatsappEnabled && (
-          <a
-            href={`https://wa.me/${BUSINESS.whatsapp}?text=${encodeURIComponent(t(`${key}.whatsapp`))}`}
-            className="inline-flex min-h-13 items-center rounded-lg bg-crane px-7 text-[17px] font-bold text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-          >
-            {t("services.whatsapp")}
-          </a>
-        )}
+        <WhatsAppButton message={t(`${key}.whatsapp`)} large onLight>
+          {t("services.whatsapp")}
+        </WhatsAppButton>
         <Link
           to="/#servicios"
           className="inline-flex min-h-11 items-center font-semibold text-brand hover:text-brand-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"

@@ -1,6 +1,6 @@
 // Zigzag: photo and text bands alternating white and mist
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router";
+import ArrowLink from "../ui/ArrowLink";
 import BrandPhoto from "../ui/BrandPhoto";
 import Section from "../ui/Section";
 import Eyebrow from "../ui/Eyebrow";
@@ -16,9 +16,6 @@ export type ZigzagItem = {
   alt: string;
   href: string;
 };
-
-const LINK =
-  "inline-flex border-b-2 border-crane py-2.5 font-bold text-brand hover:text-brand-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
 
 export default function Zigzag({
   items,
@@ -72,12 +69,11 @@ export default function Zigzag({
               </Text>
             ))}
           </ul>
-          <div className="mt-2 flex flex-wrap gap-x-6">
-            <Link to={item.href} className={LINK}>
+          <div className="mt-2">
+            <ArrowLink to={item.href}>
               {t("services.seeMore")}
               <span className="sr-only">: {item.title}</span>
-              <span aria-hidden="true">&nbsp;→</span>
-            </Link>
+            </ArrowLink>
           </div>
         </div>
       </article>

@@ -1,6 +1,5 @@
 // Crane backdrop: yellow triangle cranes drifting slowly behind a section's content
 // The parent needs `relative isolate overflow-hidden` so the cranes stay behind and inside it.
-import isChromatic from "chromatic/isChromatic";
 import type { CSSProperties } from "react";
 import crane from "../../assets/crane.svg";
 
@@ -78,8 +77,6 @@ export default function CraneBackdrop({
   tone?: "dark" | "light";
   offset?: number;
 }) {
-  // Frozen in Chromatic, so every screenshot catches the cranes in the same place.
-  const still = isChromatic();
   return (
     <>
       {(tone === "light" ? LIGHT : DARK).map(
@@ -103,7 +100,6 @@ export default function CraneBackdrop({
                   "--start": `${start}vw`,
                   bottom,
                   opacity,
-                  animationName: still ? "none" : undefined,
                   animationDuration: `${duration}s`,
                   animationDelay: `${delay - offset * 37}s`,
                 } as CSSProperties

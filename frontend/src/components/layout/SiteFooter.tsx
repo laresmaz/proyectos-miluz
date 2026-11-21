@@ -1,3 +1,4 @@
+// Site footer: the Ávila mountains into deep blue, then the business details, contact and section links.
 import { useTranslation } from "react-i18next";
 import { Link, useMatches } from "react-router";
 import logo from "../../assets/logo.svg";
@@ -45,13 +46,11 @@ export default function SiteFooter() {
             <Text variant="label" className="mb-1 text-crane">
               {t("footer.contact")}
             </Text>
-            {BUSINESS.whatsappEnabled && (
-              <span>
-                {t("footer.whatsapp", {
-                  number: readableWhatsapp(BUSINESS.whatsapp),
-                })}
-              </span>
-            )}
+            <span>
+              {t("footer.whatsapp", {
+                number: readableWhatsapp(BUSINESS.whatsapp),
+              })}
+            </span>
             <span>{BUSINESS.city}</span>
             <span>{t("footer.rif", { rif: BUSINESS.rif })}</span>
           </div>

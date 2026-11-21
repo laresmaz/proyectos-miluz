@@ -1,3 +1,4 @@
+// Home page: the hero and trust strip on the first screen, then the services, how we work, projects, the engineer and the call to action.
 import { useTranslation } from "react-i18next";
 import AboutSection from "../components/sections/AboutSection";
 import CallToAction from "../components/home/CallToAction";
@@ -11,7 +12,7 @@ import { BUSINESS } from "../data/config";
 import { useServiceItems } from "../data/services";
 import { usePageMeta } from "../lib/usePageMeta";
 
-// "Sobre el ingeniero" carries the mountains into the deep blue of the call to action, or of the footer while there's no WhatsApp.
+// "Sobre el ingeniero" carries the mountains into the deep blue of the call to action, which runs on into the footer.
 export default function Home() {
   const { t } = useTranslation("site");
   usePageMeta(
@@ -35,7 +36,7 @@ export default function Home() {
       <Steps />
       <FeaturedProjects />
       <AboutSection dividerInto="var(--color-brand-deep)" />
-      {BUSINESS.whatsappEnabled && <CallToAction />}
+      <CallToAction />
     </>
   );
 }

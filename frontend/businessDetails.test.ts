@@ -10,7 +10,6 @@ const business = {
   works: 400,
   engineerYears: 40,
   whatsapp: "584141234567",
-  whatsappEnabled: true,
 };
 
 describe("business details in the page shell", () => {

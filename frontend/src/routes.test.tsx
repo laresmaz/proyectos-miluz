@@ -3,7 +3,7 @@ import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { BUSINESS, readableWhatsapp } from "./data/config";
+import { BUSINESS, readableWhatsapp, whatsappUrl } from "./data/config";
 import { createI18n } from "./lib/i18n";
 import es from "./locales/site/es.json";
 import { routes } from "./routes";
@@ -20,13 +20,10 @@ function openSite(path: string) {
 // Reads the page's main heading.
 const pageHeading = () => screen.getByRole("heading", { level: 1 }).textContent;
 
-const whatsappEnabledInConfig = BUSINESS.whatsappEnabled;
-
 afterEach(() => {
   cleanup();
   vi.restoreAllMocks();
   vi.unstubAllGlobals();
-  BUSINESS.whatsappEnabled = whatsappEnabledInConfig;
 });
 
 describe("site shell", () => {
@@ -174,56 +171,43 @@ describe("site header and footer", () => {
     expect(within(footer).getByText(BUSINESS.city)).toBeTruthy();
   });
 
-  it.each([true, false])(
-    "shows the WhatsApp button and number only when WhatsApp is on (%s)",
-    (enabled) => {
-      // Arrange
-      BUSINESS.whatsappEnabled = enabled;
+  it("offers WhatsApp in the header and writes the number in the footer", () => {
+    // Arrange
+    const number = `WhatsApp: ${readableWhatsapp(BUSINESS.whatsapp)}`;
 
-      // Act
-      openSite("/proyectos");
+    // Act
+    openSite("/proyectos");
 
-      // Assert
-      const button = within(screen.getByRole("banner")).queryByRole("link", {
-        name: es.nav.whatsapp,
-      });
-      const number = within(screen.getByRole("contentinfo")).queryByText(
-        `WhatsApp: ${readableWhatsapp(BUSINESS.whatsapp)}`,
-      );
-      expect(button !== null).toBe(enabled);
-      expect(number !== null).toBe(enabled);
-    },
-  );
+    // Assert
+    const button = within(screen.getByRole("banner")).getByRole("link", {
+      name: es.nav.whatsapp,
+    });
+    expect(button.getAttribute("href")).toBe(whatsappUrl());
+    expect(
+      within(screen.getByRole("contentinfo")).getByText(number),
+    ).toBeTruthy();
+  });
 
-  it.each([true, false])(
-    "keeps a floating WhatsApp button on every page only when WhatsApp is on (%s)",
-    (enabled) => {
-      // Arrange
-      BUSINESS.whatsappEnabled = enabled;
+  it("keeps a floating WhatsApp button on every page", () => {
+    // Arrange
+    const name = es.nav.whatsappFloating;
 
-      // Act
-      openSite("/proyectos");
+    // Act
+    openSite("/proyectos");
 
-      // Assert
-      const button = screen.queryByRole("link", {
-        name: es.nav.whatsappFloating,
-      });
-      expect(button?.getAttribute("href") ?? null).toBe(
-        enabled ? `https://wa.me/${BUSINESS.whatsapp}` : null,
-      );
-    },
-  );
+    // Assert
+    expect(screen.getByRole("link", { name }).getAttribute("href")).toBe(
+      whatsappUrl(),
+    );
+  });
 
   it.each([
-    { path: "/", inSection: true },
     { path: "/sobre-mi", inSection: true },
     { path: "/proyectos", inSection: false },
   ])(
     "draws the footer's mountains inside $path's last section when it has cranes, so they walk behind them",
     ({ path, inSection }) => {
       // Arrange
-      // With WhatsApp on, / ends in the deep-blue call to action instead, which runs straight into the footer.
-      BUSINESS.whatsappEnabled = false;
       const url = path;
 
       // Act
@@ -241,6 +225,23 @@ describe("site header and footer", () => {
       expect(footerDivider).toBe(!inSection);
     },
   );
+
+  it("runs the home page's call to action straight into the footer, with no mountains between them", () => {
+    // Arrange
+    const url = "/";
+
+    // Act
+    openSite(url);
+
+    // Assert
+    const sections = screen.getByRole("main").querySelectorAll("section");
+    const last = sections[sections.length - 1];
+    const footer = screen.getByRole("contentinfo");
+    expect(last.lastElementChild?.getAttribute("aria-hidden")).not.toBe("true");
+    expect(footer.firstElementChild?.getAttribute("aria-hidden")).not.toBe(
+      "true",
+    );
+  });
 });
 
 describe("page titles", () => {
