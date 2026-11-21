@@ -21,8 +21,8 @@ export default function Home() {
 
   return (
     <>
-      {/* At least a full screen below the header (129px on narrow phones, where it wraps; 77px from sm), so the trust strip ends at or below the bottom edge. */}
-      <div className="flex min-h-[calc(100dvh-129px)] flex-col sm:min-h-[calc(100dvh-77px)]">
+      {/* At least a full screen below the header (77px, its height from 360px wide up; a little taller below), so the trust strip ends at or below the bottom edge. */}
+      <div className="flex min-h-[calc(100dvh-77px)] flex-col">
         <Hero />
         <TrustStrip />
       </div>

@@ -29,13 +29,13 @@
   --font-display: Oswald, "Oswald fallback", sans-serif;
 }
 
-/* Drifting cranes: cross their section left to right, behind the content (DISENO.md section 4). */
+/* Drifting cranes: cross their section left to right, behind the content. */
 @keyframes crane-drift {
   from {
-    left: -400px;
+    transform: translateX(calc(-400px - var(--start)));
   }
   to {
-    left: 100%;
+    transform: translateX(calc(100vw - var(--start)));
   }
 }
 .crane {

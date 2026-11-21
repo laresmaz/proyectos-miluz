@@ -21,10 +21,10 @@ export default function SiteHeader() {
       >
         <Link
           to="/"
-          className="flex items-center gap-3 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+          className="flex min-w-0 flex-1 items-center gap-3 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
         >
           <img src={logo} alt="" width={48} height={48} />
-          <span className="font-display text-2xl leading-none font-bold text-brand uppercase">
+          <span className="font-display text-lg leading-none font-bold text-brand uppercase sm:text-2xl">
             {BUSINESS.name}
           </span>
         </Link>
