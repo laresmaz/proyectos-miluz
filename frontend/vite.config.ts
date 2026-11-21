@@ -14,7 +14,7 @@ export default defineConfig({
     businessDetails(),
     preloadFonts(),
     preloadPreviewSite(),
-    // Fallback fonts resized to the brand fonts' proportions, so text barely moves when Barlow and Inter arrive.
+    // Fallback fonts resized to the brand fonts' proportions, so text barely moves when Oswald and Lato arrive.
     // Roboto first: most visitors are on Android phones.
     FontaineTransform.vite({
       fallbacks: [

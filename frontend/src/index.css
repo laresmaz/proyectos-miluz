@@ -25,9 +25,8 @@
   --shadow-float: 0 6px 20px
     color-mix(in srgb, var(--color-brand-deep) 25%, transparent);
 
-  --font-sans:
-    "Inter Variable", "Inter Variable fallback", system-ui, sans-serif;
-  --font-display: "Barlow Condensed", "Barlow Condensed fallback", sans-serif;
+  --font-sans: Lato, "Lato fallback", system-ui, sans-serif;
+  --font-display: Oswald, "Oswald fallback", sans-serif;
 }
 
 /* Drifting cranes: cross their section left to right, behind the content (DISENO.md section 4). */

@@ -25,7 +25,7 @@ export default function Hero() {
           <div className="flex flex-col gap-5">
             <Text
               variant="heroTitle"
-              className="text-white lg:text-[clamp(40px,min(5.5vw,7dvh),76px)]"
+              className="text-white lg:text-[clamp(36px,min(4.5vw,6.5dvh),72px)]"
             >
               {t("home.hero.title")}
             </Text>

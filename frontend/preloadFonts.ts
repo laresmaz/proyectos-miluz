@@ -1,10 +1,10 @@
 // Build plugin: preloads the fonts the first screen needs, so they arrive early and the text swaps in sooner.
 import type { HtmlTagDescriptor, Plugin } from "vite";
 
-// The headline (Barlow 700) and body text (variable Inter, one file for every weight); other scripts load on demand.
+// The headings (Oswald 700) and body text (Lato 400 and 700); other weights and scripts load on demand.
 const FIRST_SCREEN_FONTS = [
-  /barlow-condensed-latin-700-normal-.*\.woff2$/,
-  /inter-latin-wght-normal-.*\.woff2$/,
+  /oswald-latin-700-normal-.*\.woff2$/,
+  /lato-latin-(400|700)-normal-.*\.woff2$/,
 ];
 
 // Adds the preload links to the built index.html; the font file names are only known after bundling.
