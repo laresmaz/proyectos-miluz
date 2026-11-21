@@ -20,9 +20,10 @@ jobs:
     env:
       CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
     steps:
+      # The PR's own commit: not GitHub's merge commit, which muddles Chromatic's baselines, nor the branch, which may have moved on.
       - uses: actions/checkout@v7.0.1
         with:
-          ref: ${{ github.event.pull_request.head.ref || github.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
       - uses: pnpm/action-setup@v6.1.1
         with:
