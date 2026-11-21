@@ -1,5 +1,5 @@
 // Business details shown on the site identical in every language.
-// businessDetails.ts also fills the name and city into index.html and the web manifest at build time.
+// businessDetails.ts also fills the name, city and address into index.html and the web manifest at build time.
 export const BUSINESS = {
   name: "Proyectos Miluz 10, C.A.",
   city: "Caracas, Venezuela",
@@ -12,6 +12,8 @@ export const BUSINESS = {
   whatsapp: "584242558776",
   // Only ?teaser and ?preview show WhatsApp; the logo page at / has none.
   whatsappEnabled: true,
+  // The live address, without a trailing slash; link previews need absolute URLs.
+  url: "https://www.proyectosmiluz.com",
 };
 
 // Writes a WhatsApp number the way people read it out, e.g. +58 424 255 8776.

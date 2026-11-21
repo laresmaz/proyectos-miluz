@@ -27,11 +27,12 @@ export default function businessDetails(): Plugin {
   };
 }
 
-// Replaces %BUSINESS_NAME% and %BUSINESS_CITY% in the page shell, escaped so any name is safe inside HTML.
+// Replaces %BUSINESS_NAME%, %BUSINESS_CITY% and %SITE_URL% in the page shell, escaped so any value is safe inside HTML.
 export function fillBusinessDetails(html: string, business: Business): string {
   return html
     .replaceAll("%BUSINESS_NAME%", escapeHtml(business.name))
-    .replaceAll("%BUSINESS_CITY%", escapeHtml(business.city));
+    .replaceAll("%BUSINESS_CITY%", escapeHtml(business.city))
+    .replaceAll("%SITE_URL%", escapeHtml(business.url));
 }
 
 // Builds the web manifest Android reads for the home-screen name and icon.
