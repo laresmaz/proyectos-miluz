@@ -3,10 +3,12 @@ import { useTranslation } from "react-i18next";
 import logo from "../assets/logo.svg";
 import AvilaDivider from "../components/ui/AvilaDivider";
 import CraneBackdrop from "../components/ui/CraneBackdrop";
+import SunriseGlow from "../components/ui/SunriseGlow";
 import LanguageSwitch from "../components/layout/LanguageSwitch";
 import Text from "../components/Text";
 import WhatsAppIcon from "../components/ui/WhatsAppIcon";
-import { BUSINESS } from "../data/config";
+import { BUSINESS, readableWhatsapp } from "../data/config";
+import { SERVICES } from "../data/services";
 import { usePageMeta } from "../lib/usePageMeta";
 
 // Read once at load: a static page only needs the year it was opened in.
@@ -21,12 +23,12 @@ export default function Teaser() {
     t("teaser.metaTitle", { name: BUSINESS.name, city: BUSINESS.city }),
     t("teaser.metaDescription"),
   );
-  const services = t("teaser.services", { returnObjects: true }) as string[];
 
   return (
     <div className="flex min-h-screen flex-col bg-brand-deep font-sans text-white">
       {/* Cranes share this area with the divider so they stand on its bottom edge, behind the mountains. */}
       <div className="relative isolate flex flex-auto flex-col overflow-hidden">
+        <SunriseGlow />
         <CraneBackdrop />
         <main className="relative flex flex-auto items-center justify-center px-6 pt-18 pb-10">
           <LanguageSwitch className="absolute top-4 right-4" />
@@ -41,7 +43,7 @@ export default function Teaser() {
               <span className="text-crane">{t("teaser.headlineAccent")}</span>
             </Text>
             <Text variant="lead" className="max-w-140 text-haze">
-              {t("teaser.intro")}
+              {t("teaser.intro", { years: BUSINESS.years })}
             </Text>
             {BUSINESS.whatsappEnabled && (
               <a
@@ -56,14 +58,14 @@ export default function Teaser() {
               aria-label={t("teaser.servicesLabel")}
               className="mt-2 flex flex-wrap justify-center gap-2.5"
             >
-              {services.map((service) => (
+              {SERVICES.map(({ slug }) => (
                 <Text
-                  key={service}
+                  key={slug}
                   variant="small"
                   as="li"
                   className="rounded-full border border-white/28 px-3.5 py-2"
                 >
-                  {service}
+                  {t(`teaser.services.${slug}`)}
                 </Text>
               ))}
             </ul>
@@ -85,7 +87,9 @@ export default function Teaser() {
           </Text>
           {BUSINESS.whatsappEnabled && (
             <Text variant="small">
-              {t("teaser.footerWhatsapp", { number: BUSINESS.whatsapp })}
+              {t("teaser.footerWhatsapp", {
+                number: readableWhatsapp(BUSINESS.whatsapp),
+              })}
             </Text>
           )}
         </div>

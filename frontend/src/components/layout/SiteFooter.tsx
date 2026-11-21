@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { Link, useMatches } from "react-router";
 import logo from "../../assets/logo.svg";
-import { BUSINESS } from "../../data/config";
+import { BUSINESS, readableWhatsapp } from "../../data/config";
 import AvilaDivider from "../ui/AvilaDivider";
-import { NAV_LINKS } from "./navLinks";
+import { NAV_LINKS, useGlideToSection } from "./navLinks";
 import Text from "../Text";
 
 // A page whose last section has cranes draws the footer's mountains inside it, so the cranes walk behind them; the footer then skips its own.
@@ -12,6 +12,7 @@ export type SiteRouteHandle = { endsWithDivider?: boolean };
 // Renders the footer
 export default function SiteFooter() {
   const { t } = useTranslation("site");
+  const glide = useGlideToSection();
   const handle = useMatches().at(-1)?.handle as SiteRouteHandle | undefined;
 
   return (
@@ -45,9 +46,14 @@ export default function SiteFooter() {
               {t("footer.contact")}
             </Text>
             {BUSINESS.whatsappEnabled && (
-              <span>{t("footer.whatsapp", { number: BUSINESS.whatsapp })}</span>
+              <span>
+                {t("footer.whatsapp", {
+                  number: readableWhatsapp(BUSINESS.whatsapp),
+                })}
+              </span>
             )}
             <span>{BUSINESS.city}</span>
+            <span>{t("footer.rif", { rif: BUSINESS.rif })}</span>
           </div>
           <div className="flex flex-[1_1_180px] flex-col items-start gap-2 text-[15px]">
             <Text variant="label" className="mb-1 text-crane">
@@ -57,6 +63,7 @@ export default function SiteFooter() {
               <Link
                 key={to}
                 to={to}
+                onClick={(event) => glide(event, to)}
                 className="rounded hover:text-crane focus-visible:outline-2 focus-visible:outline-crane"
               >
                 {t(label)}

@@ -3,7 +3,8 @@ import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { I18nextProvider } from "react-i18next";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { BUSINESS } from "../data/config";
+import { BUSINESS, readableWhatsapp } from "../data/config";
+import { SERVICES } from "../data/services";
 import { createI18n } from "../lib/i18n";
 import en from "../locales/en.json";
 import es from "../locales/es.json";
@@ -33,10 +34,10 @@ describe("teaser page", () => {
     { browser: "es-VE", texts: es },
     { browser: "en-US", texts: en },
   ])(
-    "shows the headline and all services in $browser",
+    "shows the headline and every service from the site's list, in order, in $browser",
     ({ browser, texts }) => {
       // Arrange
-      const services = texts.teaser.services;
+      const services = SERVICES.map(({ slug }) => texts.teaser.services[slug]);
 
       // Act
       renderTeaser(browser);
@@ -52,6 +53,17 @@ describe("teaser page", () => {
     },
   );
 
+  it("quotes the company's years of experience from the business details", () => {
+    // Arrange
+    const years = `${BUSINESS.years} años`;
+
+    // Act
+    renderTeaser("es-VE");
+
+    // Assert
+    expect(screen.getByText(new RegExp(years))).toBeTruthy();
+  });
+
   it("sends the visitor to the business WhatsApp chat when WhatsApp is on", () => {
     // Arrange
     BUSINESS.whatsappEnabled = true;
@@ -64,7 +76,9 @@ describe("teaser page", () => {
     expect(button.getAttribute("href")).toBe(
       `https://wa.me/${BUSINESS.whatsapp}`,
     );
-    expect(screen.getByText(`WhatsApp: ${BUSINESS.whatsapp}`)).toBeTruthy();
+    expect(
+      screen.getByText(`WhatsApp: ${readableWhatsapp(BUSINESS.whatsapp)}`),
+    ).toBeTruthy();
   });
 
   it("hides the WhatsApp button and number while WhatsApp is off", () => {
@@ -76,7 +90,7 @@ describe("teaser page", () => {
 
     // Assert
     expect(screen.queryByRole("link", { name: es.teaser.whatsapp })).toBeNull();
-    expect(screen.queryByText(BUSINESS.whatsapp, { exact: false })).toBeNull();
+    expect(screen.queryByText(/WhatsApp:/)).toBeNull();
   });
 
   it("names the business in the logo for screen readers", () => {

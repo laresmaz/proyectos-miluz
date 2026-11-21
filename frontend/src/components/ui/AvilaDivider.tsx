@@ -37,7 +37,7 @@ export default function AvilaDivider({
       <svg
         viewBox="0 0 1440 120"
         preserveAspectRatio="none"
-        className="block h-[clamp(64px,8vw,120px)] w-full"
+        className="block h-[clamp(64px,8vw,120px)] w-full lg:h-[clamp(48px,min(8vw,11dvh),120px)]"
       >
         {BACK.map((t) => (
           <polygon key={`b${t[0]}`} fill={backFill} points={triangle(t)} />

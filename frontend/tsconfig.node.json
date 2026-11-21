@@ -25,6 +25,8 @@
     "businessDetails.test.ts",
     "preloadFonts.ts",
     "preloadFonts.test.ts",
+    "preloadPreviewSite.ts",
+    "preloadPreviewSite.test.ts",
     "lighthouseSummary.ts",
     "lighthouseSummary.test.ts"
   ]

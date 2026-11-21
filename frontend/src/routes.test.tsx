@@ -3,7 +3,7 @@ import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { BUSINESS } from "./data/config";
+import { BUSINESS, readableWhatsapp } from "./data/config";
 import { createI18n } from "./lib/i18n";
 import es from "./locales/site/es.json";
 import { routes } from "./routes";
@@ -14,6 +14,7 @@ function openSite(path: string) {
   createI18n();
   const router = createMemoryRouter(routes, { initialEntries: [path] });
   render(<RouterProvider router={router} />);
+  return router;
 }
 
 // Reads the page's main heading.
@@ -24,13 +25,13 @@ const whatsappEnabledInConfig = BUSINESS.whatsappEnabled;
 afterEach(() => {
   cleanup();
   vi.restoreAllMocks();
+  vi.unstubAllGlobals();
   BUSINESS.whatsappEnabled = whatsappEnabledInConfig;
 });
 
 describe("site shell", () => {
   it.each([
     { path: "/", heading: es.home.hero.title },
-    { path: "/servicios", heading: es.nav.services },
     { path: "/proyectos", heading: es.nav.projects },
     { path: "/sobre-mi", heading: es.about.title },
     { path: "/no-existe", heading: es.notFound.title },
@@ -45,9 +46,9 @@ describe("site shell", () => {
     expect(pageHeading()).toBe(heading);
   });
 
-  it("moves between pages from the nav", async () => {
+  it("takes the nav to the home page's sections, from any page", async () => {
     // Arrange
-    openSite("/");
+    const router = openSite("/proyectos");
 
     // Act
     await userEvent.click(
@@ -57,7 +58,66 @@ describe("site shell", () => {
     );
 
     // Assert
-    expect(pageHeading()).toBe(es.nav.projects);
+    expect(pageHeading()).toBe(es.home.hero.title);
+    expect(router.state.location.hash).toBe("#proyectos");
+  });
+
+  it.each([
+    { reduce: false, behavior: "smooth" },
+    { reduce: true, behavior: "auto" },
+  ])(
+    "glides to the section on the home page instead of jumping, unless the visitor asks for less motion ($behavior)",
+    async ({ reduce, behavior }) => {
+      // Arrange
+      vi.stubGlobal("matchMedia", (query: string) => ({
+        matches: reduce && query.includes("reduce"),
+      }));
+      const glide = vi.fn();
+      Element.prototype.scrollIntoView = glide;
+      openSite("/");
+
+      // Act
+      await userEvent.click(
+        within(screen.getByRole("banner")).getByRole("link", {
+          name: es.nav.projects,
+        }),
+      );
+
+      // Assert
+      expect(glide).toHaveBeenCalledWith({ behavior });
+      expect(glide.mock.contexts[0]).toBe(document.getElementById("proyectos"));
+    },
+  );
+
+  it("has a home section for every nav link", () => {
+    // Arrange
+    openSite("/");
+
+    // Act
+    const targets = within(screen.getByRole("banner"))
+      .getAllByRole("link")
+      .map((link) => link.getAttribute("href") ?? "")
+      .filter((href) => href.startsWith("/#"));
+
+    // Assert
+    expect(targets).toEqual(["/#servicios", "/#proyectos", "/#sobre-mi"]);
+    targets.forEach((href) =>
+      expect(document.getElementById(href.slice(2))).not.toBeNull(),
+    );
+  });
+
+  it("sends /servicios to the home page's services section", () => {
+    // Arrange
+    const url = "/servicios";
+
+    // Act
+    const router = openSite(url);
+
+    // Assert
+    expect(pageHeading()).toBe(es.home.hero.title);
+    expect(router.state.location.pathname + router.state.location.hash).toBe(
+      "/#servicios",
+    );
   });
 
   it("goes home from the logo", async () => {
@@ -128,22 +188,42 @@ describe("site header and footer", () => {
         name: es.nav.whatsapp,
       });
       const number = within(screen.getByRole("contentinfo")).queryByText(
-        `WhatsApp: ${BUSINESS.whatsapp}`,
+        `WhatsApp: ${readableWhatsapp(BUSINESS.whatsapp)}`,
       );
       expect(button !== null).toBe(enabled);
       expect(number !== null).toBe(enabled);
     },
   );
 
+  it.each([true, false])(
+    "keeps a floating WhatsApp button on every page only when WhatsApp is on (%s)",
+    (enabled) => {
+      // Arrange
+      BUSINESS.whatsappEnabled = enabled;
+
+      // Act
+      openSite("/proyectos");
+
+      // Assert
+      const button = screen.queryByRole("link", {
+        name: es.nav.whatsappFloating,
+      });
+      expect(button?.getAttribute("href") ?? null).toBe(
+        enabled ? `https://wa.me/${BUSINESS.whatsapp}` : null,
+      );
+    },
+  );
+
   it.each([
     { path: "/", inSection: true },
-    { path: "/servicios", inSection: true },
     { path: "/sobre-mi", inSection: true },
     { path: "/proyectos", inSection: false },
   ])(
     "draws the footer's mountains inside $path's last section when it has cranes, so they walk behind them",
     ({ path, inSection }) => {
       // Arrange
+      // With WhatsApp on, / ends in the deep-blue call to action instead, which runs straight into the footer.
+      BUSINESS.whatsappEnabled = false;
       const url = path;
 
       // Act
@@ -193,7 +273,12 @@ describe("page titles", () => {
         document
           .querySelector('meta[name="description"]')
           ?.getAttribute("content"),
-      ).toBe(meta.description);
+      ).toBe(
+        meta.description.replace(
+          "{{engineerYears}}",
+          String(BUSINESS.engineerYears),
+        ),
+      );
     },
   );
 });

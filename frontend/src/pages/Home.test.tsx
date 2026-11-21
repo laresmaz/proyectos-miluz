@@ -2,7 +2,7 @@
 import { act, cleanup, render, screen, within } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { BUSINESS } from "../data/config";
+import { BUSINESS, readableWhatsapp } from "../data/config";
 import { createI18n } from "../lib/i18n";
 import es from "../locales/site/es.json";
 import { routes } from "../routes";
@@ -35,6 +35,9 @@ const shownNumbers = () =>
       .getByRole("region", { name: es.home.trust.label })
       .querySelectorAll("[data-count]"),
   ).map((n) => n.textContent);
+
+// The works figure as the strip writes it in Spanish, with a dot between thousands.
+const works = String(BUSINESS.works).replace(/\B(?=(\d{3})+$)/g, ".");
 
 const whatsappEnabledInConfig = BUSINESS.whatsappEnabled;
 
@@ -100,6 +103,22 @@ describe("home hero", () => {
 });
 
 describe("trust strip", () => {
+  it("counts up to the years and works in the business details, also quoted in the hero", () => {
+    // Arrange
+    prefersReducedMotion(true);
+
+    // Act
+    openHome();
+
+    // Assert
+    expect(shownNumbers()).toEqual([`+${BUSINESS.years}`, `+${works}`]);
+    expect(
+      screen.getByText(
+        es.home.hero.subtitle.replace("{{years}}", String(BUSINESS.years)),
+      ),
+    ).toBeTruthy();
+  });
+
   it("gives screen readers the final numbers from the start", () => {
     // Arrange
     const region = () =>
@@ -110,10 +129,12 @@ describe("trust strip", () => {
 
     // Assert
     expect(
-      within(region()).getByText("Más de 50 años de experiencia"),
+      within(region()).getByText(
+        `Más de ${BUSINESS.years} años de experiencia`,
+      ),
     ).toBeTruthy();
     expect(
-      within(region()).getByText("Más de 7.000 obras realizadas"),
+      within(region()).getByText(`Más de ${works} obras realizadas`),
     ).toBeTruthy();
   });
 
@@ -135,8 +156,8 @@ describe("trust strip", () => {
     });
 
     // Assert
-    expect(before).toEqual(["+40", "+0"]);
-    expect(shownNumbers()).toEqual(["+50", "+7.000"]);
+    expect(before).toEqual(["+20", "+0"]);
+    expect(shownNumbers()).toEqual([`+${BUSINESS.years}`, `+${works}`]);
   });
 
   it("shows the final numbers straight away when the visitor asks for reduced motion", () => {
@@ -147,7 +168,7 @@ describe("trust strip", () => {
     openHome();
 
     // Assert
-    expect(shownNumbers()).toEqual(["+50", "+7.000"]);
+    expect(shownNumbers()).toEqual([`+${BUSINESS.years}`, `+${works}`]);
   });
 });
 
@@ -244,6 +265,24 @@ describe("home projects, about and call to action", () => {
     // Assert
     expect(
       screen.getByRole("heading", { level: 2, name: heading }),
+    ).toBeTruthy();
+  });
+
+  it("writes the WhatsApp number out under the call-to-action button, for visitors who'd rather dial it", () => {
+    // Arrange
+    BUSINESS.whatsappEnabled = true;
+
+    // Act
+    openHome();
+
+    // Assert
+    const cta = screen
+      .getByRole("heading", { level: 2, name: es.home.cta.title })
+      .closest("section") as HTMLElement;
+    expect(
+      within(cta).getByText(
+        `Llámenos al ${readableWhatsapp(BUSINESS.whatsapp)}`,
+      ),
     ).toBeTruthy();
   });
 

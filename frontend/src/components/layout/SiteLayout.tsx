@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Outlet, ScrollRestoration } from "react-router";
 import siteEn from "../../locales/site/en.json";
 import siteEs from "../../locales/site/es.json";
+import FloatingWhatsApp from "./FloatingWhatsApp";
 import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
 
@@ -14,6 +15,7 @@ export default function SiteLayout() {
         <Outlet />
       </main>
       <SiteFooter />
+      <FloatingWhatsApp />
       <ScrollRestoration />
     </div>
   );

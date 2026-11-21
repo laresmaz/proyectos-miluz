@@ -1,16 +1,17 @@
 // Site header
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link, NavLink } from "react-router";
+import { Link } from "react-router";
 import logo from "../../assets/logo.svg";
 import { BUSINESS } from "../../data/config";
 import LanguageSwitch from "./LanguageSwitch";
 import WhatsAppIcon from "../ui/WhatsAppIcon";
-import { NAV_LINKS } from "./navLinks";
+import { NAV_LINKS, useGlideToSection } from "./navLinks";
 
 export default function SiteHeader() {
   const { t } = useTranslation("site");
   const [open, setOpen] = useState(false);
+  const glide = useGlideToSection();
 
   return (
     <header className="border-b border-brand-mist bg-white">
@@ -54,15 +55,16 @@ export default function SiteHeader() {
         >
           {NAV_LINKS.map(({ to, label }) => (
             <li key={to}>
-              <NavLink
+              <Link
                 to={to}
-                onClick={() => setOpen(false)}
-                className={({ isActive }) =>
-                  `flex min-h-11 items-center rounded px-1 text-[15px] font-semibold hover:text-brand-medium focus-visible:outline-2 focus-visible:outline-brand ${isActive ? "text-brand" : "text-ink"}`
-                }
+                onClick={(event) => {
+                  glide(event, to);
+                  setOpen(false);
+                }}
+                className="flex min-h-11 items-center rounded px-1 text-[15px] font-semibold text-ink hover:text-brand-medium focus-visible:outline-2 focus-visible:outline-brand"
               >
                 {t(label)}
-              </NavLink>
+              </Link>
             </li>
           ))}
           <li>

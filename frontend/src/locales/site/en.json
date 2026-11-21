@@ -5,17 +5,19 @@
     "services": "Services",
     "projects": "Projects",
     "about": "About the engineer",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "whatsappFloating": "Open a WhatsApp chat"
   },
   "notFound": {
     "title": "Page not found",
     "back": "Back to home"
   },
   "footer": {
-    "tagline": "Civil engineering, renovations and reinforced concrete structures in [areas].",
+    "tagline": "Civil works, remodelling and facility maintenance in Caracas and across Venezuela.",
     "contact": "Contact",
     "links": "Links",
-    "whatsapp": "WhatsApp: {{number}}"
+    "whatsapp": "WhatsApp: {{number}}",
+    "rif": "Tax ID (RIF) {{rif}}"
   },
   "services": {
     "label": "{{number}} · Service",
@@ -35,7 +37,7 @@
           "Technical supervision and crew coordination"
         ],
         "whatsapp": "Hello, I'd like information about a civil works project (building/extension).",
-        "alt": "Building under construction with a concrete frame and scaffolding",
+        "alt": "Finished swimming pool at a home",
         "metaTitle": "Civil works and extensions in {{city}} · {{name}}",
         "metaDescription": "Building and extending homes and shops, supervised by a civil engineer."
       },
@@ -50,7 +52,7 @@
           "Bathrooms and kitchens: fixtures, taps and drains"
         ],
         "whatsapp": "Hello, I need a plumbing service.",
-        "alt": "Water pipes being installed under a washbasin",
+        "alt": "Pump room with a filter, valves and water pipes",
         "metaTitle": "Plumbing in {{city}} · {{name}}",
         "metaDescription": "Installing and repairing pipes, leaks, pumps and pressure tanks."
       },
@@ -65,7 +67,7 @@
           "Preparation for a generator or backup system"
         ],
         "whatsapp": "Hello, I'd like information about an electrical installation.",
-        "alt": "Technician working on an electrical panel",
+        "alt": "Newly installed electrical panel with breakers",
         "metaTitle": "Electrical installations in {{city}} · {{name}}",
         "metaDescription": "Safe electrical installations: panels, circuits, lighting and generator preparation."
       },
@@ -95,7 +97,7 @@
           "Moisture-resistant boards for bathrooms and kitchens"
         ],
         "whatsapp": "Hello, I'd like information about drywall work.",
-        "alt": "Drywall boards being fixed to metal framing",
+        "alt": "Drywall ceiling with recessed LED light lines",
         "metaTitle": "Drywall in {{city}} · {{name}}",
         "metaDescription": "Drywall partitions, ceilings and furniture with a professional finish."
       },
@@ -128,6 +130,21 @@
         "alt": "Reinforced concrete water tank under construction",
         "metaTitle": "Water tanks and concrete walls in {{city}} · {{name}}",
         "metaDescription": "Underground and elevated tanks, waterproofing and retaining walls."
+      },
+      "mantenimiento-integral": {
+        "title": "Facility maintenance",
+        "summary": "Our own crews for scheduled and corrective maintenance of offices, shops and buildings, with quick response and an engineer's supervision.",
+        "text": "We look after your premises as an outsourced maintenance company: regular checks of lighting, plumbing, paint and building systems, and immediate help when something fails. Our team includes plumbers, electricians, masons, air-conditioning technicians, carpenters, metalworkers, locksmiths and drywall installers, coordinated by supervisors. We have done this for corporate offices such as DirecTV's and Digitel's.",
+        "includes": [
+          "Scheduled maintenance: weekly checks of lighting, plumbing, paint and building systems",
+          "Corrective maintenance: light fittings, drains, flush valves, locks, glass and electrical points",
+          "Painting, waterproofing and drywall work",
+          "Office remodelling and additional works, quoted in advance"
+        ],
+        "whatsapp": "Hello, I'd like information about maintenance for a property.",
+        "alt": "Maintenance crew working in an office",
+        "metaTitle": "Office and building maintenance in {{city}} · {{name}}",
+        "metaDescription": "Scheduled and corrective maintenance of offices and buildings, with our own crews and an engineer's supervision."
       }
     }
   },
@@ -141,7 +158,7 @@
   "about": {
     "eyebrow": "About the engineer",
     "title": "I'm involved in every project",
-    "bio": "I'm <strong>[Name]</strong>, a civil engineer [registered with the CIV, no. X], with <strong>more than 50 years</strong> of experience in renovations, structural design and construction. I've worked on [types of work: homes, buildings, shops…] in [areas].",
+    "bio": "I'm <strong>Miguel Lares</strong>, a civil engineer who graduated from UCV in 1979, registered with the CIV under no. 26488, with <strong>more than {{engineerYears}} years</strong> of experience in civil works, structural reinforcement and maintenance. I lead Proyectos Miluz 10, C.A., a team of engineers, architects and technicians that has worked on buildings, clinics, corporate offices and homes in Caracas, eastern Venezuela and the Andes.",
     "presence": "From the first assessment to the handover, I'm there so your project is done right.",
     "photoAlt": "The engineer on site"
   },
@@ -149,10 +166,10 @@
     "hero": {
       "eyebrow": "Civil engineering · Renovations · Structures",
       "title": "Renovations and structures backed by an engineer",
-      "subtitle": "More than 50 years building, repairing and strengthening homes and buildings in [city/state].",
+      "subtitle": "More than {{years}} years building, remodelling and reinforcing homes, offices and buildings in Caracas and across Venezuela.",
       "whatsapp": "Message us on WhatsApp",
       "projects": "See projects",
-      "photoAlt": "Building with a concrete structure"
+      "photoAlt": "Finished corridor with LED light lines in the ceiling"
     },
     "trust": {
       "label": "Why trust us",
@@ -181,7 +198,7 @@
         },
         {
           "title": "Clear quote",
-          "text": "We quote in writing, with today's material prices and availability."
+          "text": "We quote in writing, with today's material prices and availability. Advice and quotes come with no obligation."
         },
         {
           "title": "Work and handover",
@@ -197,17 +214,14 @@
     "cta": {
       "title": "Got a project in mind?",
       "text": "Tell us what you need and we'll get back to you as soon as we can.",
-      "whatsapp": "Write on WhatsApp"
+      "whatsapp": "Write on WhatsApp",
+      "number": "Call us on {{number}}"
     }
   },
   "meta": {
     "home": {
       "title": "{{name}} · Civil engineer, renovations and structures in {{city}}",
-      "description": "Renovations, plumbing, electrical, masonry, drywall and reinforced concrete structures, backed by an engineer."
-    },
-    "services": {
-      "title": "Services · {{name}}",
-      "description": "From a leak to a full extension: every job done with technical judgement and an engineer's supervision."
+      "description": "Civil works, remodelling, facility maintenance, plumbing, electrical, drywall and reinforced concrete structures in Caracas, backed by an engineer."
     },
     "projects": {
       "title": "Projects · {{name}}",
@@ -215,7 +229,7 @@
     },
     "about": {
       "title": "About the engineer · {{name}}",
-      "description": "A civil engineer with more than 50 years of experience in renovations, structural design and construction."
+      "description": "A civil engineer with more than {{engineerYears}} years of experience in renovations, structural design and construction."
     },
     "notFound": {
       "title": "Page not found · {{name}}",

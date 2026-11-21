@@ -4,12 +4,13 @@ import { fontPreloadTags } from "./preloadFonts.ts";
 
 const bundle = [
   "assets/index-CX4wuU6T.css",
-  "assets/barlow-condensed-latin-700-normal-v1xN8_Wq.woff2",
-  "assets/barlow-condensed-latin-700-normal-AbCd.woff",
-  "assets/barlow-condensed-latin-ext-700-normal-Zz.woff2",
-  "assets/inter-latin-400-normal-C38fXH4l.woff2",
-  "assets/inter-latin-600-normal-LgqL8muc.woff2",
-  "assets/inter-latin-700-normal-Yt3aPRUw.woff2",
+  "assets/oswald-latin-700-normal-Bq3RqX1p.woff2",
+  "assets/oswald-latin-700-normal-AbCd.woff",
+  "assets/oswald-latin-ext-700-normal-Zz.woff2",
+  "assets/lato-latin-400-normal-C1x2Lp9a.woff2",
+  "assets/lato-latin-700-normal-D8k3Qa2b.woff2",
+  "assets/lato-latin-900-normal-E5r7Ty1c.woff2",
+  "assets/lato-latin-ext-400-normal-F2m6Wq8d.woff2",
 ];
 
 describe("font preloading", () => {
@@ -22,9 +23,9 @@ describe("font preloading", () => {
 
     // Assert
     expect(hrefs).toEqual([
-      "/assets/barlow-condensed-latin-700-normal-v1xN8_Wq.woff2",
-      "/assets/inter-latin-400-normal-C38fXH4l.woff2",
-      "/assets/inter-latin-700-normal-Yt3aPRUw.woff2",
+      "/assets/oswald-latin-700-normal-Bq3RqX1p.woff2",
+      "/assets/lato-latin-400-normal-C1x2Lp9a.woff2",
+      "/assets/lato-latin-700-normal-D8k3Qa2b.woff2",
     ]);
   });
 

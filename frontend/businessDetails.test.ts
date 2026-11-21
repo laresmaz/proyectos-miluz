@@ -5,6 +5,10 @@ import { buildManifest, fillBusinessDetails } from "./businessDetails.ts";
 const business = {
   name: "Pérez & Hijos",
   city: "Valencia, Venezuela",
+  rif: "J-12345678-9",
+  years: 25,
+  works: 400,
+  engineerYears: 40,
   whatsapp: "584141234567",
   whatsappEnabled: true,
 };

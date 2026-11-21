@@ -95,6 +95,5 @@ describe("language selection", () => {
 
     // Assert
     expect(englishKeys).toEqual(spanishKeys);
-    expect(en.teaser.services).toHaveLength(es.teaser.services.length);
   });
 });

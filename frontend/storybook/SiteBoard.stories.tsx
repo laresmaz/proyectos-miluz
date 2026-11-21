@@ -34,9 +34,6 @@ type Story = StoryObj<typeof meta>;
 // The home page, with the trust strip's numbers already at their final values.
 export const Home: Story = { args: { path: "/" } };
 
-// The seven services in the zigzag, with the nav and footer.
-export const Services: Story = { args: { path: "/servicios" } };
-
 // One full service page.
 export const ServicePage: Story = { args: { path: "/servicios/plomeria" } };
 

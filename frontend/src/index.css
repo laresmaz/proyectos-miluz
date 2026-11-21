@@ -17,12 +17,16 @@
   /* Amarillo grúa: only the main button and details on dark backgrounds, never text on white. */
   --color-crane: #ffc20e;
   --color-whatsapp: #25d366;
+  /* Warm dawn light that glows above the Ávila mountains. */
+  --color-sunrise: #ff9e57;
 
   --shadow-card: 0 1px 2px
     color-mix(in srgb, var(--color-brand-deep) 8%, transparent);
+  --shadow-float: 0 6px 20px
+    color-mix(in srgb, var(--color-brand-deep) 25%, transparent);
 
-  --font-sans: Inter, "Inter fallback", system-ui, sans-serif;
-  --font-display: "Barlow Condensed", "Barlow Condensed fallback", sans-serif;
+  --font-sans: Lato, "Lato fallback", system-ui, sans-serif;
+  --font-display: Oswald, "Oswald fallback", sans-serif;
 }
 
 /* Drifting cranes: cross their section left to right, behind the content (DISENO.md section 4). */

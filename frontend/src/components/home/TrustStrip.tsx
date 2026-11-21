@@ -2,14 +2,20 @@
 import isChromatic from "chromatic/isChromatic";
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { useTranslation } from "react-i18next";
+import { BUSINESS } from "../../data/config";
 import Section from "../ui/Section";
 
-// Where each number starts counting and where it ends; 7.000 works is still provisional.
+// Where each number starts counting and where it ends.
 const STATS = [
-  { from: 40, to: 50, label: "home.trust.years", full: "home.trust.yearsFull" },
+  {
+    from: 20,
+    to: BUSINESS.years,
+    label: "home.trust.years",
+    full: "home.trust.yearsFull",
+  },
   {
     from: 0,
-    to: 7000,
+    to: BUSINESS.works,
     label: "home.trust.works",
     full: "home.trust.worksFull",
   },
@@ -21,7 +27,7 @@ export default function TrustStrip() {
   const { t, i18n } = useTranslation("site");
   const strip = useRef<HTMLDivElement>(null);
   const progress = useCountUp(strip);
-  // The dot groups thousands in Spanish (7.000), the comma in English.
+  // The dot groups thousands in Spanish (1.000), the comma in English.
   const format = (n: number) =>
     String(n).replace(
       /\B(?=(\d{3})+$)/g,
@@ -29,10 +35,14 @@ export default function TrustStrip() {
     );
 
   return (
-    <Section aria-label={t("home.trust.label")} bg="var(--color-brand)">
+    <Section
+      aria-label={t("home.trust.label")}
+      bg="var(--color-brand)"
+      withCranes={false}
+    >
       <div
         ref={strip}
-        className="mx-auto flex max-w-225 flex-wrap items-center justify-center gap-x-20 gap-y-8 px-6 py-12"
+        className="mx-auto flex max-w-225 flex-wrap items-center justify-center gap-x-20 gap-y-8 px-6 py-12 lg:py-[3.5dvh]"
       >
         {STATS.map(({ from, to, label, full }) => (
           <div
@@ -42,7 +52,7 @@ export default function TrustStrip() {
             <span
               aria-hidden="true"
               data-count
-              className="font-display text-[clamp(64px,8vw,96px)] leading-none font-bold text-crane tabular-nums"
+              className="font-display text-[clamp(64px,8vw,96px)] leading-none lg:text-[clamp(48px,min(8vw,9dvh),96px)] font-bold text-crane tabular-nums"
             >
               +{format(Math.round(from + (to - from) * progress))}
             </span>

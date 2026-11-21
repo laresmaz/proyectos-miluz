@@ -12,47 +12,62 @@ export type Project = {
   title: string;
   serviceType: (typeof SERVICES)[number]["slug"];
   location: string;
-  year: number;
+  year?: number;
   isPublished: boolean;
   images: ProjectImage[];
 };
 
-// Builds the before/after pair for an example; the files don't exist yet, so BrandPhoto shows its fallback until they're uploaded.
-const examplePhotos = (n: number) =>
+// Builds a project's before/after pair from its file names; BrandPhoto shows the placeholder until photos.sh writes them.
+const plannedPhotos = (slug: string, title: string) =>
   (["antes", "despues"] as const).map((kind) => ({
-    id: `ejemplo-${n}-${kind}`,
-    url: `/photos/proyecto-ejemplo-${n}-${kind}.webp`,
-    altText: `Proyecto de ejemplo ${n}, ${kind === "antes" ? "antes" : "después"}`,
+    id: `${slug}-${kind}`,
+    url: `/photos/${slug}-${kind}.webp`,
+    altText: `${title}, ${kind === "antes" ? "antes" : "después"}`,
     kind,
   }));
 
-// shortcut: three generic examples, in Spanish only like the Firestore model; replace them with the engineer's real projects before launch.
+// Real works from the engineer's CV, in Spanish only like the data model; years are left out until he confirms them.
 export const PROJECTS: Project[] = [
+  // First, so the home page shows a real before/after pair; name and place to confirm with the engineer.
   {
-    slug: "proyecto-ejemplo-1",
-    title: "Proyecto de ejemplo 1",
+    slug: "canalizacion-electrica",
+    title: "Canalización eléctrica de fachada",
+    serviceType: "electricidad",
+    location: "",
+    isPublished: true,
+    images: plannedPhotos(
+      "canalizacion-electrica",
+      "Canalización eléctrica de fachada",
+    ),
+  },
+  {
+    slug: "refuerzo-clinica-lara",
+    title: "Refuerzo estructural de la Clínica Lara",
+    serviceType: "concreto-armado",
+    location: "Cabudare, Lara",
+    isPublished: true,
+    images: plannedPhotos(
+      "refuerzo-clinica-lara",
+      "Refuerzo estructural de la Clínica Lara",
+    ),
+  },
+  {
+    slug: "edificio-altamar",
+    title: "Edificio Altamar",
+    serviceType: "obras-civiles",
+    location: "Puerto La Cruz, Anzoátegui",
+    isPublished: true,
+    images: plannedPhotos("edificio-altamar", "Edificio Altamar"),
+  },
+  {
+    slug: "oficinas-digitel-cubo-negro",
+    title: "Oficinas de Digitel en el Cubo Negro",
     serviceType: "obras-civiles",
     location: "Caracas",
-    year: 2026,
     isPublished: true,
-    images: examplePhotos(1),
-  },
-  {
-    slug: "proyecto-ejemplo-2",
-    title: "Proyecto de ejemplo 2",
-    serviceType: "plomeria",
-    location: "Caracas",
-    year: 2026,
-    isPublished: true,
-    images: examplePhotos(2),
-  },
-  {
-    slug: "proyecto-ejemplo-3",
-    title: "Proyecto de ejemplo 3",
-    serviceType: "concreto-armado",
-    location: "Caracas",
-    year: 2026,
-    isPublished: true,
-    images: examplePhotos(3),
+    images: plannedPhotos(
+      "oficinas-digitel-cubo-negro",
+      "Oficinas de Digitel en el Cubo Negro",
+    ),
   },
 ];

@@ -21,8 +21,11 @@ export default function Home() {
 
   return (
     <>
-      <Hero />
-      <TrustStrip />
+      {/* At least a full screen below the header (129px on narrow phones, where it wraps; 77px from sm), so the trust strip ends at or below the bottom edge. */}
+      <div className="flex min-h-[calc(100dvh-129px)] flex-col sm:min-h-[calc(100dvh-77px)]">
+        <Hero />
+        <TrustStrip />
+      </div>
       <ServicesIntro />
       <Zigzag
         items={useServiceItems()}

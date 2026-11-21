@@ -11,18 +11,26 @@ export default function Hero() {
   const { t } = useTranslation("site");
 
   return (
-    <Section bg="var(--color-brand-deep)" dividerInto="var(--color-brand)">
-      <div className="mx-auto flex max-w-300 flex-wrap items-center gap-14 px-6 pt-24 pb-26">
+    <Section
+      bg="var(--color-brand-deep)"
+      dividerInto="var(--color-brand)"
+      sunrise
+      className="flex flex-1 flex-col"
+    >
+      <div className="mx-auto my-auto flex w-full max-w-300 flex-wrap items-center gap-14 px-6 pt-24 pb-26 lg:py-[3.5dvh]">
         <div className="flex min-w-0 flex-[1_1_480px] flex-col gap-7">
           <Text variant="eyebrow" className="text-crane">
             {t("home.hero.eyebrow")}
           </Text>
           <div className="flex flex-col gap-5">
-            <Text variant="heroTitle" className="text-white">
+            <Text
+              variant="heroTitle"
+              className="text-white lg:text-[clamp(36px,min(4.5vw,6.5dvh),72px)]"
+            >
               {t("home.hero.title")}
             </Text>
             <Text variant="lead" className="max-w-140 text-haze">
-              {t("home.hero.subtitle")}
+              {t("home.hero.subtitle", { years: BUSINESS.years })}
             </Text>
           </div>
           <div className="flex flex-wrap gap-3.5">
@@ -43,7 +51,7 @@ export default function Hero() {
             </Link>
           </div>
         </div>
-        <div className="min-w-0 flex-[1_1_420px]">
+        <div className="min-w-0 flex-[1_1_420px] lg:max-w-[64dvh]">
           <BrandPhoto
             src="/photos/hero.webp"
             alt={t("home.hero.photoAlt")}

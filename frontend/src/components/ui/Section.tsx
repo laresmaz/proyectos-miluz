@@ -1,7 +1,8 @@
-// A full-width band with its background and drifting cranes, optionally ending in the Ávila divider
+// A full-width band with its background and drifting cranes, optionally ending in the Ávila divider with a sunrise behind it
 import type { ComponentProps } from "react";
 import AvilaDivider from "./AvilaDivider";
 import CraneBackdrop from "./CraneBackdrop";
+import SunriseGlow from "./SunriseGlow";
 
 type SectionProps = ComponentProps<"section"> & {
   bg: string;
@@ -9,6 +10,7 @@ type SectionProps = ComponentProps<"section"> & {
   offset?: number;
   dividerInto?: string;
   withCranes?: boolean;
+  sunrise?: boolean;
 };
 
 export default function Section({
@@ -17,6 +19,7 @@ export default function Section({
   offset,
   dividerInto,
   withCranes = true,
+  sunrise = false,
   className = "",
   style,
   children,
@@ -28,6 +31,7 @@ export default function Section({
       className={`relative isolate overflow-hidden ${className}`}
       style={{ background: bg, ...style }}
     >
+      {sunrise && <SunriseGlow />}
       {withCranes && <CraneBackdrop tone={tone} offset={offset} />}
       {children}
       {dividerInto && <AvilaDivider topBg={bg} fill={dividerInto} />}
